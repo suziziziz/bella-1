@@ -4,6 +4,50 @@
   </div>
 </template>
 
+<script>
+import { mapActions } from 'vuex'
+export default {
+  data() {
+    return {
+      // Object to get the inner width and height of the screen
+      window: {
+        width: 0,
+        height: 0
+      }
+    }
+  },
+
+  computed: {},
+
+  created() {
+    // This is due to the server-side rendering. If you need to specify that you want to import a resource only on the client-side, you need to use the process.client variable
+    if (process.browser) {
+      // Retrieve the inner width and height of the screen
+      // eslint-disable-next-line nuxt/no-globals-in-created
+      window.addEventListener('resize', this.handleResize)
+
+      setTimeout(() => {
+        // Trigger function
+        this.handleResize()
+      }, 10)
+    }
+  },
+
+  methods: {
+    handleResize() {
+      this.window.width = window.innerWidth
+      this.window.height = window.innerHeight
+
+      this.updateSize(this.window)
+    },
+
+    ...mapActions({
+      updateSize: 'window/updateSize'
+    })
+  }
+}
+</script>
+
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
