@@ -61,8 +61,14 @@
   --footerFontFamily: 'ClementePDae';
   --footerFontSize: 14px;
 
+  --titleFontSize: 30px;
+
   --defaultTransition: all .25s ease;
 }
+
+/**
+ * Mixins
+**/
 
 /**
  * Defaults
@@ -87,6 +93,15 @@ a {
   &:hover{
     text-decoration: none;
   }
+}
+
+/**
+ * Text classes
+**/
+h1.title{
+  font-family: var(--navFontFamily);
+  font-size: var(--titleFontSize);
+  margin: 0;
 }
 
 /**
@@ -220,8 +235,15 @@ footer{
       }
 
       .logo{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: stretch;
+
         p{
-          margin-top: 30px;
+          margin: 0;
           text-transform: uppercase;
           font-family: var(--navActiveFontFamily);
           font-size: var(--footerFontSize);
@@ -230,15 +252,22 @@ footer{
       }
 
       .social{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        align-content: stretch;
+
         p.follow{
-          margin-bottom: 15px;
+          margin: 0;
           text-transform: uppercase;
           font-family: var(--navActiveFontFamily);
           font-size: var(--footerFontSize);
           color: white;
         }
         p.pwrd{
-          margin-top: 15px;
+          margin: 0;
           font-family: var(--navActiveFontFamily);
           font-size: var(--footerFontSize);
           color: white;
@@ -252,6 +281,8 @@ footer{
           }
         }
         span.icons{
+          margin-right: 25px;
+
           a{
             font-size: 30px;
             color: white;

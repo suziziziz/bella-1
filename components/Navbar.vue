@@ -27,17 +27,23 @@
           <div class="col-12 reset-col text-center">
             <ul>
               <li>
-                <a href="#" target="_blank">
+                <a
+                  href="https://www.facebook.com/agenciabellamodels"
+                  target="_blank"
+                >
                   <i class="fab fa-facebook-f"></i>
                 </a>
               </li>
               <li>
-                <a href="#" target="_blank">
+                <a
+                  href="https://www.instagram.com/bellamodelsagencia/"
+                  target="_blank"
+                >
                   <i class="fab fa-instagram"></i>
                 </a>
               </li>
               <li>
-                <a href="#" target="_blank">
+                <a href="https://twitter.com/bellamodelsrj" target="_blank">
                   <i class="fab fa-twitter"></i>
                 </a>
               </li>

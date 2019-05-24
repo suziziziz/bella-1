@@ -1,17 +1,40 @@
 <template>
-  <section>
-    <div>
-      <h1 class="title">
-        Home
-      </h1>
+  <section id="home">
+    <div class="row slider reset-row">
+      <div class="col-12 reset-row">
+        <home-slider :srcset="slides" />
+      </div>
+    </div>
+
+    <div class="row instagram-intro reset-row">
+      <div class="col-12 reset-col text-center">
+        <h1 class="title">Instagram</h1>
+        <i class="fab fa-instagram"></i>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import HomeSlider from '~/components/HomeSlider'
+
 export default {
+  components: {
+    'home-slider': HomeSlider
+  },
+
   data() {
     return {
+      slides: [
+        {
+          id: '1',
+          src: '/img/1.jpg'
+        },
+        {
+          id: '2',
+          src: '/img/2.jpg'
+        }
+      ]
       // meta: {
       //   title: 'Bella #Models',
       //   description:
@@ -55,35 +78,25 @@ export default {
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style lang="scss">
+#home {
+  .instagram-intro {
+    margin-top: 50px;
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+    div {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      align-content: center;
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+      i {
+        font-size: 26px;
+        color: var(--dark);
+        margin: 20px;
+      }
+    }
+  }
 }
 </style>

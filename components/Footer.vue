@@ -20,13 +20,19 @@
         <div class="col-md-4 social reset-col">
           <p class="follow">Siga-nos nas redes sociais</p>
           <span class="icons">
-            <a href="#" target="_blank">
+            <a
+              href="https://www.facebook.com/agenciabellamodels"
+              target="_blank"
+            >
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" target="_blank">
+            <a
+              href="https://www.instagram.com/bellamodelsagencia/"
+              target="_blank"
+            >
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" target="_blank">
+            <a href="https://twitter.com/bellamodelsrj" target="_blank">
               <i class="fab fa-twitter"></i>
             </a>
           </span>
