@@ -1,26 +1,77 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="main-component">
+    <main-nav :items="sections" />
+
+    <div class="content">
+      <nuxt />
+    </div>
+
+    <main-footer />
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import Navbar from '~/components/Navbar.vue'
+import Footer from '~/components/Footer.vue'
 export default {
+  components: {
+    'main-nav': Navbar,
+    'main-footer': Footer
+  },
+
   data() {
     return {
       // Object to get the inner width and height of the screen
       window: {
         width: 0,
         height: 0
-      }
+      },
+      // Menu sections passed to Navbar component
+      sections: [
+        {
+          id: '1',
+          name: 'Home',
+          path: '/'
+        },
+        {
+          id: '2',
+          name: 'Quem somos',
+          path: '/quem-somos'
+        },
+        {
+          id: '3',
+          name: 'Feminino',
+          path: '/modelos/feminino'
+        },
+        {
+          id: '4',
+          name: 'Masculino',
+          path: '/modelos/masculino'
+        },
+        {
+          id: '5',
+          name: 'Contato',
+          path: '/contato'
+        },
+        {
+          id: '6',
+          name: 'Quero ser modelo',
+          path: '/quero-ser-modelo'
+        },
+        {
+          id: '7',
+          name: 'Blog',
+          path: '/blog'
+        }
+      ]
     }
   },
 
-  computed: {},
-
   created() {
-    // This is due to the server-side rendering. If you need to specify that you want to import a resource only on the client-side, you need to use the process.client variable
+    // This is due to the server-side rendering.
+    // If you need to specify that you want to import a resource
+    // only on the client-side, you need to use the process.client variable
     if (process.browser) {
       // Retrieve the inner width and height of the screen
       // eslint-disable-next-line nuxt/no-globals-in-created
@@ -48,52 +99,42 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+  overflow-x: hidden;
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: white;
 }
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+.main-component {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+.content {
+  flex: auto;
 }
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
+::-webkit-scrollbar {
+  width: 5px;
 }
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background: white;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 0px;
+  border-radius: 5px;
+  background: rgb(162, 128, 77);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(162, 128, 77, 0.5);
 }
 </style>

@@ -1,40 +1,15 @@
 <template>
-  <section class="container">
+  <section>
     <div>
-      <logo />
       <h1 class="title">
-        bella_models_nuxt
+        Home
       </h1>
-
-      <h2 class="subtitle">
-        Criada em 2006 e com duas sedes no Rio de Janeiro, a Bella Models é uma
-        das mais fortes agências do Rio de Janeiro, prestando um serviço
-        diferenciado no mercado fashion, comercial e plus size.
-      </h2>
-
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green"
-          >Documentation</a
-        >
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-          >GitHub</a
-        >
-      </div>
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  },
-
   data() {
     return {
       // meta: {
