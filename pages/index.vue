@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapGetters } from 'vuex'
 import HomeSlider from '~/components/HomeSlider'
 
 export default {
@@ -46,6 +48,34 @@ export default {
       //   logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',
       //   url: window.location.href
       // }
+    }
+  },
+
+  mounted() {
+    this.getInstagramInfo('bellamodelsagencia')
+  },
+
+  methods: {
+    ...mapGetters({
+      authToken: 'authToken'
+    }),
+
+    getInstagramInfo(_user) {
+      const token = this.authToken()
+
+      axios
+        .get('https://integration.managerfashion.net/api/agency/instagram', {
+          params: { username: _user.toString() },
+          headers: { Authorization: 'bearer ' + token }
+        })
+        .then(response => {
+          // eslint-disable-next-line no-console
+          console.log('response: ', response)
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.log('getInstagramInfo error: ', error)
+        })
     }
   }
 
