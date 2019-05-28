@@ -23,7 +23,7 @@ export default {
     'home-slider': HomeSlider
   },
 
-  middleware: ['home'],
+  middleware: ['signin'],
 
   data() {
     return {
