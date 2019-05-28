@@ -23,6 +23,8 @@ export default {
     'home-slider': HomeSlider
   },
 
+  middleware: ['home'],
+
   data() {
     return {
       slides: [
