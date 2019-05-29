@@ -101,6 +101,7 @@ a {
 h1.title{
   font-family: var(--navFontFamily);
   font-size: var(--titleFontSize);
+  text-transform: uppercase;
   margin: 0;
 }
 
@@ -116,6 +117,19 @@ h1.title{
   padding-right: 0;
 }
 
+/**
+ * Transitions
+**/
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+/**
+ * Animations
+**/
 
 /**
  * Navbar

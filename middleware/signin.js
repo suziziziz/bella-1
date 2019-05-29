@@ -1,3 +1,16 @@
+/**
+ * Sign in middleware.
+ *
+ * @param string api_key
+ * @param string salt
+ *
+ * Makes a post request to the MF Integration API sending the client api_key and salt to authenticate and
+ * gives back the authentication token (bearer token). This token is required to make any other Integration API's.
+ *
+ * The Auth token is stored on Vuex store, it can be accessed from any component.
+ *
+ */
+
 import axios from 'axios'
 
 export default function({ store }) {
