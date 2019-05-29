@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Index from '~/pages/index'
+import Home from '~/pages/home'
 
 Vue.use(Router)
 
@@ -13,27 +13,27 @@ export function createRouter() {
     routes: [
       {
         path: '/',
-        component: Index
+        component: Home
       },
       {
         path: '/quem-somos',
-        component: Index
+        component: Home
       },
       {
         path: '/modelos/:gender',
-        component: Index
+        component: Home
       },
       {
         path: '/contato',
-        component: Index
+        component: Home
       },
       {
         path: '/quero-ser-modelo',
-        component: Index
+        component: Home
       },
       {
         path: '/blog',
-        component: Index
+        component: Home
       }
     ]
   })

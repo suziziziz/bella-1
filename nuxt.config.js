@@ -114,7 +114,8 @@ export default {
    */
   plugins: [
     { src: '~/plugins/vuex-persist', ssr: false },
-    { src: '~/plugins/vue-awesome-swiper', ssr: false }
+    { src: '~/plugins/vue-awesome-swiper', ssr: false },
+    { src: '~/plugins/lodash', ssr: false }
   ],
 
   /*

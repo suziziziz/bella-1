@@ -12,6 +12,6 @@ export default function({ store }) {
     })
     .catch(error => {
       // eslint-disable-next-line no-console
-      console.log('Auth error: ', error)
+      console.log('Auth MD error: ', error)
     })
 }

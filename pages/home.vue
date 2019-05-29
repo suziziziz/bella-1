@@ -17,6 +17,7 @@
 
 <script>
 import axios from 'axios'
+import _ from 'lodash'
 import { mapGetters } from 'vuex'
 import HomeSlider from '~/components/HomeSlider'
 
@@ -38,7 +39,8 @@ export default {
           id: '2',
           src: '/img/2.jpg'
         }
-      ]
+      ],
+      instagramData: []
       // meta: {
       //   title: 'Bella #Models',
       //   description:
@@ -53,6 +55,9 @@ export default {
 
   mounted() {
     this.getInstagramInfo('bellamodelsagencia')
+
+    // eslint-disable-next-line no-console
+    // console.log('lodash: ', _.isEmpty(null))
   },
 
   methods: {
@@ -70,7 +75,9 @@ export default {
         })
         .then(response => {
           // eslint-disable-next-line no-console
-          console.log('response: ', response)
+          // console.log('response: ', response)
+
+          this.instagramData = response.data
         })
         .catch(error => {
           // eslint-disable-next-line no-console
