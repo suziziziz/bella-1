@@ -5,6 +5,10 @@ let deferredPrompt
 const addContext = document.getElementById('appInstall')
 const btnAdd = document.getElementById('btnInstall')
 
+setTimeout(() => {
+  addContext.setAttribute('notify', 'true')
+}, 1000)
+
 // if (
 //   (process.browser &&
 //     !window.matchMedia('(display-mode: standalone)').matches) ||
@@ -20,7 +24,7 @@ const btnAdd = document.getElementById('btnInstall')
 //     // Update UI notify the user they can add to home screen
 //     addContext.style.display = 'flex'
 
-//     addContext.addEventListener('click', e => {
+//     btnAdd.addEventListener('click', e => {
 //       // hide our user interface that shows our A2HS button
 //       addContext.style.display = 'none'
 

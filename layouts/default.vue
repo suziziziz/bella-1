@@ -5,13 +5,22 @@
     <div class="content">
       <nuxt />
 
-      <div id="appInstall">
-        <p class="m-0">Adicione <b>Bella #Models</b> à sua tela inicial</p>
+      <transition name="slide-left-right" mode="in-out">
+        <div v-show="showAppInstall" id="appInstall" notify="false">
+          <div class="close-btn">
+            <i class="fas fa-times"></i>
+          </div>
 
-        <button id="btnInstall">
-          <span id="downloadAnim" /> Adicionar app
-        </button>
-      </div>
+          <p class="m-0">Adicione <b>Bella #Models</b> à sua tela inicial</p>
+
+          <div class="download">
+            <span id="downloadAnim" />
+            <button id="btnInstall">
+              Adicionar app
+            </button>
+          </div>
+        </div>
+      </transition>
     </div>
 
     <main-footer />
@@ -35,6 +44,7 @@ export default {
 
   data() {
     return {
+      showAppInstall: false,
       // Object to get the inner width and height of the screen
       window: {
         width: 0,
@@ -100,8 +110,43 @@ export default {
   mounted() {
     const download = document.getElementById('appInstall')
 
-    if (download.style.display !== 'none') {
-      this.animateDownload('downloadAnim', 'waiting')
+    // eslint-disable-next-line no-console
+    console.log('First: ', download.getAttribute('notify'))
+
+    // if (download.getAttribute('notify') !== 'down') {
+    //   this.animateDownload('downloadAnim', 'waiting')
+    // }
+
+    if (process.browser) {
+      let hasChanged = false
+
+      const MutationObserver =
+        window.MutationObserver ||
+        window.WebKitMutationObserver ||
+        window.MozMutationObserver
+
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            // eslint-disable-next-line no-console
+            console.log('attributes changed')
+
+            hasChanged = true
+            // this.showAppInstall = download.getAttribute('notify')
+          }
+        })
+      })
+
+      setTimeout(() => {
+        if (hasChanged) {
+          // eslint-disable-next-line no-console
+          console.log('Second: ', this.showAppInstall)
+        }
+      }, 100)
+
+      observer.observe(download, {
+        attributes: true // Listen to attribute changes
+      })
     }
   },
 
@@ -146,7 +191,8 @@ export default {
       const anim = lottie.loadAnimation(animData)
 
       anim.addEventListener('DOMLoaded', function() {
-        anim.playSegments([5, 30], true)
+        // anim.setSpeed(0.2)
+        anim.play()
       })
     }
   }

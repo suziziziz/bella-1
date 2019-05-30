@@ -105,20 +105,38 @@ button{
 }
 #appInstall{
   display: flex;
+  // display: none;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	align-content: center;
   width: 375px;
-  height: 100px;
   position: fixed;
   bottom: 250px;
   right: 0;
-  padding: 10px;
+  padding: 30px 10px 30px 10px;
   background: var(--dark);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
   z-index: 999;
+
+  .close-btn{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+
+    i{
+      color: white;
+      font-size: 16px;
+      transition: var(--defaultTransition);
+
+      &:hover{
+        transform: scale(1.05, 1.05);
+        box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
 
   p{
     font-family: 'Helvetica';
@@ -132,20 +150,33 @@ button{
     }
   }
 
-  button{
-    margin-top: 10px;
-    background: white;
-    border: none;
-    padding: 5px 10px 5px 10px;
-    font-family: 'Helvetica';
-    font-weight: bold;
-    font-size: 16px;
-    color: var(--dark);
-    transition: all .25s ease;
+  .download{
+    position: relative;
 
-    &:hover{
-      transform: scale(1.05, 1.05);
-      box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.1);
+    #downloadAnim{
+      position: absolute;
+      left: -50px;
+
+      svg{
+        width: 50px !important;
+      }
+    }
+
+    button{
+      margin-top: 10px;
+      background: white;
+      border: none;
+      padding: 5px 10px 5px 10px;
+      font-family: 'Helvetica';
+      font-weight: bold;
+      font-size: 16px;
+      color: var(--dark);
+      transition: all .25s ease;
+
+      &:hover{
+        transform: scale(1.05, 1.05);
+        box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.1);
+      }
     }
   }
 }
@@ -179,6 +210,22 @@ h1.title{
   transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-left-right-enter-active {
+  transition: all .3s ease;
+  // transition-delay: .4s;
+}
+.slide-left-right-leave-active {
+  transition: all .3s ease;
+}
+.slide-left-right-enter {
+  transform: translateX(-100px);
+  opacity: 1;
+}
+.slide-left-right-leave-to{
+  transform: translateX(100px);
   opacity: 0;
 }
 
