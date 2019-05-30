@@ -1,12 +1,7 @@
-import webpack from 'webpack'
-
 /**
  * Meta configs. Update these if you're starting a new project
  */
 import meta from './meta'
-
-// eslint-disable-next-line nuxt/no-cjs-in-config
-const lodash = require('lodash')
 
 export default {
   mode: 'universal',
@@ -123,6 +118,7 @@ export default {
   plugins: [
     { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vue-awesome-swiper', ssr: false },
+    { src: '~/plugins/install-notify', ssr: false },
     { src: '~/plugins/lodash' }
   ],
 

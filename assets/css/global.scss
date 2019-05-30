@@ -94,6 +94,61 @@ a {
     text-decoration: none;
   }
 }
+button{
+  outline: none !important;
+
+  &:focus,
+  &:active,
+  &:hover{
+    outline: none !important;
+  }
+}
+#appInstall{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+  width: 375px;
+  height: 100px;
+  position: fixed;
+  bottom: 250px;
+  right: 0;
+  padding: 10px;
+  background: var(--dark);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+  z-index: 999;
+
+  p{
+    font-family: 'Helvetica';
+    font-weight: 300;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+
+    b{
+      font-weight: bold;
+    }
+  }
+
+  button{
+    margin-top: 10px;
+    background: white;
+    border: none;
+    padding: 5px 10px 5px 10px;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--dark);
+    transition: all .25s ease;
+
+    &:hover{
+      transform: scale(1.05, 1.05);
+      box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
 
 /**
  * Text classes

@@ -24,7 +24,7 @@
         <div
           v-for="item in instagramData.all"
           v-show="!$_.isEmpty(instagramData)"
-          :key="item"
+          :key="item.url"
           class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 item"
         >
           <a :href="item.url" target="_blank">
@@ -230,7 +230,7 @@ export default {
           break
 
         case 'exit':
-          lottie.destroy()
+          anim.destroy()
           // eslint-disable-next-line no-console
           console.log('anim exit')
           break

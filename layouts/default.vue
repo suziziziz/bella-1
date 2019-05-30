@@ -4,6 +4,14 @@
 
     <div class="content">
       <nuxt />
+
+      <div id="appInstall">
+        <p class="m-0">Adicione <b>Bella #Models</b> à sua tela inicial</p>
+
+        <button id="btnInstall">
+          <span id="downloadAnim" /> Adicionar app
+        </button>
+      </div>
     </div>
 
     <main-footer />
@@ -11,6 +19,11 @@
 </template>
 
 <script>
+/**
+ * Used to animate Airbnb Lottie animations
+ */
+import lottie from 'lottie-web'
+
 import { mapActions } from 'vuex'
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
@@ -84,6 +97,14 @@ export default {
     }
   },
 
+  mounted() {
+    const download = document.getElementById('appInstall')
+
+    if (download.style.display !== 'none') {
+      this.animateDownload('downloadAnim', 'waiting')
+    }
+  },
+
   methods: {
     handleResize() {
       this.window.width = window.innerWidth
@@ -94,7 +115,40 @@ export default {
 
     ...mapActions({
       updateSize: 'window/updateSize'
-    })
+    }),
+
+    animateDownload(_container, _action = 'waiting') {
+      // const anim = lottie.loadAnimation({
+      //   container: document.getElementById(_container.toString()),
+      //   renderer: 'svg',
+      //   loop: true,
+      //   autoplay: false,
+      //   path: '/animations/download.json'
+      // })
+
+      // switch (_action) {
+      //   case 'waiting':
+      //     anim.playSegments([0, 30], true)
+      //     break
+
+      //   case 'accept':
+      //     break
+      // }
+
+      const animData = {
+        container: document.getElementById(_container.toString()),
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+        autoloadSegments: false,
+        path: '/animations/download.json'
+      }
+      const anim = lottie.loadAnimation(animData)
+
+      anim.addEventListener('DOMLoaded', function() {
+        anim.playSegments([5, 30], true)
+      })
+    }
   }
 }
 </script>
