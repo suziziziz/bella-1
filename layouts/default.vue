@@ -105,7 +105,7 @@ export default {
   },
 
   mounted() {
-    this.animateDownload('downloadAnim', 'waiting')
+    this.animateDownload('downloadAnim')
 
     // if (process.browser) {
     //   const download = document.getElementById('appInstall')
@@ -148,24 +148,7 @@ export default {
       el.style.display = 'none'
     },
 
-    animateDownload(_container, _action = 'waiting') {
-      // const anim = lottie.loadAnimation({
-      //   container: document.getElementById(_container.toString()),
-      //   renderer: 'svg',
-      //   loop: true,
-      //   autoplay: false,
-      //   path: '/animations/download.json'
-      // })
-
-      // switch (_action) {
-      //   case 'waiting':
-      //     anim.playSegments([0, 30], true)
-      //     break
-
-      //   case 'accept':
-      //     break
-      // }
-
+    animateDownload(_container) {
       const animData = {
         container: document.getElementById(_container.toString()),
         renderer: 'svg',
@@ -177,7 +160,6 @@ export default {
       const anim = lottie.loadAnimation(animData)
 
       anim.addEventListener('DOMLoaded', function() {
-        // anim.setSpeed(0.2)
         anim.play()
       })
     }
