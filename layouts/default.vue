@@ -5,22 +5,20 @@
     <div class="content">
       <nuxt />
 
-      <transition name="slide-left-right" mode="in-out">
-        <div v-show="showAppInstall" id="appInstall" notify="false">
-          <div class="close-btn">
-            <i class="fas fa-times"></i>
-          </div>
-
-          <p class="m-0">Adicione <b>Bella #Models</b> à sua tela inicial</p>
-
-          <div class="download">
-            <span id="downloadAnim" />
-            <button id="btnInstall">
-              Adicionar app
-            </button>
-          </div>
+      <div id="appInstall" notify="false">
+        <div id="closeAppInstall" class="close-btn" @click="closeInstall()">
+          <i class="fas fa-times"></i>
         </div>
-      </transition>
+
+        <p class="m-0">Adicione <b>Bella #Models</b> à sua tela inicial</p>
+
+        <div class="download">
+          <span id="downloadAnim" />
+          <button id="btnInstall">
+            Adicionar app
+          </button>
+        </div>
+      </div>
     </div>
 
     <main-footer />
@@ -44,7 +42,6 @@ export default {
 
   data() {
     return {
-      showAppInstall: false,
       // Object to get the inner width and height of the screen
       window: {
         width: 0,
@@ -108,46 +105,29 @@ export default {
   },
 
   mounted() {
-    const download = document.getElementById('appInstall')
+    this.animateDownload('downloadAnim', 'waiting')
 
-    // eslint-disable-next-line no-console
-    console.log('First: ', download.getAttribute('notify'))
+    // if (process.browser) {
+    //   const download = document.getElementById('appInstall')
 
-    // if (download.getAttribute('notify') !== 'down') {
-    //   this.animateDownload('downloadAnim', 'waiting')
+    //   const MutationObserver =
+    //     window.MutationObserver ||
+    //     window.WebKitMutationObserver ||
+    //     window.MozMutationObserver
+
+    //   const observer = new MutationObserver(function(mutations) {
+    //     mutations.forEach(function(mutation) {
+    //       if (mutation.type === 'attributes') {
+    //         // eslint-disable-next-line no-console
+    //         console.log('attributes changed')
+    //       }
+    //     })
+    //   })
+
+    //   observer.observe(download, {
+    //     attributes: true // Listen to attribute changes
+    //   })
     // }
-
-    if (process.browser) {
-      let hasChanged = false
-
-      const MutationObserver =
-        window.MutationObserver ||
-        window.WebKitMutationObserver ||
-        window.MozMutationObserver
-
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.type === 'attributes') {
-            // eslint-disable-next-line no-console
-            console.log('attributes changed')
-
-            hasChanged = true
-            // this.showAppInstall = download.getAttribute('notify')
-          }
-        })
-      })
-
-      setTimeout(() => {
-        if (hasChanged) {
-          // eslint-disable-next-line no-console
-          console.log('Second: ', this.showAppInstall)
-        }
-      }, 100)
-
-      observer.observe(download, {
-        attributes: true // Listen to attribute changes
-      })
-    }
   },
 
   methods: {
@@ -161,6 +141,12 @@ export default {
     ...mapActions({
       updateSize: 'window/updateSize'
     }),
+
+    closeInstall() {
+      const el = document.getElementById('appInstall')
+
+      el.style.display = 'none'
+    },
 
     animateDownload(_container, _action = 'waiting') {
       // const anim = lottie.loadAnimation({

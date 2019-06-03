@@ -23,6 +23,7 @@ setTimeout(() => {
 
 //     // Update UI notify the user they can add to home screen
 //     addContext.style.display = 'flex'
+//     addContext.setAttribute('notify', 'true')
 
 //     btnAdd.addEventListener('click', e => {
 //       // hide our user interface that shows our A2HS button
