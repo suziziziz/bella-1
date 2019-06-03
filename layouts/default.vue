@@ -1,10 +1,13 @@
 <template>
   <div class="main-component">
+    <!-- Header -->
     <main-nav :items="sections" />
 
     <div class="content">
-      <nuxt />
+      <!-- Router-view -->
+      <nuxt :key="$route.fullPath" />
 
+      <!-- App install -->
       <div id="appInstall" notify="false">
         <div id="closeAppInstall" class="close-btn" @click="closeInstall()">
           <i class="fas fa-times"></i>
@@ -21,6 +24,7 @@
       </div>
     </div>
 
+    <!-- Footer -->
     <main-footer />
   </div>
 </template>
@@ -198,11 +202,11 @@ body {
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 0px;
   border-radius: 5px;
-  background: rgb(162, 128, 77);
+  background: rgb(31, 26, 23);
   -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(162, 128, 77, 0.5);
+  background: rgba(31, 26, 23, 0.5);
 }
 </style>

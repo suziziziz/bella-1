@@ -55,6 +55,7 @@
 
   --navFontFamily: 'ClementePDaa';
   --navActiveFontFamily: 'ClementePDac';
+  --titleStrongFontFamily: 'ClementePDae';
   --navFontSize: 22px;
   --navFontColor: var(--dark);
 
@@ -186,6 +187,12 @@ button{
 **/
 h1.title{
   font-family: var(--navFontFamily);
+  font-size: var(--titleFontSize);
+  text-transform: uppercase;
+  margin: 0;
+}
+h1.title-strong{
+  font-family: var(--titleStrongFontFamily);
   font-size: var(--titleFontSize);
   text-transform: uppercase;
   margin: 0;

@@ -17,6 +17,8 @@ export default {
 
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'robots', content: 'index, follow' },
+      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { name: 'theme-color', content: '#1F1A17' },
       { name: 'keywords', content: meta.keywords },
       { name: 'twitter:description', content: meta.description },
       { name: 'twitter:image:src', content: meta.logo },

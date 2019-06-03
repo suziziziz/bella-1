@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '~/pages/home'
+import Talents from '~/pages/talents'
 
 Vue.use(Router)
 
@@ -21,7 +22,7 @@ export function createRouter() {
       },
       {
         path: '/modelos/:gender',
-        component: Home
+        component: Talents
       },
       {
         path: '/contato',
