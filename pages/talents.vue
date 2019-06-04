@@ -9,31 +9,37 @@
     <div class="row categories reset-row">
       <div class="col-12 reset-col text-center">
         <ul>
-          <li class="active">Fashion</li>
-          <li>Comercial</li>
+          <li
+            :class="currCategory === 'fashion' ? 'active' : ''"
+            @click="selectCategory('fashion')"
+          >
+            Fashion
+          </li>
+          <li
+            :class="currCategory === 'comercial' ? 'active' : ''"
+            @click="selectCategory('comercial')"
+          >
+            Comercial
+          </li>
         </ul>
       </div>
     </div>
 
-    <talents-list :list="talents" />
+    <router-view :key="$route.fullPath" :list="talents" />
   </section>
 </template>
 
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
-import TalentsList from '~/components/TalentsList.vue'
 
 export default {
   middleware: ['signin'],
 
-  components: {
-    'talents-list': TalentsList
-  },
-
   data() {
     return {
       talentList: [],
+      currCategory: 'fashion',
       meta: {
         title:
           'Modelos | ' +
@@ -50,13 +56,30 @@ export default {
 
   computed: {
     talents() {
-      const gender = this.$route.params.gender === 'feminino' ? 'woman' : 'man'
+      /**
+       * Categories
+       *
+       * 1    === Modelo
+       * 2    === Ator
+       * 3    === Celebridade
+       * 651  === Fashion
+       * 652  === Comercial
+       *
+       */
 
-      // eslint-disable-next-line no-console
-      console.log('gender: ', gender)
+      const gender = this.$route.params.gender === 'feminino' ? 'woman' : 'man'
+      const catId =
+        this.currCategory === 'fashion'
+          ? 651
+          : this.currCategory === 'comercial'
+          ? 652
+          : 1
 
       return this.talentList.filter(talent => {
-        return talent.gender === gender
+        return (
+          talent.gender === gender &&
+          this.checkCategories(talent.categories, catId) === true
+        )
       })
     }
   },
@@ -88,6 +111,23 @@ export default {
           // eslint-disable-next-line no-console
           console.log('getTalents error: ', error)
         })
+    },
+
+    selectCategory(_cat) {
+      this.currCategory = _cat
+    },
+
+    checkCategories(_obj, _cat) {
+      const response = this.$_.findIndex(_obj, { id: _cat })
+
+      // eslint-disable-next-line no-console
+      // console.log('Response: ', response)
+
+      if (response >= 0) {
+        return true
+      } else {
+        return false
+      }
     }
   },
 
@@ -155,6 +195,7 @@ export default {
         }
         li.active {
           font-family: var(--titleStrongFontFamily);
+          transition: var(--defaultTransition);
           border-bottom: 3px solid;
         }
       }

@@ -1,21 +1,28 @@
 <template>
-  <div class="row talents-list justify-content-center reset-row">
-    <div
-      v-for="talent in talents"
-      :key="talent.id"
-      class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 text-center talent"
-    >
-      <router-link :to="{ path: '#' }" tag="a">
-        <figure>
-          <img :src="talent.cover" :alt="talent.name" class="img-fluid w-100" />
+  <div class="row talents-list justify-content-center">
+    <transition-group name="fade" mode="out-in" class="transition-fix">
+      <div
+        v-for="talent in talents"
+        :key="talent.id"
+        class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 text-center talent"
+      >
+        <router-link :to="{ path: '#' }" tag="a">
+          <figure>
+            <img
+              :key="talent.id"
+              v-lazy="talent.cover"
+              :alt="talent.name"
+              class="img-fluid w-100"
+            />
 
-          <div class="item-hover">
-            {{ talent.name }}
-            <i class="fab fa-instagram"></i>
-          </div>
-        </figure>
-      </router-link>
-    </div>
+            <div class="item-hover">
+              {{ talent.name }}
+              <i class="fab fa-instagram"></i>
+            </div>
+          </figure>
+        </router-link>
+      </div>
+    </transition-group>
   </div>
 </template>
 
@@ -59,6 +66,14 @@ export default {
           -ms-user-select: none;
           user-select: none;
           filter: grayscale(1);
+        }
+        img[lazy='loaded'] {
+          -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+          -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
         }
         .item-hover {
           position: absolute;

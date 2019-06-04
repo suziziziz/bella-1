@@ -121,7 +121,8 @@ export default {
     { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vue-awesome-swiper', ssr: false },
     { src: '~/plugins/install-notify', ssr: false },
-    { src: '~/plugins/lodash' }
+    { src: '~/plugins/lodash' },
+    { src: '~/plugins/vue-lazyload' }
   ],
 
   /*
