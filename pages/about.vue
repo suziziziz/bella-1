@@ -17,6 +17,29 @@
         <h3 class="title-strong">Equipe</h3>
       </div>
     </div>
+
+    <div class="row team reset-row text-center">
+      <div
+        v-for="person in team"
+        :key="person.id"
+        class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 person"
+      >
+        <p class="position">
+          {{ person.position }}
+        </p>
+        <p class="name">
+          {{ person.name }}
+        </p>
+        <div class="social">
+          <a href="#" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -202,7 +225,73 @@ export default {
   }
 
   .team-intro {
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+  }
+
+  .team {
+    margin: 0 150px 50px 150px;
+
+    @media (min-width: 992px) {
+      .person:nth-child(1) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(2) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(3) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(4) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+    }
+
+    @media (min-width: 577px) and (max-width: 991px) {
+      .person:nth-child(3) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(4) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .person {
+        border-bottom: 2px solid #3c3c3c;
+
+        &:last-of-type {
+          border: none;
+        }
+      }
+    }
+
+    .person {
+      padding: 25px 15px;
+      p.position {
+        font-family: 'Helvetica';
+        font-weight: bold;
+        font-size: 16px;
+        color: #3c3c3c;
+        margin-bottom: 0;
+      }
+      p.name {
+        font-family: 'Helvetica';
+        font-weight: 300;
+        font-size: 16px;
+        color: #3c3c3c;
+      }
+      .social {
+        a {
+          font-size: 20px;
+          color: #3c3c3c;
+          padding: 0 5px;
+
+          &:hover {
+            color: var(--lessDark);
+          }
+        }
+      }
+    }
   }
 }
 </style>
