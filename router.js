@@ -5,6 +5,7 @@ import Home from '~/pages/home'
 import About from '~/pages/about'
 import Talents from '~/pages/talents'
 import TalentsList from '~/components/TalentsList.vue'
+import Contact from '~/pages/contact'
 
 Vue.use(Router)
 
@@ -34,7 +35,7 @@ export function createRouter() {
       },
       {
         path: '/contato',
-        component: Home
+        component: Contact
       },
       {
         path: '/quero-ser-modelo',
