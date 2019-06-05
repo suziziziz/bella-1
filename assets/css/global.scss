@@ -63,6 +63,9 @@
   --footerFontSize: 14px;
 
   --titleFontSize: 30px;
+  --subTitleFontSize: 24px;
+
+  --descFontSize: 16px;
 
   --defaultTransition: all .25s ease;
 }
@@ -197,6 +200,23 @@ h1.title-strong{
   text-transform: uppercase;
   margin: 0;
 }
+h3.title-strong{
+  font-family: var(--titleStrongFontFamily);
+  font-size: var(--subTitleFontSize);
+  text-transform: uppercase;
+  margin: 0;
+}
+p.desc{
+  font-family: 'Helvetica';
+  font-weight: 300;
+  font-size: var(--descFontSize);
+  color: var(--strongGrey);
+  margin-bottom: 5px;
+
+  &:last-of-type{
+    margin-bottom: 0;
+  }
+}
 
 /**
  * Helpers
@@ -218,9 +238,9 @@ h1.title-strong{
   display: inline-flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-  align-content: center;
+	// justify-content: center;
+	// align-items: center;
+  // align-content: center;
   clear: both;
   flex-flow: wrap;
   -ms-flex-flow: wrap;
@@ -229,6 +249,18 @@ h1.title-strong{
   transition: opacity .5s ease;
 }
 .fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.talents-enter-active {
+  transition: opacity 0.25s ease-out;
+  transition-delay: .3s;
+}
+.talents-leave-active {
+  transition: opacity 0.25s ease-in;
+}
+.talents-enter,
+.talents-leave-active {
   opacity: 0;
 }
 

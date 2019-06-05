@@ -1,32 +1,57 @@
 <template>
-  <div class="row talents-list justify-content-center">
-    <transition-group name="fade" mode="out-in" class="transition-fix">
+  <div class="row talents-list">
+    <!-- Transition between loading and talents -->
+    <transition-group name="talents" mode="out-in" class="transition-fix">
+      <!-- Loading while fetching talents data -->
       <div
-        v-for="talent in talents"
-        :key="talent.id"
-        class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 text-center talent"
+        v-if="thereIsNoTalents"
+        id="loadingTalents"
+        key="0"
+        class="col-12 text-center"
+      ></div>
+      <!-- /Loading while fetching talents data -->
+      <!-- Transition between talents -->
+      <transition-group
+        v-else
+        key="1"
+        name="talents"
+        mode="out-in"
+        class="transition-fix"
       >
-        <router-link :to="{ path: '#' }" tag="a">
-          <figure>
-            <img
-              :key="talent.id"
-              v-lazy="talent.cover"
-              :alt="talent.name"
-              class="img-fluid w-100"
-            />
+        <div
+          v-for="talent in talents"
+          :key="talent.id"
+          class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 text-center talent"
+        >
+          <router-link :to="{ path: '#' }" tag="a">
+            <figure>
+              <img
+                :key="talent.id"
+                v-lazy="talent.cover"
+                :alt="talent.name"
+                class="img-fluid w-100"
+              />
 
-            <div class="item-hover">
-              {{ talent.name }}
-              <i class="fab fa-instagram"></i>
-            </div>
-          </figure>
-        </router-link>
-      </div>
+              <div class="item-hover">
+                {{ talent.name }}
+                <i class="fab fa-instagram"></i>
+              </div>
+            </figure>
+          </router-link>
+        </div>
+      </transition-group>
+      <!-- /Transition between talents -->
     </transition-group>
+    <!-- /Transition between loading and talents -->
   </div>
 </template>
 
 <script>
+/**
+ * Used to animate Airbnb Lottie animations
+ */
+import lottie from 'lottie-web'
+
 export default {
   props: {
     list: {
@@ -35,10 +60,38 @@ export default {
     }
   },
 
+  data() {
+    return {
+      thereIsNoTalents: true
+    }
+  },
+
   computed: {
     talents() {
       return this.list
     }
+  },
+
+  watch: {
+    talents: {
+      handler: function(val, oldVal) {
+        // eslint-disable-next-line no-console
+        // console.log('talents lenght: ', this.$_.isEmpty(val))
+        this.thereIsNoTalents = this.$_.isEmpty(val)
+      },
+
+      deep: true
+    }
+  },
+
+  mounted() {
+    lottie.loadAnimation({
+      container: document.getElementById('loadingTalents'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: '/animations/loader.json'
+    })
   }
 }
 </script>
@@ -46,6 +99,13 @@ export default {
 <style lang="scss">
 .talents-list {
   margin: 0 100px 40px 100px;
+
+  #loadingTalents {
+    svg {
+      width: 200px !important;
+      height: auto !important;
+    }
+  }
 
   .talent {
     display: inline-flex;

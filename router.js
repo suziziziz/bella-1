@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '~/pages/home'
+import About from '~/pages/about'
 import Talents from '~/pages/talents'
 import TalentsList from '~/components/TalentsList.vue'
 
@@ -19,7 +20,7 @@ export function createRouter() {
       },
       {
         path: '/quem-somos',
-        component: Home
+        component: About
       },
       {
         path: '/modelos',

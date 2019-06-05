@@ -23,6 +23,7 @@ Vue.use(VueLazyload, {
       error,
       Init
     }) {
+      // eslint-disable-next-line no-console
       // console.log('el: ', el)
     }
   }

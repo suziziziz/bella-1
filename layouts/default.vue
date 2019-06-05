@@ -5,7 +5,9 @@
 
     <div class="content">
       <!-- Router-view -->
-      <nuxt :key="$route.fullPath" />
+      <transition name="fade" mode="out-in">
+        <nuxt :key="$route.fullPath" />
+      </transition>
 
       <!-- App install -->
       <div id="appInstall" notify="false">
