@@ -68,6 +68,11 @@
   --descFontSize: 16px;
 
   --defaultTransition: all .25s ease;
+
+  --formFontFamily: 'Helvetica';
+  --formFontSize: 14px;
+  --buttonFontSize: 20px;
+
 }
 
 /**
@@ -193,18 +198,21 @@ h1.title{
   font-size: var(--titleFontSize);
   text-transform: uppercase;
   margin: 0;
+  color: var(--dark);
 }
 h1.title-strong{
   font-family: var(--titleStrongFontFamily);
   font-size: var(--titleFontSize);
   text-transform: uppercase;
   margin: 0;
+  color: var(--dark);
 }
 h3.title-strong{
   font-family: var(--titleStrongFontFamily);
   font-size: var(--subTitleFontSize);
   text-transform: uppercase;
   margin: 0;
+  color: var(--dark);
 }
 p.desc{
   font-family: 'Helvetica';
@@ -216,6 +224,20 @@ p.desc{
   &:last-of-type{
     margin-bottom: 0;
   }
+}
+p.c-title{
+  font-family: 'Helvetica';
+  font-weight: bold;
+  font-size: var(--descFontSize);
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+p.c-desc{
+  font-family: 'Helvetica';
+  font-weight: 300;
+  font-size: var(--descFontSize);
+  color: var(--dark);
+  margin-bottom: 0;
 }
 
 /**

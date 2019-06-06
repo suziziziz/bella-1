@@ -212,7 +212,7 @@ export default {
 <style lang="scss">
 #about {
   .about-intro {
-    margin-top: 40px;
+    margin-top: 30px;
 
     .col-12 {
       display: flex;

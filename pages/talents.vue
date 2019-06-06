@@ -165,7 +165,7 @@ export default {
 <style lang="scss">
 #talents {
   .talents-intro {
-    margin-top: 40px;
+    margin-top: 30px;
 
     .col-12 {
       display: flex;

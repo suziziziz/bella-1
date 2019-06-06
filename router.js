@@ -6,6 +6,7 @@ import About from '~/pages/about'
 import Talents from '~/pages/talents'
 import TalentsList from '~/components/TalentsList.vue'
 import Contact from '~/pages/contact'
+import GetScouted from '~/pages/getScouted'
 
 Vue.use(Router)
 
@@ -39,7 +40,7 @@ export function createRouter() {
       },
       {
         path: '/quero-ser-modelo',
-        component: Home
+        component: GetScouted
       },
       {
         path: '/blog',
