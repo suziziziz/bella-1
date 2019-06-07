@@ -102,6 +102,41 @@
         </div>
       </div>
 
+      <div class="row photos reset-row">
+        <div class="col-12">
+          <div
+            v-for="image in formImages"
+            :id="'imagePhoto_' + image.id"
+            :key="'imagePhoto_' + image.id"
+            class="image"
+          >
+            <label :for="'photo_' + image.id">
+              {{ image.name }}
+            </label>
+
+            <img
+              v-if="imagesData['photo_' + image.id] != ''"
+              :src="imagesData['photo_' + image.id]"
+              :alt="image.name"
+            />
+
+            <div v-else class="placeholder">
+              <img src="/img/upload.png" alt="Upload" />
+            </div>
+          </div>
+
+          <input
+            v-for="image in formImages"
+            :id="'photo_' + image.id"
+            :key="image.id"
+            class="hide"
+            type="file"
+            :name="'photo_' + image.id"
+            @change="processFile($event, 'photo_' + image.id)"
+          />
+        </div>
+      </div>
+
       <div class="sbmt-btn">
         <button type="submit">Enviar</button>
       </div>
@@ -119,12 +154,17 @@ export default {
     selects: {
       type: Array,
       required: true
+    },
+    images: {
+      type: Array,
+      required: true
     }
   },
 
   data() {
     return {
-      formData: {}
+      formData: {},
+      imagesData: {}
     }
   },
 
@@ -134,6 +174,9 @@ export default {
     },
     formSelects() {
       return this.selects
+    },
+    formImages() {
+      return this.images
     }
   },
 
@@ -146,6 +189,9 @@ export default {
     })
     this.formSelects.forEach(input => {
       this.$set(this.formData, input.name, '')
+    })
+    this.formImages.forEach(input => {
+      this.$set(this.imagesData, 'photo_' + input.id, '')
     })
   }
 }
@@ -316,7 +362,62 @@ export default {
       }
     }
 
+    .photos {
+      margin-bottom: 40px;
+
+      .col-12 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+        .image {
+          text-align: center;
+          cursor: pointer;
+          padding: 0 10px;
+
+          &:first-of-type {
+            padding-left: 0;
+          }
+          &:last-of-type {
+            padding-right: 0;
+          }
+
+          &:hover {
+            .placeholder {
+              img {
+                transform: scale(1.08, 1.08);
+              }
+            }
+          }
+
+          label {
+            font-family: var(--formFontFamily);
+            font-size: var(--formFontSize);
+            font-weight: 300;
+          }
+
+          // img {
+
+          // }
+
+          .placeholder {
+            padding: 16vh 10vh 16vh 10vh;
+            background: #dfe6e9;
+
+            img {
+              transition: var(--defaultTransition);
+            }
+          }
+        }
+      }
+    }
+
     .sbmt-btn {
+      padding: 0 15px;
+
       button {
         width: 100%;
         padding: 10px 0;

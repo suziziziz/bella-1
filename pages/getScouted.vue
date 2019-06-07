@@ -12,7 +12,11 @@
       </div>
 
       <div class="row form reset-row">
-        <get-scouted-form :inputs="inputs" :selects="selects" />
+        <get-scouted-form
+          :inputs="inputs"
+          :selects="selects"
+          :images="images"
+        />
       </div>
     </div>
   </section>
@@ -187,6 +191,20 @@ export default {
             }
           ]
         }
+      ],
+      images: [
+        {
+          id: 0,
+          name: 'Frente'
+        },
+        {
+          id: 1,
+          name: 'Perfil'
+        },
+        {
+          id: 2,
+          name: 'Corpo inteiro'
+        }
       ]
     }
   }
@@ -206,7 +224,7 @@ export default {
   }
 
   .get-scouted {
-    margin: 0 150px;
+    margin: 0 150px 50px 150px;
     padding: 40px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
     position: relative;
