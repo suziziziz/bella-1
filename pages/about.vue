@@ -51,7 +51,7 @@ export default {
         title: 'Sobre | Bella #Models',
         description: 'Bella #Models - Saiba mais sobre quem somos!',
         keywords:
-          'bella, mgmt, management, model, models, modelos, talents, talentos, casting, book, photos, fotos',
+          'bella, mgmt, management, model, models, modelos, talents, talentos, casting, book, photos, fotos, moda, fashion, comercial',
         logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',
         url: 'http://localhost:3000' + this.$route.fullPath
       },

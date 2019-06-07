@@ -23,7 +23,10 @@
           :key="talent.id"
           class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 text-center talent"
         >
-          <router-link :to="{ path: '#' }" tag="a">
+          <router-link
+            :to="{ path: '/modelo/' + talent.id + '/' + slugify(talent.name) }"
+            tag="a"
+          >
             <figure>
               <img
                 :key="talent.id"
@@ -92,6 +95,28 @@ export default {
       autoplay: true,
       path: '/animations/loader.json'
     })
+  },
+
+  methods: {
+    slugify(string) {
+      const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿź·/_,:;'
+      const b = 'aaaaaaaaceeeeghiiiimnnnooooooprssstuuuuuwxyz------'
+      const p = new RegExp(a.split('').join('|'), 'g')
+      return (
+        string
+          .toString()
+          .toLowerCase()
+          .replace(/\s+/g, '-') // Replace spaces with -
+          .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+          .replace(/&/g, '-and-') // Replace & with ‘and’
+          // eslint-disable-next-line no-useless-escape
+          .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+          // eslint-disable-next-line no-useless-escape
+          .replace(/\-\-+/g, '-') // Replace multiple - with single -
+          .replace(/^-+/, '') // Trim - from start of text
+          .replace(/-+$/, '')
+      ) // Trim - from end of text
+    }
   }
 }
 </script>

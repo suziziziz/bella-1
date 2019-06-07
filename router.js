@@ -5,8 +5,10 @@ import Home from '~/pages/home'
 import About from '~/pages/about'
 import Talents from '~/pages/talents'
 import TalentsList from '~/components/TalentsList.vue'
+import TalentGallery from '~/pages/talentGallery.vue'
 import Contact from '~/pages/contact'
 import GetScouted from '~/pages/getScouted'
+import Blog from '~/pages/blog'
 
 Vue.use(Router)
 
@@ -35,6 +37,10 @@ export function createRouter() {
         ]
       },
       {
+        path: '/modelo/:id/:name',
+        component: TalentGallery
+      },
+      {
         path: '/contato',
         component: Contact
       },
@@ -44,7 +50,7 @@ export function createRouter() {
       },
       {
         path: '/blog',
-        component: Home
+        component: Blog
       }
     ]
   })

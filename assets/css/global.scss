@@ -294,6 +294,33 @@ p.c-desc{
 **/
 
 /**
+ * Buttons
+**/
+.def-btn{
+  button{
+    width: 100%;
+    padding: 10px 0;
+    font-family: var(--titleStrongFontFamily);
+    font-size: var(--buttonFontSize);
+    text-transform: uppercase;
+    color: var(--evenLessDark);
+    background: white;
+    border: none;
+    transition: all 0.25s ease;
+
+    &:hover {
+      color: white;
+      background: var(--evenLessDark);
+    }
+  }
+
+  button.active{
+    color: white;
+    background: var(--evenLessDark);
+  }
+}
+
+/**
  * Navbar
 **/
 header{
