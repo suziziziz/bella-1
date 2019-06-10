@@ -1,58 +1,129 @@
 <template>
   <section id="talentGallery">
-    <div class="row talent-gallery-intro reset-row">
-      <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">{{ talentData.name }}</h1>
+    <div class="container">
+      <div class="row talent-gallery-intro reset-row">
+        <div class="col-12 reset-col text-center">
+          <h1 class="title-strong">{{ talentData.name }}</h1>
 
-        <div v-if="talentData.instagram" class="instagram">
-          <a href="http://" target="_blank">
-            <i class="fab fa-instagram"></i>
-          </a>
+          <div v-if="talentData.instagram" class="instagram">
+            <a
+              :href="'https://www.instagram.com/' + talentData.instagram"
+              target="_blank"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
 
-          <a href="http://" target="_blank">
-            <span>
-              <i
-                v-if="$_.isEmpty(instagramData)"
-                class="fas fa-spinner fa-spin"
-              ></i>
-              <h3 v-else class="title-strong">{{ instagramData.followers }}</h3>
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="row switch-galleries reset-row">
-      <div class="col-md-4">
-        <div class="def-btn">
-          <button
-            :class="activeGallery == 'book' ? 'active' : ''"
-            @click="activeGallery = 'book'"
-          >
-            Book
-          </button>
+            <a
+              :href="'https://www.instagram.com/' + talentData.instagram"
+              target="_blank"
+            >
+              <span>
+                <i
+                  v-if="$_.isEmpty(instagramData)"
+                  class="fas fa-spinner fa-spin"
+                ></i>
+                <h3 v-else class="title-strong">
+                  {{ instagramData.followers }}
+                </h3>
+              </span>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="col-md-4">
-        <div class="def-btn">
-          <button
-            :class="activeGallery == 'snap' ? 'active' : ''"
-            @click="activeGallery = 'snap'"
-          >
-            Polaroids
-          </button>
+      <div class="row switch-galleries reset-row">
+        <div v-if="talentData.book" class="col-md-4">
+          <div class="def-btn">
+            <button
+              :class="activeGallery == 'book' ? 'active' : ''"
+              @click="activeGallery = 'book'"
+            >
+              Book
+            </button>
+          </div>
+        </div>
+
+        <div v-if="talentData.snap" class="col-md-4">
+          <div class="def-btn">
+            <button
+              :class="activeGallery == 'snap' ? 'active' : ''"
+              @click="activeGallery = 'snap'"
+            >
+              Polaroids
+            </button>
+          </div>
+        </div>
+
+        <div v-if="talentData.compo" class="col-md-4">
+          <div class="def-btn">
+            <button
+              :class="activeGallery == 'compo' ? 'active' : ''"
+              @click="activeGallery = 'compo'"
+            >
+              Composite
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="col-md-4">
-        <div class="def-btn">
-          <button
-            :class="activeGallery == 'compo' ? 'active' : ''"
-            @click="activeGallery = 'compo'"
-          >
-            Composite
-          </button>
+      <div class="row slider reset-row">
+        <div class="col-md-12">
+          <gallery-slider
+            v-if="!$_.isEmpty(talentData)"
+            :srcset="galleryItems"
+            :talentname="talentData.name"
+          />
+        </div>
+      </div>
+
+      <div class="row measures reset-row">
+        <div class="col-md-12">
+          <ul>
+            <li v-if="talentData.height != ''">
+              <span class="meas-type">Altura</span>
+              <span class="meas-val">{{ talentData.height }}</span>
+            </li>
+            <li v-if="talentData.hair != ''">
+              <span class="meas-type">Cabelos</span>
+              <span class="meas-val">{{ talentData.hair }}</span>
+            </li>
+            <li v-if="talentData.eyes != ''">
+              <span class="meas-type">Olhos</span>
+              <span class="meas-val">{{ talentData.eyes }}</span>
+            </li>
+            <li v-if="talentData.shirt != ''">
+              <span class="meas-type">Camiseta</span>
+              <span class="meas-val">{{ talentData.shirt }}</span>
+            </li>
+            <li v-if="talentData.suit != ''">
+              <span class="meas-type">Traje</span>
+              <span class="meas-val">{{ talentData.suit }}</span>
+            </li>
+            <li v-if="talentData.jeans != ''">
+              <span class="meas-type">Manequim</span>
+              <span class="meas-val">{{ talentData.jeans }}</span>
+            </li>
+            <li v-if="talentData.bust != ''">
+              <span class="meas-type">Busto</span>
+              <span class="meas-val">{{ talentData.bust }}</span>
+            </li>
+            <li v-if="talentData.hips != ''">
+              <span class="meas-type">Quadril</span>
+              <span class="meas-val">{{ talentData.hips }}</span>
+            </li>
+            <li v-if="talentData.waist != ''">
+              <span class="meas-type">Cintura</span>
+              <span class="meas-val">{{ talentData.waist }}</span>
+            </li>
+            <li v-if="talentData.weight != ''">
+              <span class="meas-type">Peso</span>
+              <span class="meas-val">{{ talentData.weight }}</span>
+            </li>
+            <li v-if="talentData.shoes != ''">
+              <span class="meas-type">Sapato</span>
+              <span class="meas-val">{{ talentData.shoes }}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -62,9 +133,14 @@
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
+import TalentGallerySlider from '~/components/TalentGallerySlider'
 
 export default {
   middleware: ['signin'],
+
+  components: {
+    'gallery-slider': TalentGallerySlider
+  },
 
   data() {
     return {
@@ -77,6 +153,28 @@ export default {
       talentData: [],
       instagramData: [],
       activeGallery: 'book'
+    }
+  },
+
+  computed: {
+    galleryItems() {
+      let items
+
+      switch (this.activeGallery) {
+        case 'book':
+          items = this.talentData.book
+          break
+
+        case 'snap':
+          items = this.talentData.snap
+          break
+
+        case 'compo':
+          items = this.talentData.compo
+          break
+      }
+
+      return items
     }
   },
 
@@ -188,53 +286,105 @@ export default {
 
 <style lang="scss">
 #talentGallery {
-  .talent-gallery-intro {
-    margin-top: 30px;
-    margin-bottom: 50px;
+  .container {
+    padding: 0;
 
-    .col-12 {
-      display: flex;
-      flex-direction: column;
+    .talent-gallery-intro {
+      margin-top: 30px;
+      margin-bottom: 30px;
 
-      .instagram {
+      .col-12 {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
+        flex-direction: column;
 
-        a {
-          color: var(--dark);
-          line-height: 1;
+        .instagram {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
 
-          &:hover {
-            color: var(--strongGrey);
-          }
+          a {
+            color: var(--dark);
+            line-height: 1;
 
-          i {
-            font-size: 26px;
-          }
-
-          span {
-            i {
-              font-size: 18px;
-              vertical-align: text-bottom;
-              margin-left: 5px;
+            &:hover {
+              color: var(--strongGrey);
             }
-            h3 {
-              margin-left: 5px;
+
+            i {
+              font-size: 26px;
+            }
+
+            span {
+              i {
+                font-size: 18px;
+                vertical-align: text-bottom;
+                margin-left: 5px;
+              }
+              h3 {
+                margin-left: 5px;
+              }
             }
           }
         }
       }
     }
-  }
 
-  .switch-galleries {
-    margin: 0 100px;
+    .switch-galleries {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
 
-    .col-md-4 {
+    .slider {
+      margin-bottom: 25px;
+    }
+
+    .measures {
+      margin-bottom: 45px;
+
+      .col-md-12 {
+        ul {
+          padding: 0;
+          margin: 0 100px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+
+          li {
+            font-family: var(--formFontFamily);
+            font-size: var(--formFontSize);
+            text-transform: uppercase;
+            color: var(--strongGrey);
+            display: inline-flex;
+            padding: 5px 10px;
+
+            &:first-of-type {
+              padding-left: 0;
+            }
+            &:last-of-type {
+              padding-right: 0;
+            }
+
+            .meas-type {
+              font-weight: bold;
+              margin-right: 5px;
+            }
+            .meas-val {
+              font-weight: 300;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -263,9 +263,6 @@ p.c-desc{
   display: inline-flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	// justify-content: center;
-	// align-items: center;
-  // align-content: center;
   clear: both;
   flex-flow: wrap;
   -ms-flex-flow: wrap;
@@ -305,18 +302,20 @@ p.c-desc{
     text-transform: uppercase;
     color: var(--evenLessDark);
     background: white;
-    border: none;
+    border: 1px solid var(--evenLessDark);
     transition: all 0.25s ease;
 
     &:hover {
       color: white;
       background: var(--evenLessDark);
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     }
   }
 
   button.active{
     color: white;
     background: var(--evenLessDark);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
   }
 }
 
