@@ -2,29 +2,92 @@
   <div id="gallerySlider" v-swiper:gallerySlider="swiperOption">
     <div class="swiper-wrapper">
       <div
-        v-for="(slide, index) in slides"
+        v-for="index in slidesNumber"
         :key="'slide-' + index"
         class="swiper-slide"
       >
-        <img
-          :src="slide.file"
-          :alt="talentname"
-          :class="'img-slide ' + checkOrientation(slide.width, slide.height)"
-          :aria-orientation="checkOrientation(slide.width, slide.height)"
-        />
+        <!-- If the image orientation is landscape -->
+        <div
+          v-if="
+            checkOrientation(
+              slides[normalizeIndex(index)].width,
+              slides[normalizeIndex(index)].height
+            ) == 'landscape'
+          "
+          class="wrap-slide-landscape"
+        >
+          <div
+            v-if="evalSlides(slides[normalizeIndex(index)].file)"
+            class="slide text-center"
+          >
+            <img
+              :src="slides[normalizeIndex(index)].file"
+              :alt="talentname"
+              :class="
+                'img-slide ' +
+                  checkOrientation(
+                    slides[normalizeIndex(index)].width,
+                    slides[normalizeIndex(index)].height
+                  )
+              "
+              :aria-orientation="
+                checkOrientation(
+                  slides[normalizeIndex(index)].width,
+                  slides[normalizeIndex(index)].height
+                )
+              "
+            />
+          </div>
+        </div>
+
+        <!-- If the image orientation is portrait -->
+        <div v-else class="wrap-slide-portrait">
+          <div
+            v-if="evalSlides(slides[normalizeIndex(index)].file)"
+            class="slide text-center"
+          >
+            <img
+              :src="slides[normalizeIndex(index)].file"
+              :alt="talentname"
+              :class="
+                'img-slide ' +
+                  checkOrientation(
+                    slides[normalizeIndex(index)].width,
+                    slides[normalizeIndex(index)].height
+                  )
+              "
+              :aria-orientation="
+                checkOrientation(
+                  slides[normalizeIndex(index)].width,
+                  slides[normalizeIndex(index)].height
+                )
+              "
+            />
+          </div>
+
+          <div
+            v-if="slides[index] != undefined && evalSlides(slides[index].file)"
+            class="slide text-center"
+          >
+            <img
+              v-if="slides[index] != undefined"
+              :src="slides[index].file"
+              :alt="talentname"
+              :class="
+                'img-slide ' +
+                  checkOrientation(slides[index].width, slides[index].height)
+              "
+              :aria-orientation="
+                checkOrientation(slides[index].width, slides[index].height)
+              "
+            />
+          </div>
+        </div>
       </div>
     </div>
 
-    <div
-      slot="button-prev"
-      class="swiper-button-prev"
-      @click="validateSlide()"
-    ></div>
-    <div
-      slot="button-next"
-      class="swiper-button-next"
-      @click="validateSlide()"
-    ></div>
+    <div slot="button-prev" class="swiper-button-prev"></div>
+    <div slot="button-next" class="swiper-button-next"></div>
   </div>
 </template>
 
@@ -52,7 +115,7 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         },
-        slidesPerView: 2,
+        slidesPerView: 1,
         spaceBetween: 0,
         centeredSlides: false,
         loop: false,
@@ -64,13 +127,20 @@ export default {
             centeredSlides: true
           }
         }
-      }
+      },
+      /**
+       * Used to normalize the images array index
+       */
+      slidesArray: []
     }
   },
 
   computed: {
     slides() {
       return this.srcset
+    },
+    slidesNumber() {
+      return parseInt(Object.keys(this.slides).length)
     },
     ...mapGetters({
       windowSizes: 'window/windowSizes'
@@ -91,9 +161,9 @@ export default {
   mounted() {
     // eslint-disable-next-line no-console
     // console.log('This is current swiper instance object', this.gallerySlider)
-    if (!this.$_.isEmpty(this.slides)) {
-      this.validateSlide()
-    }
+    // if (!this.$_.isEmpty(this.slides)) {
+    //   this.validateSlide()
+    // }
   },
 
   methods: {
@@ -104,15 +174,30 @@ export default {
         return 'portrait'
       }
     },
-    validateSlide() {
+    normalizeIndex(_index) {
+      return parseInt(_index - 1)
+    },
+    evalSlides(_slide) {
+      // eslint-disable-next-line no-var
+      var validate = null
+
+      if (this.$_.indexOf(this.slidesArray, _slide) >= 0) {
+        // eslint-disable-next-line no-console
+        console.log('already inserted')
+
+        validate = false
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('new slide')
+        this.slidesArray.push(_slide)
+
+        validate = true
+      }
+
       // eslint-disable-next-line no-console
-      console.log('image: ', this.slides[this.gallerySlider.activeIndex])
+      console.log('validate: ', validate)
 
-      const currSlide = this.slides[this.gallerySlider.activeIndex]
-
-      this.checkOrientation(currSlide.width, currSlide.height) === 'landscape'
-        ? (this.swiperOption.slidesPerView = 1)
-        : (this.swiperOption.slidesPerView = 2)
+      return validate
     }
   }
 }
@@ -130,9 +215,34 @@ export default {
       align-items: center;
       align-content: center;
 
-      .img-slide {
+      .wrap-slide-landscape {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100%;
         height: 100%;
-        width: auto;
+        width: 100%;
+
+        .slide {
+          .img-slide {
+            width: auto;
+            height: 100%;
+          }
+        }
+      }
+
+      .wrap-slide-portrait {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 100%;
+        height: 100%;
+        width: 100%;
+
+        .slide {
+          .img-slide {
+            width: auto;
+            height: 100%;
+          }
+        }
       }
     }
   }
