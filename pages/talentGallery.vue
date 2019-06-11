@@ -1,5 +1,11 @@
 <template>
   <section id="talentGallery">
+    <transition name="fade" mode="out-in" class="w-100">
+      <div v-show="isLoading" id="loadGallery">
+        <!-- Loading animation -->
+      </div>
+    </transition>
+
     <div class="container">
       <div class="row talent-gallery-intro reset-row">
         <div class="col-12 reset-col text-center">
@@ -131,6 +137,11 @@
 </template>
 
 <script>
+/**
+ * Used to animate Airbnb Lottie animations
+ */
+import lottie from 'lottie-web'
+
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 import TalentGallerySlider from '~/components/TalentGallerySlider'
@@ -152,7 +163,8 @@ export default {
       },
       talentData: [],
       instagramData: [],
-      activeGallery: 'book'
+      activeGallery: 'book',
+      isLoading: true
     }
   },
 
@@ -179,6 +191,14 @@ export default {
   },
 
   mounted() {
+    lottie.loadAnimation({
+      container: document.getElementById('loadGallery'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: '/animations/loader.json'
+    })
+
     this.getTalentInfo()
   },
 
@@ -201,6 +221,10 @@ export default {
 
           this.talentData = response.data
           this.getInstagramInfo(this.talentData.instagram)
+
+          setTimeout(() => {
+            this.isLoading = false
+          }, 200)
         })
         .catch(error => {
           // eslint-disable-next-line no-console
@@ -286,6 +310,25 @@ export default {
 
 <style lang="scss">
 #talentGallery {
+  position: relative;
+
+  #loadGallery {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: white, $alpha: 0.9);
+    z-index: 2;
+
+    svg {
+      width: 200px !important;
+      height: auto !important;
+    }
+  }
+
   .container {
     padding: 0;
 
