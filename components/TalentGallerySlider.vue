@@ -2,75 +2,34 @@
   <div id="gallerySlider" v-swiper:gallerySlider="swiperOption">
     <div class="swiper-wrapper">
       <div
-        v-for="index in slidesNumber"
+        v-for="(slide, index) in evaluatedSlides"
         :key="'slide-' + index"
         class="swiper-slide"
       >
         <!-- If the image orientation is landscape -->
-        <div
-          v-if="
-            checkOrientation(
-              slides[normalizeIndex(index)].width,
-              slides[normalizeIndex(index)].height
-            ) == 'landscape'
-          "
-          class="wrap-slide-landscape"
-        >
+        <div v-if="slide.space == 2" class="wrap-slide-landscape">
           <div class="slide text-center">
             <img
-              :src="slides[normalizeIndex(index)].file"
+              :src="slide.files"
               :alt="talentname"
-              :class="
-                'img-slide ' +
-                  checkOrientation(
-                    slides[normalizeIndex(index)].width,
-                    slides[normalizeIndex(index)].height
-                  )
-              "
-              :aria-orientation="
-                checkOrientation(
-                  slides[normalizeIndex(index)].width,
-                  slides[normalizeIndex(index)].height
-                )
-              "
+              class="img-slide landscape"
+              aria-orientation="landscape"
             />
           </div>
         </div>
 
         <!-- If the image orientation is portrait -->
         <div v-else class="wrap-slide-portrait">
-          <div class="slide text-center">
+          <div
+            v-for="(item, i) in slide.files"
+            :key="'sub-' + i"
+            class="slide text-center"
+          >
             <img
-              :src="slides[normalizeIndex(index)].file"
+              :src="item"
               :alt="talentname"
-              :class="
-                'img-slide ' +
-                  checkOrientation(
-                    slides[normalizeIndex(index)].width,
-                    slides[normalizeIndex(index)].height
-                  )
-              "
-              :aria-orientation="
-                checkOrientation(
-                  slides[normalizeIndex(index)].width,
-                  slides[normalizeIndex(index)].height
-                )
-              "
-            />
-          </div>
-
-          <div class="slide text-center">
-            <img
-              v-if="slides[index] != undefined"
-              :src="slides[index].file"
-              :alt="talentname"
-              :class="
-                'img-slide ' +
-                  checkOrientation(slides[index].width, slides[index].height)
-              "
-              :aria-orientation="
-                checkOrientation(slides[index].width, slides[index].height)
-              "
+              class="img-slide portrait"
+              aria-orientation="portrait"
             />
           </div>
         </div>
@@ -118,11 +77,7 @@ export default {
             centeredSlides: true
           }
         }
-      },
-      /**
-       * Used to normalize the images array index
-       */
-      slidesArray: []
+      }
     }
   },
 
@@ -142,7 +97,7 @@ export default {
         /**
          * Current slide
          */
-        const slide = this.slides[index]
+        const slide = this.srcset[index]
         /**
          * Object used to push into evalSlides array
          */
@@ -158,7 +113,6 @@ export default {
           }
 
           evalSlides.push(item)
-          // pushedSlides.push(slide.file)
         } else {
           /**
            * Case not, get the next portrait slide to push both togheter
@@ -172,26 +126,28 @@ export default {
            */
           let nextSlide = null
 
-          for (let i = nextIndex; i < this.slidesNumber; i++) {
-            nextSlide = this.slides[i]
+          if (this.srcset[nextIndex] !== undefined) {
+            for (let i = nextIndex; i < this.slidesNumber; i++) {
+              nextSlide = this.srcset[i]
 
-            if (
-              this.checkOrientation(nextSlide.width, nextSlide.height) ===
-              'portrait'
-            ) {
-              item = {
-                space: 1,
-                files: [slide.file, nextSlide.file]
+              if (
+                this.checkOrientation(nextSlide.width, nextSlide.height) ===
+                'portrait'
+              ) {
+                item = {
+                  space: 1,
+                  files: [slide.file, nextSlide.file]
+                }
+
+                index++
+
+                break
               }
-
-              index++
-
-              break
-            } else {
-              item = {
-                space: 1,
-                files: [slide.file]
-              }
+            }
+          } else {
+            item = {
+              space: 1,
+              files: [this.srcset[nextIndex - 1].file]
             }
           }
 
@@ -202,7 +158,7 @@ export default {
       return evalSlides
     },
     slidesNumber() {
-      return parseInt(Object.keys(this.slides).length)
+      return parseInt(Object.keys(this.srcset).length)
     },
     ...mapGetters({
       windowSizes: 'window/windowSizes'
@@ -212,7 +168,6 @@ export default {
   watch: {
     srcset: {
       handler: function(val, oldVal) {
-        // console.log('value changed')
         this.gallerySlider.update()
       },
 
@@ -232,9 +187,6 @@ export default {
       } else {
         return 'portrait'
       }
-    },
-    normalizeIndex(_index) {
-      return parseInt(_index - 1)
     }
   }
 }

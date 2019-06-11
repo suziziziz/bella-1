@@ -32,7 +32,7 @@
       </div>
 
       <div class="row switch-galleries reset-row">
-        <div v-if="talentData.book" class="col-md-4">
+        <div v-if="!$_.isEmpty(talentData.book)" class="col-md-4">
           <div class="def-btn">
             <button
               :class="activeGallery == 'book' ? 'active' : ''"
@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <div v-if="talentData.snap" class="col-md-4">
+        <div v-if="!$_.isEmpty(talentData.snap)" class="col-md-4">
           <div class="def-btn">
             <button
               :class="activeGallery == 'snap' ? 'active' : ''"
@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <div v-if="talentData.compo" class="col-md-4">
+        <div v-if="!$_.isEmpty(talentData.compo)" class="col-md-4">
           <div class="def-btn">
             <button
               :class="activeGallery == 'compo' ? 'active' : ''"
