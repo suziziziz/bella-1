@@ -125,6 +125,10 @@ export default {
 .talents-list {
   margin: 0 100px 40px 100px;
 
+  @media (max-width: 767px) {
+    margin: 0 50px 40px 50px;
+  }
+
   #loadingTalents {
     svg {
       width: 200px !important;

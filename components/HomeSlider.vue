@@ -47,10 +47,11 @@ export default {
 <style lang="scss" scoped>
 .swiper-slide {
   padding: 0 50px;
+  height: 75vh;
 }
 .img-slide {
   width: 100%;
-  max-height: 75vh;
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }

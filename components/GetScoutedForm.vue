@@ -7,7 +7,7 @@
       enctype="multipart/form-data"
     >
       <div class="row desc-inputs reset-row">
-        <div class="col-md-6 desc text-center">
+        <div class="col-lg-6 desc text-center">
           <p class="c-desc">
             Que bom que você veio até aqui. Que tal fazer parte do nosso time de
             agenciados? Basta preencher esse formulário e adicionar suas
@@ -17,7 +17,7 @@
           </p>
         </div>
 
-        <div class="col-md-6 inputs">
+        <div class="col-lg-6 inputs">
           <div
             v-for="input in formInputs"
             :key="input.id"
@@ -78,7 +78,7 @@
         <div
           v-for="select in formSelects"
           :key="select.id"
-          class="col-md-3 select"
+          class="col-md-3 col-sm-6 col-6 select"
         >
           <select
             :id="'form' + select.name"
@@ -184,15 +184,17 @@ export default {
     /**
      * Set dynamicaly the formData object
      */
-    this.formInputs.forEach(input => {
-      this.$set(this.formData, input.name, '')
-    })
-    this.formSelects.forEach(input => {
-      this.$set(this.formData, input.name, '')
-    })
-    this.formImages.forEach(input => {
-      this.$set(this.imagesData, 'photo_' + input.id, '')
-    })
+    setTimeout(() => {
+      this.formInputs.forEach(input => {
+        this.$set(this.formData, input.name, '')
+      })
+      this.formSelects.forEach(input => {
+        this.$set(this.formData, input.name, '')
+      })
+      this.formImages.forEach(input => {
+        this.$set(this.imagesData, 'photo_' + input.id, '')
+      })
+    }, 10)
   }
 }
 </script>
@@ -203,9 +205,11 @@ export default {
     .desc-inputs {
       margin-top: 40px;
 
-      // .desc {
-
-      // }
+      .desc {
+        @media (max-width: 991px) {
+          margin-bottom: 40px;
+        }
+      }
 
       .inputs {
         .wrap-input {

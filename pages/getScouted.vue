@@ -93,112 +93,56 @@ export default {
           name: 'Height',
           placeholder: 'Altura',
           type: 'select',
-          options: [
-            {
-              name: 'Feminino'
-            },
-            {
-              name: 'Masculino'
-            }
-          ]
+          options: []
         },
         {
           id: 1,
           name: 'Weight',
           placeholder: 'Peso',
           type: 'select',
-          options: [
-            {
-              name: 'Feminino'
-            },
-            {
-              name: 'Masculino'
-            }
-          ]
+          options: []
         },
         {
           id: 2,
           name: 'Bust',
           placeholder: 'Tórax',
           type: 'select',
-          options: [
-            {
-              name: 'Feminino'
-            },
-            {
-              name: 'Masculino'
-            }
-          ]
+          options: []
         },
         {
           id: 3,
           name: 'Waist',
           placeholder: 'Cintura',
           type: 'select',
-          options: [
-            {
-              name: 'Feminino'
-            },
-            {
-              name: 'Masculino'
-            }
-          ]
+          options: []
         },
         {
           id: 4,
           name: 'Hips',
           placeholder: 'Quadril',
           type: 'select',
-          options: [
-            {
-              name: 'Feminino'
-            },
-            {
-              name: 'Masculino'
-            }
-          ]
+          options: []
         },
         {
           id: 5,
           name: 'Shoes',
           placeholder: 'Sapato',
           type: 'select',
-          options: [
-            {
-              name: 'Feminino'
-            },
-            {
-              name: 'Masculino'
-            }
-          ]
+          options: []
         },
         {
           id: 6,
           name: 'Eyes',
           placeholder: 'Olhos',
           type: 'select',
-          options: [
-            {
-              name: 'Feminino'
-            },
-            {
-              name: 'Masculino'
-            }
-          ]
+          options: []
         },
         {
           id: 7,
           name: 'Hair',
           placeholder: 'Cabelo',
           type: 'select',
-          options: [
-            {
-              name: 'Feminino'
-            },
-            {
-              name: 'Masculino'
-            }
-          ]
+          options: []
         }
       ],
       images: [
@@ -214,8 +158,58 @@ export default {
           id: 2,
           name: 'Corpo inteiro'
         }
+      ],
+      optHair: [
+        { text: 'Avelã', textEn: 'Hazel' },
+        { text: 'Careca', textEn: 'Hairless' },
+        { text: 'Castanho', textEn: 'Chestnut' },
+        { text: 'Castanho Café', textEn: 'Brown Coffee' },
+        { text: 'Castanho Claro', textEn: 'Light Brown' },
+        { text: 'Castanho Escuro', textEn: 'Dark Brown' },
+        { text: 'Chocolate', textEn: 'Brown' },
+        { text: 'Cinza', textEn: 'Grey' },
+        { text: 'Cinza Escuro', textEn: 'Grey Black' },
+        { text: 'Escuro', textEn: 'Dark' },
+        { text: 'Grisalho', textEn: 'Salt and Pepper' },
+        { text: 'Loiro', textEn: 'Blonde' },
+        { text: 'Loiro Acinzentado', textEn: 'Ash Blonde' },
+        { text: 'Loiro Claro', textEn: 'Light Blonde' },
+        { text: 'Loiro Escuro', textEn: 'Dark Blonde' },
+        { text: 'Loiro Morango', textEn: 'Strawberry Blonde' },
+        { text: 'Loiro Médio', textEn: 'Medium Blonde' },
+        { text: 'Loiro Platinado', textEn: 'Platinum Blonde' },
+        { text: 'Loiro medio acinzentado', textEn: 'Cendre' },
+        { text: 'Preto', textEn: 'Black' },
+        { text: 'Preto Oscuro', textEn: 'Dark Black' },
+        { text: 'Ruivo Loiro', textEn: 'Red Blonde' },
+        { text: 'Ruivo Natural', textEn: 'Auburn' },
+        { text: 'Vermelho', textEn: 'Red' },
+        { text: 'Vermelho Castanho', textEn: 'Red Brown' }
+      ],
+      optEyes: [
+        { text: 'Avelã', textEn: 'Hazel' },
+        { text: 'Azul', textEn: 'Blue' },
+        { text: 'Azul Acinzentado', textEn: 'Blue Grey' },
+        { text: 'Azul Claro', textEn: 'Light Blue' },
+        { text: 'Azul Esverdeado', textEn: 'Blue Green' },
+        { text: 'Castanho', textEn: 'Brown' },
+        { text: 'Castanho Café', textEn: 'Brown Coffee' },
+        { text: 'Castanho Claro', textEn: 'Light Brown' },
+        { text: 'Castanho Escuro', textEn: 'Dark Brown' },
+        { text: 'Castanho Esverdeado', textEn: 'Green Brown' },
+        { text: 'Cinza', textEn: 'Grey' },
+        { text: 'Mel', textEn: 'Honey' },
+        { text: 'Preto', textEn: 'Black' },
+        { text: 'Verde', textEn: 'Green' },
+        { text: 'Verde Acinzentado', textEn: 'Green Grey' },
+        { text: 'Verde Azeitona', textEn: 'Green Olive' },
+        { text: 'Âmbar', textEn: 'Amber' }
       ]
     }
+  },
+
+  mounted() {
+    this.getOptions()
   },
 
   head() {
@@ -245,6 +239,68 @@ export default {
         }
       ]
     }
+  },
+
+  methods: {
+    getOptions() {
+      // switch (_type) {
+      // case 'height':
+      for (let index = 30; index <= 200; index++) {
+        this.selects[0].options.push({ name: index + ' cm' })
+      }
+
+      // break
+
+      // case 'weight':
+      for (let index = 3; index <= 200; index++) {
+        this.selects[1].options.push({ name: index + ' kg' })
+      }
+
+      // break
+
+      // case 'bust':
+      for (let index = 65; index <= 200; index++) {
+        this.selects[2].options.push({ name: index + ' cm' })
+      }
+
+      // break
+
+      // case 'waist':
+      for (let index = 20; index <= 200; index++) {
+        this.selects[3].options.push({ name: index + ' cm' })
+      }
+
+      // break
+
+      // case 'hips':
+      for (let index = 20; index <= 200; index++) {
+        this.selects[4].options.push({ name: index + ' cm' })
+      }
+
+      // break
+
+      // case 'shoes':
+      for (let index = 1; index <= 60; index++) {
+        this.selects[5].options.push({ name: index + ' BR' })
+      }
+
+      // break
+
+      // case 'eyes':
+      this.optEyes.forEach(element => {
+        this.selects[6].options.push({ name: element.text })
+      })
+
+      // break
+
+      // case 'hair':
+      this.optHair.forEach(element => {
+        this.selects[7].options.push({ name: element.text })
+      })
+
+      // break
+      // }
+    }
   }
 }
 </script>
@@ -268,6 +324,11 @@ export default {
     position: relative;
     z-index: 1;
     background: white;
+
+    @media (max-width: 767px) {
+      margin: 0 75px 50px 75px;
+      padding: 40px 5px;
+    }
 
     // .form {
     //   margin-top: 40px;

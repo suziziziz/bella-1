@@ -216,9 +216,6 @@ export default {
           headers: { Authorization: 'bearer ' + token }
         })
         .then(response => {
-          // eslint-disable-next-line no-console
-          // console.log('response: ', response)
-
           this.talentData = response.data
           this.getInstagramInfo(this.talentData.instagram)
 
@@ -241,9 +238,6 @@ export default {
           headers: { Authorization: 'bearer ' + token }
         })
         .then(response => {
-          // eslint-disable-next-line no-console
-          // console.log('response: ', response)
-
           this.instagramData = response.data
         })
         .catch(error => {

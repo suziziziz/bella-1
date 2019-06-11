@@ -7,7 +7,7 @@
     </div>
 
     <div class="row contact">
-      <div class="col-md-4 infos justify-content-center">
+      <div class="col-lg-4 infos justify-content-center">
         <div class="open-time text-center">
           <p class="c-title">Horário de funcionamento</p>
           <p class="c-desc">
@@ -46,7 +46,7 @@
         </div>
       </div>
 
-      <div class="col-md-8 form">
+      <div class="col-lg-8 form">
         <h3 class="title-strong">Mensagem</h3>
         <contact-form :inputs="inputs" />
       </div>
@@ -161,6 +161,11 @@ export default {
     z-index: 1;
     background: white;
 
+    @media (max-width: 667px) {
+      margin: 0 75px;
+      padding: 40px 5px;
+    }
+
     .infos {
       display: flex;
       flex-direction: column;
@@ -184,6 +189,12 @@ export default {
       align-items: center;
       align-content: center;
       width: 100%;
+
+      @media (max-width: 991px) {
+        h3 {
+          margin: 40px 0;
+        }
+      }
     }
   }
 

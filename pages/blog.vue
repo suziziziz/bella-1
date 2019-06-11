@@ -21,7 +21,7 @@
           v-for="n in 8"
           v-show="!$_.isEmpty(blogPosts)"
           :key="n"
-          class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 item"
+          class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 item"
         >
           <div class="date">
             {{ currDate.getDate() }}/{{ currDate.getMonth() }}/{{
@@ -36,7 +36,7 @@
                   v-if="!$_.isEmpty(blogPosts)"
                   src="/img/blog-placeholder.jpg"
                   :alt="blogPosts[n].title"
-                  class="img-fluid"
+                  class="img-fluid w-100"
                 />
 
                 <div
@@ -198,7 +198,7 @@ export default {
   .blog-items {
     position: relative;
     min-height: 100px;
-    margin: 0 150px 40px 150px;
+    margin: 0 50px 40px 50px;
 
     #blogLoading {
       position: absolute;

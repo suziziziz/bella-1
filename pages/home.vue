@@ -25,7 +25,7 @@
           v-for="item in instagramData.all"
           v-show="!$_.isEmpty(instagramData)"
           :key="item.url"
-          class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 item"
+          class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 item"
         >
           <a :href="item.url" target="_blank">
             <figure>
@@ -58,7 +58,7 @@
           v-for="n in 8"
           v-show="!$_.isEmpty(blogPosts)"
           :key="n"
-          class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 item"
+          class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 item"
         >
           <div class="date">
             {{ currDate.getDate() }}/{{ currDate.getMonth() }}/{{
@@ -73,7 +73,7 @@
                   v-if="!$_.isEmpty(blogPosts)"
                   src="/img/blog-placeholder.jpg"
                   :alt="blogPosts[n].title"
-                  class="img-fluid"
+                  class="img-fluid w-100"
                 />
 
                 <div
@@ -253,6 +253,10 @@ export default {
     min-height: 100px;
     margin: 0 100px 40px 100px;
 
+    @media (max-width: 767px) {
+      margin: 0 50px 40px 50px;
+    }
+
     #instagramLoading {
       position: absolute;
       width: 100%;
@@ -350,6 +354,10 @@ export default {
     position: relative;
     min-height: 100px;
     margin: 0 150px 40px 150px;
+
+    @media (max-width: 767px) {
+      margin: 0 50px 40px 50px;
+    }
 
     #blogLoading {
       position: absolute;
