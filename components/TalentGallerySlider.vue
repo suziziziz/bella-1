@@ -16,10 +16,7 @@
           "
           class="wrap-slide-landscape"
         >
-          <div
-            v-if="evalSlides(slides[normalizeIndex(index)].file)"
-            class="slide text-center"
-          >
+          <div class="slide text-center">
             <img
               :src="slides[normalizeIndex(index)].file"
               :alt="talentname"
@@ -42,10 +39,7 @@
 
         <!-- If the image orientation is portrait -->
         <div v-else class="wrap-slide-portrait">
-          <div
-            v-if="evalSlides(slides[normalizeIndex(index)].file)"
-            class="slide text-center"
-          >
+          <div class="slide text-center">
             <img
               :src="slides[normalizeIndex(index)].file"
               :alt="talentname"
@@ -65,10 +59,7 @@
             />
           </div>
 
-          <div
-            v-if="slides[index] != undefined && evalSlides(slides[index].file)"
-            class="slide text-center"
-          >
+          <div class="slide text-center">
             <img
               v-if="slides[index] != undefined"
               :src="slides[index].file"
@@ -139,6 +130,77 @@ export default {
     slides() {
       return this.srcset
     },
+    evaluatedSlides() {
+      /**
+       * Initialized array to get the normalized slides
+       */
+      const evalSlides = []
+      /**
+       * Loop throught the slides
+       */
+      for (let index = 0; index < this.slidesNumber; index++) {
+        /**
+         * Current slide
+         */
+        const slide = this.slides[index]
+        /**
+         * Object used to push into evalSlides array
+         */
+        let item = null
+
+        if (this.checkOrientation(slide.width, slide.height) === 'landscape') {
+          /**
+           * Case if the slide is landscape, push just him
+           */
+          item = {
+            space: 2,
+            files: slide.file
+          }
+
+          evalSlides.push(item)
+          // pushedSlides.push(slide.file)
+        } else {
+          /**
+           * Case not, get the next portrait slide to push both togheter
+           */
+          /**
+           * Next slide index
+           */
+          const nextIndex = index + 1
+          /**
+           * Object used to push into evalSlides array
+           */
+          let nextSlide = null
+
+          for (let i = nextIndex; i < this.slidesNumber; i++) {
+            nextSlide = this.slides[i]
+
+            if (
+              this.checkOrientation(nextSlide.width, nextSlide.height) ===
+              'portrait'
+            ) {
+              item = {
+                space: 1,
+                files: [slide.file, nextSlide.file]
+              }
+
+              index++
+
+              break
+            } else {
+              item = {
+                space: 1,
+                files: [slide.file]
+              }
+            }
+          }
+
+          evalSlides.push(item)
+        }
+      }
+
+      return evalSlides
+    },
     slidesNumber() {
       return parseInt(Object.keys(this.slides).length)
     },
@@ -161,9 +223,6 @@ export default {
   mounted() {
     // eslint-disable-next-line no-console
     // console.log('This is current swiper instance object', this.gallerySlider)
-    // if (!this.$_.isEmpty(this.slides)) {
-    //   this.validateSlide()
-    // }
   },
 
   methods: {
@@ -176,28 +235,6 @@ export default {
     },
     normalizeIndex(_index) {
       return parseInt(_index - 1)
-    },
-    evalSlides(_slide) {
-      // eslint-disable-next-line no-var
-      var validate = null
-
-      if (this.$_.indexOf(this.slidesArray, _slide) >= 0) {
-        // eslint-disable-next-line no-console
-        console.log('already inserted')
-
-        validate = false
-      } else {
-        // eslint-disable-next-line no-console
-        console.log('new slide')
-        this.slidesArray.push(_slide)
-
-        validate = true
-      }
-
-      // eslint-disable-next-line no-console
-      console.log('validate: ', validate)
-
-      return validate
     }
   }
 }
