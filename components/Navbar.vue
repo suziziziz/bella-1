@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header v-if="windowSizes.width >= 991">
     <div class="container-fluid reset-col">
       <nav>
         <!-- Logo -->
@@ -53,9 +53,44 @@
       </nav>
     </div>
   </header>
+
+  <header v-else class="header-mobile">
+    <div class="container-fluid reset-col">
+      <nav>
+        <div class="menu-mobile">
+          <div class="row intro reset-row">
+            <div class="col-12">
+              <div class="def-btn show-menu">
+                <button
+                  id="mobileMenuBtn"
+                  @click="showMenu = !showMenu"
+                ></button>
+              </div>
+
+              <div class="logo text-center w-100">
+                <img
+                  src="/logo.png"
+                  alt="Bella #Models"
+                  height="50"
+                  @click="$router.push({ path: '/' })"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
 </template>
 
 <script>
+/**
+ * Used to animate Airbnb Lottie animations
+ */
+import lottie from 'lottie-web'
+
+import { mapGetters } from 'vuex'
+
 export default {
   props: {
     items: {
@@ -64,9 +99,36 @@ export default {
     }
   },
 
+  data() {
+    return {
+      showMenu: false
+    }
+  },
+
   computed: {
     sections() {
       return this.items
+    },
+    ...mapGetters({
+      windowSizes: 'window/windowSizes'
+    })
+  },
+
+  mounted() {
+    this.mobileMenuAnimation()
+  },
+
+  methods: {
+    mobileMenuAnimation() {
+      const anim = lottie.loadAnimation({
+        container: document.getElementById('mobileMenuBtn'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: '/animations/show-close.json'
+      })
+
+      anim.goToAndStop(0, true)
     }
   }
 }

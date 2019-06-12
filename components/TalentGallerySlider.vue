@@ -90,6 +90,7 @@ export default {
        * Initialized array to get the normalized slides
        */
       const evalSlides = []
+
       /**
        * Loop throught the slides
        */
@@ -98,6 +99,7 @@ export default {
          * Current slide
          */
         const slide = this.srcset[index]
+
         /**
          * Object used to push into evalSlides array
          */
@@ -117,6 +119,7 @@ export default {
           /**
            * Case not, get the next portrait slide to push both togheter
            */
+
           /**
            * Next slide index
            */

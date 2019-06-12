@@ -325,6 +325,10 @@ p.c-desc{
 header{
   padding: 20px 0;
 
+  @media (max-width: 991px) {
+    padding: 0;
+  }
+
   div{
     nav{
 
@@ -404,6 +408,48 @@ header{
 
                 &:hover{
                   color: var(--strongGrey);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+header.header-mobile{
+  div{
+    nav{
+      .menu-mobile{
+        background: white;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+        position: fixed;
+        width: 100%;
+        padding: 10px 0;
+        z-index: 2;
+
+        .intro{
+          .col-12{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+
+            .show-menu{
+              position: absolute;
+              height: 35px;
+
+              button{
+                // padding: 0 10px;
+                padding: 0;
+                height: 100%;
+                width: 47px;
+
+                svg {
+                  width: 47px !important;
+                  height: 35px !important;
                 }
               }
             }
