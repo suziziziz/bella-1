@@ -22,6 +22,8 @@ export default function({ store }) {
     })
     .then(response => {
       store.dispatch('updateAuthToken', response.data.access_token)
+      // eslint-disable-next-line no-console
+      console.log('Auth done')
     })
     .catch(error => {
       // eslint-disable-next-line no-console

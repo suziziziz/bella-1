@@ -103,9 +103,9 @@ export default {
         })
         .then(response => {
           // eslint-disable-next-line no-console
-          // console.log('response: ', response)
+          console.log('response: ', response.data.data)
 
-          this.talentList = response.data
+          this.talentList = response.data.data
         })
         .catch(error => {
           // eslint-disable-next-line no-console

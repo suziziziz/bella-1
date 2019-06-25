@@ -61,10 +61,11 @@
           <div class="row intro reset-row">
             <div class="col-12">
               <div class="def-btn show-menu">
-                <button
-                  id="mobileMenuBtn"
-                  @click="showMenu = !showMenu"
-                ></button>
+                <button id="mobileMenuBtn" @click="showMenu = !showMenu">
+                  <i
+                    :class="'fas ' + [showMenu ? 'fa-arrow-left' : 'fa-bars']"
+                  ></i>
+                </button>
               </div>
 
               <div class="logo text-center w-100">
@@ -77,6 +78,53 @@
               </div>
             </div>
           </div>
+
+          <transition name="fade" mode="out-in">
+            <div v-show="showMenu" class="row sections mobile reset-row">
+              <div class="row items reset-row w-100">
+                <div class="col-12 reset-col">
+                  <ul>
+                    <li v-for="section in sections" :key="section.id">
+                      <router-link :to="{ path: section.path }" tag="a" exact>
+                        {{ section.name }}
+                      </router-link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="row social reset-row w-100">
+                <div class="col-12 reset-col text-center">
+                  <ul>
+                    <li>
+                      <a
+                        href="https://www.facebook.com/agenciabellamodels"
+                        target="_blank"
+                      >
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.instagram.com/bellamodelsagencia/"
+                        target="_blank"
+                      >
+                        <i class="fab fa-instagram"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://twitter.com/bellamodelsrj"
+                        target="_blank"
+                      >
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </transition>
         </div>
       </nav>
     </div>
@@ -84,14 +132,14 @@
 </template>
 
 <script>
-/**
- * Used to animate Airbnb Lottie animations
- */
-import lottie from 'lottie-web'
-
 import { mapGetters } from 'vuex'
+// import MenuBtn from './MenuBtn'
 
 export default {
+  // components: {
+  //   'menu-btn': MenuBtn
+  // },
+
   props: {
     items: {
       type: Array,
@@ -115,21 +163,11 @@ export default {
   },
 
   mounted() {
-    this.mobileMenuAnimation()
+    //
   },
 
   methods: {
-    mobileMenuAnimation() {
-      const anim = lottie.loadAnimation({
-        container: document.getElementById('mobileMenuBtn'),
-        renderer: 'svg',
-        loop: false,
-        autoplay: false,
-        path: '/animations/show-close.json'
-      })
-
-      anim.goToAndStop(0, true)
-    }
+    //
   }
 }
 </script>
