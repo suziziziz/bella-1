@@ -1,16 +1,16 @@
 export const state = () => ({
-  currentLanguage: ''
+  locale: ''
 })
 
 export const getters = {
   currentLanguage: state => {
-    return state.currentLanguage
+    return state.locale
   }
 }
 
 export const mutations = {
   SET_LANGUAGE: (state, payload) => {
-    state.currentLanguage = payload
+    state.locale = payload
   }
 }
 

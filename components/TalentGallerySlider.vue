@@ -1,6 +1,6 @@
 <template>
   <div id="gallerySlider" v-swiper:gallerySlider="swiperOption">
-    <div class="swiper-wrapper">
+    <div v-if="windowSizes.width >= 992" class="swiper-wrapper">
       <div
         v-for="(slide, index) in evaluatedSlides"
         :key="'slide-' + index"
@@ -30,6 +30,26 @@
               :alt="talentname"
               class="img-slide portrait"
               aria-orientation="portrait"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="swiper-wrapper">
+      <div
+        v-for="(slide, index) in slides"
+        :key="'slide-' + index"
+        class="swiper-slide"
+      >
+        <!-- If the image orientation is landscape -->
+        <div class="wrap-slide-landscape">
+          <div class="slide text-center">
+            <img
+              :src="slide.file"
+              :alt="talentname"
+              class="img-slide landscape"
+              aria-orientation="landscape"
             />
           </div>
         </div>
@@ -72,8 +92,6 @@ export default {
         speed: 500,
         breakpoints: {
           992: {
-            slidesPerView: 1,
-            spaceBetween: 0,
             centeredSlides: true
           }
         }
@@ -100,64 +118,77 @@ export default {
          */
         const slide = this.srcset[index]
 
+        const orientation = this.checkOrientation(slide.width, slide.height)
+
         /**
          * Object used to push into evalSlides array
          */
         let item = null
 
-        if (this.checkOrientation(slide.width, slide.height) === 'landscape') {
-          /**
-           * Case if the slide is landscape, push just him
-           */
+        // console.log('index: ', index)
+        // console.log('slide: ', slide.file)
+
+        if (orientation === 'landscape') {
           item = {
             space: 2,
             files: slide.file
           }
 
-          evalSlides.push(item)
-        } else {
-          /**
-           * Case not, get the next portrait slide to push both togheter
-           */
+          // console.log('landscape: ', item)
 
+          evalSlides.push(item)
+        } else if (orientation === 'portrait') {
           /**
            * Next slide index
            */
           const nextIndex = index + 1
-          /**
-           * Object used to push into evalSlides array
-           */
           let nextSlide = null
+
+          // console.log('nextIndex: ', nextIndex)
 
           if (this.srcset[nextIndex] !== undefined) {
             for (let i = nextIndex; i < this.slidesNumber; i++) {
               nextSlide = this.srcset[i]
+              const nextSlideOrientation = this.checkOrientation(
+                nextSlide.width,
+                nextSlide.height
+              )
 
-              if (
-                this.checkOrientation(nextSlide.width, nextSlide.height) ===
-                'portrait'
-              ) {
+              if (nextSlideOrientation === 'portrait') {
                 item = {
                   space: 1,
                   files: [slide.file, nextSlide.file]
                 }
 
-                index++
+                // console.log('nextSlide: ', nextSlide.file)
 
+                index++
                 break
+              } else {
+                item = {
+                  space: 2,
+                  files: nextSlide.file
+                }
+
+                // console.log('landscape: ', item)
+
+                evalSlides.push(item)
+                index++
               }
             }
+            // console.log('portrait: ', item)
           } else {
             item = {
               space: 1,
               files: [this.srcset[nextIndex - 1].file]
             }
+
+            // console.log('portrait: ', item)
           }
 
           evalSlides.push(item)
         }
       }
-
       return evalSlides
     },
     slidesNumber() {
@@ -170,6 +201,13 @@ export default {
 
   watch: {
     srcset: {
+      handler: function(val, oldVal) {
+        this.gallerySlider.update()
+      },
+
+      deep: true
+    },
+    windowSizes: {
       handler: function(val, oldVal) {
         this.gallerySlider.update()
       },

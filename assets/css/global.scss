@@ -419,6 +419,10 @@ header{
 }
 
 header.header-mobile{
+  @media (min-width: 991px) {
+    display: none;
+  }
+
   div{
     nav{
       .menu-mobile{
