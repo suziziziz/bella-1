@@ -414,6 +414,27 @@ header{
           }
         }
       }
+
+      .switch-lang{
+        position: absolute;
+        top: 45px;
+        right: 50px;
+
+        span{
+          vertical-align: middle;
+          cursor: pointer;
+          transition: var(--defaultTransition);
+          font-family: 'ClementePDac';
+          font-size: var(--descFontSize);
+
+          &:hover{
+            font-family: 'ClementePDag';
+          }
+        }
+        span.active{
+          font-family: 'ClementePDag';
+        }
+      }
     }
   }
 }

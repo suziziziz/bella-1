@@ -8,7 +8,7 @@
 
     <div class="row instagram-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title">Instagram</h1>
+        <h1 class="title">{{ $t('index.title') }}</h1>
         <i class="fab fa-instagram"></i>
       </div>
     </div>

@@ -50,6 +50,20 @@
             </ul>
           </div>
         </div>
+
+        <div class="switch-lang">
+          <span
+            :class="currentLanguage === 'en' ? 'active' : ''"
+            @click="translate('en')"
+            >EN</span
+          >
+          |
+          <span
+            :class="currentLanguage === 'pt' ? 'active' : ''"
+            @click="translate('pt')"
+            >PT</span
+          >
+        </div>
       </nav>
     </div>
   </header>
@@ -132,7 +146,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
 // import MenuBtn from './MenuBtn'
 
 export default {
@@ -158,16 +173,25 @@ export default {
       return this.items
     },
     ...mapGetters({
-      windowSizes: 'window/windowSizes'
+      windowSizes: 'window/windowSizes',
+      currentLanguage: 'language/currentLanguage'
     })
   },
 
   mounted() {
-    //
+    if (this.currentLanguage === '') {
+      this.setLanguage('pt')
+    }
   },
 
   methods: {
-    //
+    ...mapActions({
+      setLanguage: 'language/setLanguage'
+    }),
+    translate(_locale) {
+      this.$changeLang(_locale)
+      this.setLanguage(_locale)
+    }
   }
 }
 </script>
