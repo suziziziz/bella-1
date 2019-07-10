@@ -1,5 +1,22 @@
 {
-  "index": {
-    "title": "Welcome"
+  "navbar":{
+    "home": "Home",
+    "whoWeAre": "Who we are",
+    "women": "Women",
+    "men": "Men",
+    "contact": "Contact",
+    "wantToBe": "Want to be a model",
+    "blog": "blog"
+  },
+
+  "footer":{
+    "home": "Home",
+    "whoWeAre": "Who we are",
+    "women": "Women",
+    "men": "Men",
+    "contact": "Contact",
+    "wantToBe": "Want to be a model",
+    "blog": "blog",
+    "followUs": "Follow us on social media"
   }
 }

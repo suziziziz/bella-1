@@ -3,6 +3,9 @@
  */
 import meta from './meta'
 
+// eslint-disable-next-line nuxt/no-cjs-in-config
+const i18nExtensions = require('vue-i18n-extensions')
+
 export default {
   mode: 'universal',
 
@@ -164,6 +167,16 @@ export default {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+    }
+  },
+
+  render: {
+    // confiture `render`
+    // see Nuxt.js docs: https://nuxtjs.org/api/configuration-render#bundleRenderer
+    bundleRenderer: {
+      directives: {
+        t: i18nExtensions.directive
       }
     }
   }

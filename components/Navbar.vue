@@ -18,6 +18,51 @@
                   {{ section.name }}
                 </router-link>
               </li>
+
+              <!-- <li>
+                <router-link :to="{ path: '/' }" tag="a" exact>{{
+                  $t('navbar.home')
+                }}</router-link>
+              </li>
+              <li>
+                <router-link :to="{ path: '/quem-somos' }" tag="a" exact>{{
+                  $t('navbar.whoWeAre')
+                }}</router-link>
+              </li>
+              <li>
+                <router-link
+                  :to="{ path: '/modelos/feminino' }"
+                  tag="a"
+                  exact
+                  >{{ $t('navbar.women') }}</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  :to="{ path: '/modelos/masculino' }"
+                  tag="a"
+                  exact
+                  >{{ $t('navbar.men') }}</router-link
+                >
+              </li>
+              <li>
+                <router-link :to="{ path: '/contato' }" tag="a" exact>{{
+                  $t('navbar.contact')
+                }}</router-link>
+              </li>
+              <li>
+                <router-link
+                  :to="{ path: '/quero-ser-modelo' }"
+                  tag="a"
+                  exact
+                  >{{ $t('navbar.wantToBe') }}</router-link
+                >
+              </li>
+              <li>
+                <router-link :to="{ path: '/blog' }" tag="a" exact>{{
+                  $t('navbar.blog')
+                }}</router-link>
+              </li> -->
             </ul>
           </div>
         </div>

@@ -2,6 +2,7 @@
   <div class="main-component">
     <!-- Header -->
     <main-nav :items="sections" />
+    <!-- <main-nav /> -->
 
     <div class="content">
       <!-- Router-view -->
@@ -57,37 +58,37 @@ export default {
       sections: [
         {
           id: '1',
-          name: 'Home',
+          name: this.$t('navbar.home'),
           path: '/'
         },
         {
           id: '2',
-          name: 'Quem somos',
+          name: this.$t('navbar.whoWeAre'),
           path: '/quem-somos'
         },
         {
           id: '3',
-          name: 'Feminino',
+          name: this.$t('navbar.women'),
           path: '/modelos/feminino'
         },
         {
           id: '4',
-          name: 'Masculino',
+          name: this.$t('navbar.men'),
           path: '/modelos/masculino'
         },
         {
           id: '5',
-          name: 'Contato',
+          name: this.$t('navbar.contact'),
           path: '/contato'
         },
         {
           id: '6',
-          name: 'Quero ser modelo',
+          name: this.$t('navbar.wantToBe'),
           path: '/quero-ser-modelo'
         },
         {
           id: '7',
-          name: 'Blog',
+          name: this.$t('navbar.blog'),
           path: '/blog'
         }
       ]
