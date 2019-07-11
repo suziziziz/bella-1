@@ -147,7 +147,7 @@ import { mapGetters } from 'vuex'
 import TalentGallerySlider from '~/components/TalentGallerySlider'
 
 export default {
-  middleware: ['signin'],
+  // middleware: ['signin'],
 
   components: {
     'gallery-slider': TalentGallerySlider

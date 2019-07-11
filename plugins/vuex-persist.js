@@ -1,11 +1,19 @@
 import VuexPersistence from 'vuex-persist'
 
 export default ({ store }) => {
-  // window.onNuxtReady(() => {})
+  // if (process.browser) {
+  //   window.onNuxtReady(() => {
+  //     new VuexPersistence({
+  //       /**
+  //        * Options (not required)
+  //        */
+  //     }).plugin(store)
+  //   })
+  // }
 
   new VuexPersistence({
     /**
-     * Options (not requiered)
+     * Options (not required)
      */
   }).plugin(store)
 }

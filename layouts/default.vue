@@ -2,7 +2,6 @@
   <div class="main-component">
     <!-- Header -->
     <main-nav :items="sections" />
-    <!-- <main-nav /> -->
 
     <div class="content">
       <!-- Router-view -->
@@ -41,7 +40,10 @@ import lottie from 'lottie-web'
 import { mapActions } from 'vuex'
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
+
 export default {
+  middleware: ['signin'],
+
   components: {
     'main-nav': Navbar,
     'main-footer': Footer

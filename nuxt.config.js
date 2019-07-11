@@ -3,9 +3,6 @@
  */
 import meta from './meta'
 
-// eslint-disable-next-line nuxt/no-cjs-in-config
-const i18nExtensions = require('vue-i18n-extensions')
-
 export default {
   mode: 'universal',
 
@@ -135,6 +132,10 @@ export default {
     { src: '~/plugins/vue-lazyload' }
   ],
 
+  router: {
+    middleware: 'signin'
+  },
+
   /*
    ** Nuxt.js modules
    */
@@ -155,6 +156,7 @@ export default {
    ** Build configuration
    */
   build: {
+    vendor: ['vue-i18n'],
     /*
      ** You can extend webpack config here
      */
@@ -167,16 +169,6 @@ export default {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
-      }
-    }
-  },
-
-  render: {
-    // confiture `render`
-    // see Nuxt.js docs: https://nuxtjs.org/api/configuration-render#bundleRenderer
-    bundleRenderer: {
-      directives: {
-        t: i18nExtensions.directive
       }
     }
   }

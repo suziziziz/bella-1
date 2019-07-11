@@ -115,7 +115,7 @@ export default {
     'home-slider': HomeSlider
   },
 
-  middleware: ['signin'],
+  // middleware: ['signin'],
 
   data() {
     return {

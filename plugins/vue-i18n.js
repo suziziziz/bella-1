@@ -4,13 +4,26 @@ import VueI18n from 'vue-i18n'
 Vue.use(VueI18n)
 
 export default ({ app, store }) => {
-  // Set i18n instance on app
-  // This way we can use it in middleware and pages asyncData/fetch
+  // if (process.browser) {
+  //   window.onNuxtReady(() => {
+  //     // Set i18n instance on app
+  //     // This way we can use it in middleware and pages asyncData/fetch
 
-  // const initLocale = store.getters.currentLocale
+  //     app.i18n = new VueI18n({
+  //       locale: store.getters.currentLocale,
+  //       fallbackLocale: 'pt',
+  //       messages: {
+  //         en: require('~/locales/en.json'),
+  //         pt: require('~/locales/pt.json')
+  //       }
+  //     })
 
-  // // eslint-disable-next-line no-console
-  // console.log('P initLocale: ', initLocale)
+  //     Vue.prototype.$changeLang = function(string) {
+  //       app.i18n.locale = string
+  //       document.querySelector('html').setAttribute('lang', string)
+  //     }
+  //   })
+  // }
 
   app.i18n = new VueI18n({
     locale: store.getters.currentLocale,
