@@ -13,13 +13,13 @@
         <div class="row sections reset-row">
           <div class="col-12 reset-col">
             <ul>
-              <li v-for="section in sections" :key="section.id">
+              <!-- <li v-for="section in sections" :key="section.id">
                 <router-link :to="{ path: section.path }" tag="a" exact>
                   {{ section.name }}
                 </router-link>
-              </li>
+              </li> -->
 
-              <!-- <li>
+              <li>
                 <router-link :to="{ path: '/' }" tag="a" exact>{{
                   $t('navbar.home')
                 }}</router-link>
@@ -62,7 +62,7 @@
                 <router-link :to="{ path: '/blog' }" tag="a" exact>{{
                   $t('navbar.blog')
                 }}</router-link>
-              </li> -->
+              </li>
             </ul>
           </div>
         </div>
@@ -98,13 +98,13 @@
 
         <div class="switch-lang">
           <span
-            :class="currentLanguage === 'en' ? 'active' : ''"
+            :class="currentLocale === 'en' ? 'active' : ''"
             @click="translate('en')"
             >EN</span
           >
           |
           <span
-            :class="currentLanguage === 'pt' ? 'active' : ''"
+            :class="currentLocale === 'pt' ? 'active' : ''"
             @click="translate('pt')"
             >PT</span
           >
@@ -219,23 +219,26 @@ export default {
     },
     ...mapGetters({
       windowSizes: 'window/windowSizes',
-      currentLanguage: 'language/currentLanguage'
+      currentLocale: 'currentLocale'
     })
   },
 
-  mounted() {
-    if (this.currentLanguage === '') {
-      this.setLanguage('pt')
-    }
-  },
+  // mounted() {
+  //   if (this.currentLocale === '') {
+  //     this.translate('pt')
+  //   }
+  // },
 
   methods: {
     ...mapActions({
-      setLanguage: 'language/setLanguage'
+      setLocale: 'setLocale'
     }),
     translate(_locale) {
-      this.$changeLang(_locale)
-      this.setLanguage(_locale)
+      // eslint-disable-next-line no-console
+      console.log('translate: ', _locale)
+
+      // this.$changeLang(_locale)
+      this.setLocale(_locale)
     }
   }
 }

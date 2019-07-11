@@ -127,13 +127,17 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vue-awesome-swiper', ssr: false },
     { src: '~/plugins/install-notify', ssr: false },
+    { src: '~/plugins/vuex-persist' },
     { src: '~/plugins/vue-i18n' },
     { src: '~/plugins/lodash' },
     { src: '~/plugins/vue-lazyload' }
   ],
+
+  // router: {
+  //   middleware: ['vue-i18n']
+  // },
 
   /*
    ** Nuxt.js modules
