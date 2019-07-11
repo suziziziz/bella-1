@@ -135,10 +135,6 @@ export default {
     { src: '~/plugins/vue-lazyload' }
   ],
 
-  // router: {
-  //   middleware: ['vue-i18n']
-  // },
-
   /*
    ** Nuxt.js modules
    */

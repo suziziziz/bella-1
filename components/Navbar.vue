@@ -223,11 +223,9 @@ export default {
     })
   },
 
-  // mounted() {
-  //   if (this.currentLocale === '') {
-  //     this.translate('pt')
-  //   }
-  // },
+  mounted() {
+    //
+  },
 
   methods: {
     ...mapActions({
@@ -237,7 +235,7 @@ export default {
       // eslint-disable-next-line no-console
       console.log('translate: ', _locale)
 
-      // this.$changeLang(_locale)
+      this.$changeLang(_locale)
       this.setLocale(_locale)
     }
   }
