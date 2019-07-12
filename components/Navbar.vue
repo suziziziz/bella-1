@@ -221,10 +221,10 @@ export default {
     if (process.browser) {
       window.onNuxtReady(() => {
         // eslint-disable-next-line no-console
-        console.log('Current locale:', this.currentLocale)
+        // console.log('Current locale:', this.currentLocale)
 
         this.$store.commit('lang/SET_LOCALE', this.currentLocale)
-        this.translate(this.currentLocale)
+        this.$changeLang(this.currentLocale)
       })
     }
   },
@@ -237,6 +237,7 @@ export default {
       // eslint-disable-next-line no-console
       console.log('Translate to: ', _locale)
 
+      this.$fullScreenLoading()
       this.$changeLang(_locale)
       this.setLocale(_locale)
     }

@@ -86,47 +86,51 @@
         <div class="col-md-12">
           <ul>
             <li v-if="talentData.height != ''">
-              <span class="meas-type">Altura</span>
+              <span class="meas-type">{{ $t('talentGallery.height') }}</span>
               <span class="meas-val">{{ talentData.height }}</span>
             </li>
             <li v-if="talentData.hair != ''">
-              <span class="meas-type">Cabelos</span>
-              <span class="meas-val">{{ talentData.hair }}</span>
+              <span class="meas-type">{{ $t('talentGallery.hair') }}</span>
+              <span class="meas-val">{{
+                $t('colors.' + talentData.hair)
+              }}</span>
             </li>
             <li v-if="talentData.eyes != ''">
-              <span class="meas-type">Olhos</span>
-              <span class="meas-val">{{ talentData.eyes }}</span>
+              <span class="meas-type">{{ $t('talentGallery.eyes') }}</span>
+              <span class="meas-val">{{
+                $t('colors.' + talentData.eyes)
+              }}</span>
             </li>
             <li v-if="talentData.shirt != ''">
-              <span class="meas-type">Camiseta</span>
+              <span class="meas-type">{{ $t('talentGallery.shirt') }}</span>
               <span class="meas-val">{{ talentData.shirt }}</span>
             </li>
             <li v-if="talentData.suit != ''">
-              <span class="meas-type">Traje</span>
+              <span class="meas-type">{{ $t('talentGallery.suit') }}</span>
               <span class="meas-val">{{ talentData.suit }}</span>
             </li>
             <li v-if="talentData.jeans != ''">
-              <span class="meas-type">Manequim</span>
+              <span class="meas-type">{{ $t('talentGallery.jeans') }}</span>
               <span class="meas-val">{{ talentData.jeans }}</span>
             </li>
             <li v-if="talentData.bust != ''">
-              <span class="meas-type">Busto</span>
+              <span class="meas-type">{{ $t('talentGallery.bust') }}</span>
               <span class="meas-val">{{ talentData.bust }}</span>
             </li>
             <li v-if="talentData.hips != ''">
-              <span class="meas-type">Quadril</span>
+              <span class="meas-type">{{ $t('talentGallery.hips') }}</span>
               <span class="meas-val">{{ talentData.hips }}</span>
             </li>
             <li v-if="talentData.waist != ''">
-              <span class="meas-type">Cintura</span>
+              <span class="meas-type">{{ $t('talentGallery.waist') }}</span>
               <span class="meas-val">{{ talentData.waist }}</span>
             </li>
             <li v-if="talentData.weight != ''">
-              <span class="meas-type">Peso</span>
+              <span class="meas-type">{{ $t('talentGallery.weight') }}</span>
               <span class="meas-val">{{ talentData.weight }}</span>
             </li>
             <li v-if="talentData.shoes != ''">
-              <span class="meas-type">Sapato</span>
+              <span class="meas-type">{{ $t('talentGallery.shoes') }}</span>
               <span class="meas-val">{{ talentData.shoes }}</span>
             </li>
           </ul>
@@ -187,7 +191,11 @@ export default {
       }
 
       return items
-    }
+    },
+
+    ...mapGetters({
+      currentLocale: 'lang/currentLocale'
+    })
   },
 
   mounted() {
@@ -212,7 +220,7 @@ export default {
 
       axios
         .get('https://integration.managerfashion.net/api/talent/profile', {
-          params: { id: this.$route.params.id, language: 'pt' },
+          params: { id: this.$route.params.id, language: 'en' },
           headers: { Authorization: 'bearer ' + token }
         })
         .then(response => {
@@ -400,7 +408,7 @@ export default {
           li {
             font-family: var(--formFontFamily);
             font-size: var(--formFontSize);
-            text-transform: uppercase;
+            text-transform: uppercase !important;
             color: var(--strongGrey);
             display: inline-flex;
             padding: 5px 10px;

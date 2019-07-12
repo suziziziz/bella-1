@@ -111,5 +111,93 @@
       "Message": "Mensagem",
       "send": "Enviar"
     }
+  },
+
+  "getScouted":{
+    "title": "Quero ser modelo",
+    "firstSteps": "Primeiros Passos",
+    "desc_1": "Que bom que você veio até aqui. Que tal fazer parte do nosso time de agenciados? Basta preencher esse formulário e adicionar suas melhores fotos. Uma dica bacana: Evite maquiagem e faça seus cliques em fundo neutro.",
+    "desc_2": "Ah! Capricha na pose, hein!?",
+    "form":{
+      "Name": "Nome",
+      "Gender": "Gênero",
+      "Birthday": "Data de nascimento",
+      "Email": "Email",
+      "Phone": "Telefone",
+      "Address": "Endereço",
+
+      "Height": "Altura",
+      "Weight": "Peso",
+      "Bust": "Tórax",
+      "Waist": "Cintura",
+      "Hips": "Quadril",
+      "Shoes": "Sapato",
+      "Eyes": "Olhos",
+      "Hair": "Cabelo",
+
+      "Front": "Frente",
+      "SideShot": "Perfil",
+      "FullBody": "Corpo inteiro",
+
+      "send": "Enviar"
+    }
+  },
+
+  "blog":{
+    "title": "Blog",
+    "desc_1": "Fique por dentro de tudo que acontece",
+    "desc_2": "No mundo da moda."
+  },
+
+  "talentGallery":{
+    "height": "Altura",
+    "hair": "Cabelos",
+    "eyes": "Olhos",
+    "shirt": "Camiseta",
+    "suit": "Traje",
+    "jeans": "Manequim",
+    "bust": "Busto",
+    "hips": "Quadril",
+    "waist": "Cintura",
+    "weight": "Peso",
+    "shoes": "Sapato"
+  },
+
+  "colors": {
+    "Amber": "Âmbar",
+    "Black": "Preto",
+    "Blue": "Azul",
+    "Blue Green": "Azul Esverdeado",
+    "Blue Grey": "Azul Acinzentado",
+    "Brown": "Castanho",
+    "Brown Coffee": "Castanho Café",
+    "Green": "Verde",
+    "Green Brown": "Castanho Esverdeado",
+    "Green Grey": "Verde Acinzentado",
+    "Green Olive": "Verde Azeitona",
+    "Grey": "Cinza",
+    "Hazel": "Avelã ",
+    "Honey": "Mel",
+    "Light Blue": "Azul Claro",
+    "Light Brown": "Castanho Claro",
+    "Hairless": "Careca",
+    "Ash Blonde": "Loiro Acinzentado",
+    "Auburn": "Ruivo Natural",
+    "Cendre": "Loiro médio acinzentado",
+    "Chestnut": "Castanho",
+    "Blonde": "Loiro",
+    "Dark": "Escuro",
+    "Dark Black": "Preto Escuro",
+    "Dark Blonde": "Loiro Escuro",
+    "Dark Brown": "Castanho Escuro",
+    "Grey Black": "Cinza Escuro",
+    "Light Blonde": "Loiro Claro",
+    "Medium Blonde": "Loiro Médio",
+    "Platinum Blonde": "Loiro Platinado",
+    "Red": "Vermelho",
+    "Red Blonde": "Ruivo Loiro",
+    "Red Brown": "Vermelho Castanho",
+    "Salt and Pepper": "Grisalho",
+    "Strawberry Blonde": "Loiro Morango"
   }
 }

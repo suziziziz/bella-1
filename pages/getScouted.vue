@@ -2,13 +2,15 @@
   <section id="getScouted">
     <div class="row get-scouted-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">Quero ser modelo</h1>
+        <h1 class="title-strong">{{ $t('getScouted.title') }}</h1>
       </div>
     </div>
 
     <div class="row get-scouted">
       <div class="col-12 text-center">
-        <h3 class="title-strong text-capitalize">Primeiros Passos</h3>
+        <h3 class="title-strong text-capitalize">
+          {{ $t('getScouted.firstSteps') }}
+        </h3>
       </div>
 
       <div class="row form reset-row">
@@ -148,15 +150,15 @@ export default {
       images: [
         {
           id: 0,
-          name: 'Frente'
+          name: 'Front'
         },
         {
           id: 1,
-          name: 'Perfil'
+          name: 'SideShot'
         },
         {
           id: 2,
-          name: 'Corpo inteiro'
+          name: 'FullBody'
         }
       ],
       optHair: [

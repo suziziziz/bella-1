@@ -129,7 +129,8 @@ export default {
     { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vue-i18n' },
     { src: '~/plugins/lodash' },
-    { src: '~/plugins/vue-lazyload' }
+    { src: '~/plugins/vue-lazyload' },
+    { src: '~/plugins/vuesax' }
   ],
 
   router: {

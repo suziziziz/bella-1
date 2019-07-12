@@ -9,11 +9,8 @@
       <div class="row desc-inputs reset-row">
         <div class="col-lg-6 desc text-center">
           <p class="c-desc">
-            Que bom que você veio até aqui. Que tal fazer parte do nosso time de
-            agenciados? Basta preencher esse formulário e adicionar suas
-            melhores fotos. Uma dica bacana: Evite maquiagem e faça seus cliques
-            em fundo neutro.<br /><br />
-            Ah! Capricha na pose, hein!?
+            {{ $t('getScouted.desc_1') }}<br /><br />
+            {{ $t('getScouted.desc_2') }}
           </p>
         </div>
 
@@ -68,7 +65,7 @@
             <label
               :class="[formData[input.name] != '' ? 'not-empty' : '']"
               :for="'form' + input.name"
-              >{{ input.placeholder }}</label
+              >{{ $t('getScouted.form.' + input.name.toString()) }}</label
             >
           </div>
         </div>
@@ -97,7 +94,7 @@
           <label
             :class="[formData[select.name] != '' ? 'not-empty' : '']"
             :for="'form' + select.name"
-            >{{ select.placeholder }}</label
+            >{{ $t('getScouted.form.' + select.name.toString()) }}</label
           >
         </div>
       </div>
@@ -111,7 +108,7 @@
             class="image"
           >
             <label :for="'photo_' + image.id">
-              {{ image.name }}
+              {{ $t('getScouted.form.' + image.name.toString()) }}
             </label>
 
             <img
@@ -138,7 +135,7 @@
       </div>
 
       <div class="sbmt-btn">
-        <button type="submit">Enviar</button>
+        <button type="submit">{{ $t('getScouted.form.send') }}</button>
       </div>
     </form>
   </div>

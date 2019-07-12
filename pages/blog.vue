@@ -2,9 +2,9 @@
   <section id="blog">
     <div class="row blog-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">Blog</h1>
+        <h1 class="title-strong">{{ $t('blog.title') }}</h1>
         <div class="blog-sub">
-          FIQUE POR DENTRO DE TUDO QUE ACONTECE<br />NO MUNDO DA MODA.
+          {{ $t('blog.desc_1') }}<br />{{ $t('blog.desc_2') }}
         </div>
       </div>
     </div>
@@ -190,6 +190,7 @@ export default {
         font-family: var(--formFontFamily);
         font-size: var(--descFontSize);
         font-weight: 300;
+        text-transform: uppercase;
         margin-top: 20px;
       }
     }

@@ -111,5 +111,93 @@
       "Message": "Message",
       "send": "Send"
     }
+  },
+
+  "getScouted":{
+    "title": "Want to be a model",
+    "firstSteps": "First steps",
+    "desc_1": "Glad you came here. How about being part of our team of agents? Just fill out this form and add your best photos. A cool tip: Avoid makeup and make your background neutral clicks.",
+    "desc_2": "Ah! Capricha na pose, hein!?",
+    "form":{
+      "Name": "Name",
+      "Gender": "Gender",
+      "Birthday": "Birthday",
+      "Email": "Email",
+      "Phone": "Phone",
+      "Address": "Address",
+
+      "Height": "Height",
+      "Weight": "Weight",
+      "Bust": "Bust",
+      "Waist": "Waist",
+      "Hips": "Hips",
+      "Shoes": "Shoes",
+      "Eyes": "Eyes",
+      "Hair": "Hair",
+
+      "Front": "Front",
+      "SideShot": "Side shot",
+      "FullBody": "Full body",
+
+      "send": "Send"
+    }
+  },
+
+  "blog":{
+    "title": "Blog",
+    "desc_1": "Stay tunned within everything that happens",
+    "desc_2": "In the fashion world."
+  },
+
+  "talentGallery":{
+    "height": "Height",
+    "hair": "Hair",
+    "eyes": "Eyes",
+    "shirt": "Shirt",
+    "suit": "Suit",
+    "jeans": "Manequinn",
+    "bust": "Bust",
+    "hips": "Hips",
+    "waist": "Waist",
+    "weight": "Weight",
+    "shoes": "Shoes"
+  },
+
+  "colors": {
+    "Amber": "Amber",
+    "Black": "Black",
+    "Blue": "Blue",
+    "Blue Green": "Blue Green",
+    "Blue Grey": "Blue Grey",
+    "Brown": "Brown",
+    "Brown Coffee": "Brown Coffee",
+    "Green": "Green",
+    "Green Brown": "Green Brown",
+    "Green Grey": "Green Grey",
+    "Green Olive": "Green Olive",
+    "Grey": "Grey",
+    "Hazel": "Hazel ",
+    "Honey": "Honey",
+    "Light Blue": "Light Blue",
+    "Light Brown": "Light Brown",
+    "Hairless": "Hairless",
+    "Ash Blonde": "Ash Blonde",
+    "Auburn": "Auburn",
+    "Cendre": "Cendre",
+    "Chestnut": "Chestnut",
+    "Blonde": "Blonde",
+    "Dark": "Dark",
+    "Dark Black": "Dark Black",
+    "Dark Blonde": "Dark Blonde",
+    "Dark Brown": "Dark Brown",
+    "Grey Black": "Grey Black",
+    "Light Blonde": "Light Blonde",
+    "Medium Blonde": "Medium Blonde",
+    "Platinum Blonde": "Platinum Blonde",
+    "Red": "Red",
+    "Red Blonde": "Red Blonde",
+    "Red Brown": "Red Brown",
+    "Salt and Pepper": "Salt and Pepper",
+    "Strawberry Blonde": "Strawberry Blonde"
   }
 }
