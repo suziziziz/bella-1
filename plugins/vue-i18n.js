@@ -14,7 +14,10 @@ export default ({ app, store }) => {
   })
 
   Vue.prototype.$changeLang = function(string) {
-    app.i18n.locale = string
+    setTimeout(() => {
+      app.i18n.locale = string
+    }, 200)
+
     document.querySelector('html').setAttribute('lang', string)
   }
 }

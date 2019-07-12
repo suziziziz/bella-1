@@ -130,7 +130,8 @@ export default {
     { src: '~/plugins/vue-i18n' },
     { src: '~/plugins/lodash' },
     { src: '~/plugins/vue-lazyload' },
-    { src: '~/plugins/vuesax' }
+    { src: '~/plugins/vuesax' },
+    { src: '~/plugins/vee-validate', ssr: false }
   ],
 
   router: {
