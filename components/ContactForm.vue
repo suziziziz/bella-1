@@ -28,12 +28,12 @@
         <label
           :class="[formData[input.name] != '' ? 'not-empty' : '']"
           :for="'form' + input.name"
-          >{{ input.placeholder }}</label
+          >{{ $t('contact.form.' + input.name.toString()) }}</label
         >
       </div>
 
       <div class="sbmt-btn">
-        <button type="submit">Enviar</button>
+        <button type="submit">{{ $t('contact.form.send') }}</button>
       </div>
     </form>
   </div>

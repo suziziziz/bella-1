@@ -193,13 +193,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
-// import MenuBtn from './MenuBtn'
-
 export default {
-  // components: {
-  //   'menu-btn': MenuBtn
-  // },
-
   props: {
     items: {
       type: Array,
@@ -219,21 +213,29 @@ export default {
     },
     ...mapGetters({
       windowSizes: 'window/windowSizes',
-      currentLocale: 'currentLocale'
+      currentLocale: 'lang/currentLocale'
     })
   },
 
   mounted() {
-    //
+    if (process.browser) {
+      window.onNuxtReady(() => {
+        // eslint-disable-next-line no-console
+        console.log('Current locale:', this.currentLocale)
+
+        this.$store.commit('lang/SET_LOCALE', this.currentLocale)
+        this.translate(this.currentLocale)
+      })
+    }
   },
 
   methods: {
     ...mapActions({
-      setLocale: 'setLocale'
+      setLocale: 'lang/setLocale'
     }),
     translate(_locale) {
       // eslint-disable-next-line no-console
-      console.log('translate: ', _locale)
+      console.log('Translate to: ', _locale)
 
       this.$changeLang(_locale)
       this.setLocale(_locale)

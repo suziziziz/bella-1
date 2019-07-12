@@ -18,5 +18,98 @@
     "wantToBe": "Want to be a model",
     "blog": "blog",
     "followUs": "Follow us on social media"
+  },
+
+  "about":{
+    "title": "About",
+    "desc_1": "Hello, this is Bella Models + Projects.",
+    "desc_2": "Our starting point was in 2006.",
+    "desc_3": "From here to here, our history is full of challenges and discoveries that have helped us build a solid relationship with the people involved in this evolutionary process as well as with the market.",
+    "desc_4": "Diversity, a word now so in vogue, since the inauguration is already part of our DNA.",
+    "desc_5": "We are proud to be one of the first agencies to insert the inclusion process into our casting and make it one of the most diverse and plural in Rio de Janeiro.",
+    "desc_6": "Yes, Bella is for everyone.",
+    "desc_7": "This basic but fundamental concept, besides opening the doors of the market to several of our agents, allowed brands, advertising agencies, film producers, and other producers of fashion, behavior and content to scale a team aligned with the purpose of the your projects.",
+    "desc_8": "Investing in people is the key.",
+    "desc_9": "That's why we created a training center we call Bella LABB_.",
+    "desc_10": "At LABB_, our agents participate free of charge in courses, lectures and workshops that prepare them and value their performance for the professional market.",
+    "desc_11": "Eyes and minds that perceive the future project opportunities.",
+    "desc_12": "There are a myriad of reasons for you, your brand or project to get involved with our history, but the main one of them, are the people involved in our inner and eternal processes. A team with professionals with enough experience to build careers and advise brands, producers and several projects that require a qualified and high performance casting.",
+    "desc_13": "This is a small fragment of our story, since you came here, how about helping us write the next chapters?",
+    "team": "Team",
+    "teamInfo":{
+      "1":{
+        "name": "Marcelo Andrade",
+        "position": "Director",
+        "facebook": "",
+        "instagram": ""
+      },
+      "2":{
+        "name": "Diego Correa",
+        "position": "Artistic director / Social media",
+        "facebook": "",
+        "instagram": ""
+      },
+      "3":{
+        "name": "Giovani Rafael",
+        "position": "Booker",
+        "facebook": "",
+        "instagram": ""
+      },
+      "4":{
+        "name": "Kelly Cristina",
+        "position": "Casting producer",
+        "facebook": "",
+        "instagram": ""
+      },
+      "5":{
+        "name": "Luciano Rocha",
+        "position": "Catwalk coach",
+        "facebook": "",
+        "instagram": ""
+      },
+      "6":{
+        "name": "Rodrigo Pagani",
+        "position": "New Face",
+        "facebook": "",
+        "instagram": ""
+      },
+      "7":{
+        "name": "Dami Ferreira Leão (Playmobrain)",
+        "position": "Publicity",
+        "facebook": "",
+        "instagram": ""
+      },
+      "8":{
+        "name": "Juliana Moraes",
+        "position": "DJL - Press office",
+        "facebook": "",
+        "instagram": ""
+      }
+    }
+  },
+
+  "talents":{
+    "women": "Women",
+    "men": "Men",
+    "fashion": "Fashion",
+    "commercial": "Commercial"
+  },
+
+  "contact":{
+    "title": "Contact",
+    "opening": "Opening Hours",
+    "hours": "09:30am to 01:00pm / 02:00pm to 06:30pm",
+    "weekendHours": "Saturday: 10:00am to 03:00pm",
+    "address": "Address",
+    "addressInfo": "Beira Mar Avenue 406, Penthouse 1305 - Centro - Rio de Janeiro - Brazil.",
+    "phone": "Phone",
+    "message": "Message",
+    "form":{
+      "Name": "Name",
+      "Email": "Email",
+      "Subject": "Subject",
+      "Message": "Message",
+      "send": "Send"
+    }
   }
 }

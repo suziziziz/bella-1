@@ -4,9 +4,45 @@
       <div class="row footer-items reset-row">
         <div class="col-md-4 menu reset-col">
           <ul>
-            <li v-for="section in sections" :key="section.id">
+            <!-- <li v-for="section in sections" :key="section.id">
               <router-link :to="{ path: section.path }" tag="a">
                 {{ section.name }}
+              </router-link>
+            </li> -->
+
+            <li>
+              <router-link :to="{ path: '/' }" tag="a">
+                {{ $t('footer.home') }}
+              </router-link>
+            </li>
+            <li>
+              <router-link :to="{ path: '/quem-somos' }" tag="a">
+                {{ $t('footer.whoWeAre') }}
+              </router-link>
+            </li>
+            <li>
+              <router-link :to="{ path: '/modelos/feminino' }" tag="a">
+                {{ $t('footer.women') }}
+              </router-link>
+            </li>
+            <li>
+              <router-link :to="{ path: '/modelos/masculino' }" tag="a">
+                {{ $t('footer.men') }}
+              </router-link>
+            </li>
+            <li>
+              <router-link :to="{ path: '/contato' }" tag="a">
+                {{ $t('footer.contact') }}
+              </router-link>
+            </li>
+            <li>
+              <router-link :to="{ path: '/quero-ser-modelo' }" tag="a">
+                {{ $t('footer.wantToBe') }}
+              </router-link>
+            </li>
+            <li>
+              <router-link :to="{ path: '/blog' }" tag="a">
+                {{ $t('footer.blog') }}
               </router-link>
             </li>
           </ul>
@@ -18,7 +54,7 @@
         </div>
 
         <div class="col-md-4 social reset-col">
-          <p class="follow">Siga-nos nas redes sociais</p>
+          <p class="follow">{{ $t('footer.followUs') }}</p>
           <span class="icons">
             <a
               href="https://www.facebook.com/agenciabellamodels"

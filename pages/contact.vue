@@ -2,39 +2,38 @@
   <section id="contact">
     <div class="row contact-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">Contato</h1>
+        <h1 class="title-strong">{{ $t('contact.title') }}</h1>
       </div>
     </div>
 
     <div class="row contact">
       <div class="col-lg-4 infos justify-content-center">
         <div class="open-time text-center">
-          <p class="c-title">Horário de funcionamento</p>
+          <p class="c-title">{{ $t('contact.opening') }}</p>
           <p class="c-desc">
-            09:30 às 13:00 / 14:00 às 18:30<br />
-            Sábado: 10:00 às 15:00
+            {{ $t('contact.hours') }}<br />
+            {{ $t('contact.weekendHours') }}
           </p>
         </div>
 
         <div class="address text-center">
-          <p class="c-title">Endereço</p>
+          <p class="c-title">{{ $t('contact.address') }}</p>
           <p class="c-desc">
-            Av. Beira Mar 406, Cobertura 1305 - Centro - Rio de Janeiro -
-            Brasil.
+            {{ $t('contact.addressInfo') }}
           </p>
         </div>
 
         <div class="phone text-center">
-          <p class="c-title">Telefone</p>
+          <p class="c-title">{{ $t('contact.phone') }}</p>
           <p class="c-desc">
-            (21) 3860-6633
+            +55 (21) 3860-6633
           </p>
         </div>
 
         <div class="whatsapp text-center">
           <p class="c-title">Whatsapp</p>
           <p class="c-desc">
-            (21) 97031-7962
+            +55 (21) 97031-7962
           </p>
         </div>
 
@@ -47,7 +46,7 @@
       </div>
 
       <div class="col-lg-8 form">
-        <h3 class="title-strong">Mensagem</h3>
+        <h3 class="title-strong">{{ $t('contact.message') }}</h3>
         <contact-form :inputs="inputs" />
       </div>
     </div>
@@ -84,25 +83,21 @@ export default {
         {
           id: 0,
           name: 'Name',
-          placeholder: 'Nome',
           type: 'text'
         },
         {
           id: 1,
           name: 'Email',
-          placeholder: 'Email',
           type: 'email'
         },
         {
           id: 2,
           name: 'Subject',
-          placeholder: 'Assunto',
           type: 'text'
         },
         {
           id: 3,
           name: 'Message',
-          placeholder: 'Menssagem',
           type: 'textarea',
           rows: '2'
         }

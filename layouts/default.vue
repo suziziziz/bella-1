@@ -37,7 +37,7 @@
  */
 import lottie from 'lottie-web'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
 
@@ -97,6 +97,12 @@ export default {
     }
   },
 
+  computed: {
+    ...mapGetters({
+      currentLocale: 'lang/currentLocale'
+    })
+  },
+
   created() {
     // This is due to the server-side rendering.
     // If you need to specify that you want to import a resource
@@ -148,7 +154,8 @@ export default {
     },
 
     ...mapActions({
-      updateSize: 'window/updateSize'
+      updateSize: 'window/updateSize',
+      setLocale: 'lang/setLocale'
     }),
 
     closeInstall() {

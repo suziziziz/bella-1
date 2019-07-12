@@ -18,5 +18,98 @@
     "wantToBe": "Quero ser modelo",
     "blog": "Blog",
     "followUs": "Siga-nos nas redes sociais"
+  },
+
+  "about":{
+    "title": "Sobre",
+    "desc_1": "Olá, somos a Bella Models + Projects.",
+    "desc_2": "Nosso ponto de partida foi em 2006.",
+    "desc_3": "De lá até aqui, nossa história é repleta de desafios e descobertas que nos ajudaram a construir uma sólida relação com as pessoas envolvidas nesse processo evolutivo e também com o mercado.",
+    "desc_4": "Diversidade, uma palavra hoje tão em voga, desde a inauguração já faz parte do nosso DNA.",
+    "desc_5": "Temos o orgulho de ser uma das primeiras agências a inserir o processo de inclusão em nosso  casting e torna-lo um dos mais diversos e plurais do Rio de Janeiro.",
+    "desc_6": "Sim, a Bella é para todos.",
+    "desc_7": "Esse conceito básico, porém, fundamental, além de abrir as portas do mercado para diversos dos nossos agenciados, possibilitou que marcas, agências de publicidade, produtoras de cinema, e outros produtores de moda, comportamento e conteúdo escalasse um time alinhado com o propósito dos seus projetos.",
+    "desc_8": "Investir em pessoas é fundamental.",
+    "desc_9": "Por isso, criamos um centro de treinamentos que chamamos de Bella LABB_.",
+    "desc_10": "No LABB_, nossos agenciados participam gratuitamente de cursos, palestras e workshops que os prepara e valoriza seu desempenho para o mercado profissional.",
+    "desc_11": "Olhos e mentes que percebem o futuro projetam oportunidades.",
+    "desc_12": "Existe uma infinidade de motivos para você, sua marca ou projeto se envolver com a nossa história, mas o principal deles, são as pessoas envolvidas em nossos processos internos e eternos. Uma equipe com profissionais com experiência suficiente para construir carreiras e assessorar marcas, produtoras e diversos projetos que necessitam de um casting qualificado e de alta performance.",
+    "desc_13": "Esse é um pequeno fragmento da nossa história, já que você veio até aqui, que tal nos ajudar a escrever os próximos capítulos?",
+    "team": "Equipe",
+    "teamInfo":{
+      "1":{
+        "name": "Marcelo Andrade",
+        "position": "Diretor",
+        "facebook": "",
+        "instagram": ""
+      },
+      "2":{
+        "name": "Diego Correa",
+        "position": "Diretor artístico / Mídias sociais",
+        "facebook": "",
+        "instagram": ""
+      },
+      "3":{
+        "name": "Giovani Rafael",
+        "position": "Booker",
+        "facebook": "",
+        "instagram": ""
+      },
+      "4":{
+        "name": "Kelly Cristina",
+        "position": "Produtora de casting",
+        "facebook": "",
+        "instagram": ""
+      },
+      "5":{
+        "name": "Luciano Rocha",
+        "position": "Coach em passarela",
+        "facebook": "",
+        "instagram": ""
+      },
+      "6":{
+        "name": "Rodrigo Pagani",
+        "position": "New Face",
+        "facebook": "",
+        "instagram": ""
+      },
+      "7":{
+        "name": "Dami Ferreira Leão (Playmobrain)",
+        "position": "Publicidade",
+        "facebook": "",
+        "instagram": ""
+      },
+      "8":{
+        "name": "Juliana Moraes",
+        "position": "DJL - Assessoria de Imprensa",
+        "facebook": "",
+        "instagram": ""
+      }
+    }
+  },
+
+  "talents":{
+    "women": "Feminino",
+    "men": "Masculino",
+    "fashion": "Fashion",
+    "commercial": "Comercial"
+  },
+
+  "contact":{
+    "title": "Contato",
+    "opening": "Horário de funcionamento",
+    "hours": "09:30 às 13:00 / 14:00 às 18:30",
+    "weekendHours": "Sábado: 10:00 às 15:00",
+    "address": "Endereço",
+    "addressInfo": "Av. Beira Mar 406, Cobertura 1305 - Centro - Rio de Janeiro - Brasil.",
+    "phone": "Telefone",
+    "message": "Mensagem",
+    "form":{
+      "Name": "Nome",
+      "Email": "Email",
+      "Subject": "Assunto",
+      "Message": "Mensagem",
+      "send": "Enviar"
+    }
   }
 }

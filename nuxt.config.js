@@ -126,7 +126,7 @@ export default {
   plugins: [
     { src: '~/plugins/vue-awesome-swiper', ssr: false },
     { src: '~/plugins/install-notify', ssr: false },
-    { src: '~/plugins/vuex-persist' },
+    { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vue-i18n' },
     { src: '~/plugins/lodash' },
     { src: '~/plugins/vue-lazyload' }
@@ -156,7 +156,6 @@ export default {
    ** Build configuration
    */
   build: {
-    vendor: ['vue-i18n'],
     /*
      ** You can extend webpack config here
      */

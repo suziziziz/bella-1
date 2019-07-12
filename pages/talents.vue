@@ -2,7 +2,13 @@
   <section id="talents">
     <div class="row talents-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">{{ $route.params.gender }}</h1>
+        <h1 class="title-strong">
+          {{
+            $route.params.gender === 'feminino'
+              ? $t('talents.women')
+              : $t('talents.men')
+          }}
+        </h1>
       </div>
     </div>
 
@@ -13,13 +19,13 @@
             :class="currCategory === 'fashion' ? 'active' : ''"
             @click="selectCategory('fashion')"
           >
-            Fashion
+            {{ $t('talents.fashion') }}
           </li>
           <li
             :class="currCategory === 'comercial' ? 'active' : ''"
             @click="selectCategory('comercial')"
           >
-            Comercial
+            {{ $t('talents.commercial') }}
           </li>
         </ul>
       </div>
