@@ -131,7 +131,7 @@ export default {
     { src: '~/plugins/lodash' },
     { src: '~/plugins/vue-lazyload' },
     { src: '~/plugins/vuesax' },
-    { src: '~/plugins/vee-validate', ssr: false }
+    { src: '~/plugins/vee-validate' }
   ],
 
   router: {

@@ -45,6 +45,7 @@
         >
 
         <p
+          v-if="errors"
           v-show="errors.has('form' + input.name.toString())"
           class="error-msg"
         >

@@ -23,9 +23,25 @@
             "
           >
             <input
-              v-if="input.type !== 'textarea' && input.type !== 'select'"
+              v-if="input.type === 'text'"
               :id="'form' + input.name"
               v-model="formData[input.name]"
+              v-validate="
+                input.name === 'Name'
+                  ? 'required|alpha_spaces'
+                  : input.name === 'Birthday'
+                  ? 'required|date_format:dd/MM/yyyy'
+                  : 'required'
+              "
+              :type="input.type"
+              :name="'form' + input.name"
+            />
+
+            <input
+              v-else-if="input.type === 'email'"
+              :id="'form' + input.name"
+              v-model="formData[input.name]"
+              v-validate="'required|email'"
               :type="input.type"
               :name="'form' + input.name"
             />
@@ -34,6 +50,7 @@
               v-else-if="input.type === 'textarea'"
               :id="'form' + input.name"
               v-model="formData[input.name]"
+              v-validate="'required'"
               :name="'form' + input.name"
               :rows="input.rows"
             />
@@ -42,6 +59,7 @@
               v-else-if="input.type === 'select'"
               :id="'form' + input.name"
               v-model="formData[input.name]"
+              v-validate="'required'"
               :name="'form' + input.name"
             >
               <option
@@ -67,6 +85,14 @@
               :for="'form' + input.name"
               >{{ $t('getScouted.form.' + input.name.toString()) }}</label
             >
+
+            <p
+              v-if="errors"
+              v-show="errors.has('form' + input.name.toString())"
+              class="error-msg"
+            >
+              {{ errors.first('form' + input.name.toString()) }}
+            </p>
           </div>
         </div>
       </div>
@@ -80,6 +106,7 @@
           <select
             :id="'form' + select.name"
             v-model="formData[select.name]"
+            v-validate="'required'"
             :name="'form' + select.name"
           >
             <option
@@ -96,6 +123,14 @@
             :for="'form' + select.name"
             >{{ $t('getScouted.form.' + select.name.toString()) }}</label
           >
+
+          <p
+            v-if="errors"
+            v-show="errors.has('form' + select.name.toString())"
+            class="error-msg"
+          >
+            {{ errors.first('form' + select.name.toString()) }}
+          </p>
         </div>
       </div>
 
@@ -120,12 +155,21 @@
             <div v-else class="placeholder">
               <img src="/img/upload.png" alt="Upload" />
             </div>
+
+            <p
+              v-if="errors"
+              v-show="errors.has('photo_' + image.id.toString())"
+              class="error-msg"
+            >
+              {{ errors.first('photo_' + image.id.toString()) }}
+            </p>
           </div>
 
           <input
             v-for="image in formImages"
             :id="'photo_' + image.id"
             :key="image.id"
+            v-validate="'required|image'"
             class="hide"
             type="file"
             :name="'photo_' + image.id"
@@ -142,7 +186,34 @@
 </template>
 
 <script>
+import { Validator } from 'vee-validate'
+import { mapGetters } from 'vuex'
+
+const dictionary = {
+  en: {
+    messages: {
+      alpha_spaces: _field =>
+        'This field may only contain alphabetic characters',
+      email: 'This field must be a valid email',
+      date_format: 'This field must be in the format dd/MM/yyyy'
+    }
+  },
+  pt: {
+    messages: {
+      alpha_spaces: _field =>
+        'Este campo deve conter apenas caracteres alfabéticos',
+      email: 'Este campo deve ser um endereço de email válido',
+      date_format: 'Este campo deve estar no formato dd/MM/aaaa'
+    }
+  }
+}
+
+// Override and merge the dictionaries
+Validator.localize(dictionary)
+
 export default {
+  inject: ['$validator'],
+
   props: {
     inputs: {
       type: Array,
@@ -161,7 +232,13 @@ export default {
   data() {
     return {
       formData: {},
-      imagesData: {}
+      imagesData: {},
+      errorEn: {
+        custom: {}
+      },
+      errorPt: {
+        custom: {}
+      }
     }
   },
 
@@ -174,6 +251,24 @@ export default {
     },
     formImages() {
       return this.images
+    },
+    ...mapGetters({
+      currentLocale: 'lang/currentLocale'
+    })
+  },
+
+  watch: {
+    currentLocale: {
+      handler: function(val, oldVal) {
+        // eslint-disable-next-line no-console
+        // console.log('Value changed from: ', oldVal + ' to: ', val)
+
+        val === 'en'
+          ? Validator.localize('en', this.errorEn)
+          : Validator.localize('pt', this.errorPt)
+      },
+
+      deep: true
     }
   },
 
@@ -184,14 +279,43 @@ export default {
     setTimeout(() => {
       this.formInputs.forEach(input => {
         this.$set(this.formData, input.name, '')
+
+        this.$set(this.errorEn.custom, 'form' + input.name.toString(), {
+          required: 'This field is required'
+        })
+        this.$set(this.errorPt.custom, 'form' + input.name.toString(), {
+          required: 'Este campo é requerido'
+        })
       })
+
       this.formSelects.forEach(input => {
         this.$set(this.formData, input.name, '')
+
+        this.$set(this.errorEn.custom, 'form' + input.name.toString(), {
+          required: 'This field is required'
+        })
+        this.$set(this.errorPt.custom, 'form' + input.name.toString(), {
+          required: 'Este campo é requerido'
+        })
       })
+
       this.formImages.forEach(input => {
         this.$set(this.imagesData, 'photo_' + input.id, '')
+
+        this.$set(this.errorEn.custom, 'photo_' + input.id.toString(), {
+          required: 'This field is required'
+        })
+        this.$set(this.errorPt.custom, 'photo_' + input.id.toString(), {
+          required: 'Este campo é requerido'
+        })
       })
     }, 10)
+
+    setTimeout(() => {
+      this.currentLocale === 'en'
+        ? Validator.localize('en', this.errorEn)
+        : Validator.localize('pt', this.errorPt)
+    }, 15)
   }
 }
 </script>
@@ -222,7 +346,7 @@ export default {
           input,
           select {
             width: 100%;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             transition: var(--defaultTransition);
             border: 1px solid;
             border-color: #a9a9a9;
@@ -266,7 +390,7 @@ export default {
 
           textarea {
             width: 100%;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             transition: var(--defaultTransition);
             border: 1px solid;
             border-color: #a9a9a9;
@@ -323,7 +447,7 @@ export default {
 
         select {
           width: 100%;
-          margin-bottom: 30px;
+          margin-bottom: 35px;
           transition: var(--defaultTransition);
           border: 1px solid;
           border-color: #a9a9a9;
