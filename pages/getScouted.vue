@@ -2,7 +2,9 @@
   <section id="getScouted">
     <div class="row get-scouted-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">{{ $t('getScouted.title') }}</h1>
+        <h1 class="title-strong">
+          {{ $t('getScouted.title') }}
+        </h1>
       </div>
     </div>
 

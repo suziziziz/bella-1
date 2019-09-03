@@ -12,7 +12,7 @@
       <!-- App install -->
       <div id="appInstall" notify="false">
         <div id="closeAppInstall" class="close-btn" @click="closeInstall()">
-          <i class="fas fa-times"></i>
+          <i class="fas fa-times" />
         </div>
 
         <p class="m-0">Adicione <b>Bella #Models</b> à sua tela inicial</p>
@@ -40,9 +40,10 @@ import lottie from 'lottie-web'
 import { mapActions, mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
+import DownloadAnimation from '~/assets/animations/download'
 
 export default {
-  middleware: ['signin'],
+  // middleware: ['signin'],
 
   components: {
     'main-nav': Navbar,
@@ -121,28 +122,6 @@ export default {
 
   mounted() {
     this.animateDownload('downloadAnim')
-
-    // if (process.browser) {
-    //   const download = document.getElementById('appInstall')
-
-    //   const MutationObserver =
-    //     window.MutationObserver ||
-    //     window.WebKitMutationObserver ||
-    //     window.MozMutationObserver
-
-    //   const observer = new MutationObserver(function(mutations) {
-    //     mutations.forEach(function(mutation) {
-    //       if (mutation.type === 'attributes') {
-    //         // eslint-disable-next-line no-console
-    //         console.log('attributes changed')
-    //       }
-    //     })
-    //   })
-
-    //   observer.observe(download, {
-    //     attributes: true // Listen to attribute changes
-    //   })
-    // }
   },
 
   methods: {
@@ -160,7 +139,6 @@ export default {
 
     closeInstall() {
       const el = document.getElementById('appInstall')
-
       el.style.display = 'none'
     },
 
@@ -171,7 +149,7 @@ export default {
         loop: true,
         autoplay: false,
         autoloadSegments: false,
-        path: '/animations/download.json'
+        animationPath: DownloadAnimation
       }
       const anim = lottie.loadAnimation(animData)
 

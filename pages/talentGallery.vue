@@ -9,14 +9,16 @@
     <div class="container">
       <div class="row talent-gallery-intro reset-row">
         <div class="col-12 reset-col text-center">
-          <h1 class="title-strong">{{ talentData.name }}</h1>
+          <h1 class="title-strong">
+            {{ talentData.name }}
+          </h1>
 
           <div v-if="talentData.instagram" class="instagram">
             <a
               :href="'https://www.instagram.com/' + talentData.instagram"
               target="_blank"
             >
-              <i class="fab fa-instagram"></i>
+              <i class="fab fa-instagram" />
             </a>
 
             <a
@@ -27,7 +29,7 @@
                 <i
                   v-if="$_.isEmpty(instagramData)"
                   class="fas fa-spinner fa-spin"
-                ></i>
+                />
                 <h3 v-else class="title-strong">
                   {{ instagramData.followers }}
                 </h3>

@@ -9,7 +9,7 @@
       <div class="row desc-inputs reset-row">
         <div class="col-lg-6 desc text-center">
           <p class="c-desc">
-            {{ $t('getScouted.desc_1') }}<br /><br />
+            {{ $t('getScouted.desc_1') }}<br ><br >
             {{ $t('getScouted.desc_2') }}
           </p>
         </div>
@@ -83,8 +83,7 @@
             <label
               :class="[formData[input.name] != '' ? 'not-empty' : '']"
               :for="'form' + input.name"
-              >{{ $t('getScouted.form.' + input.name.toString()) }}</label
-            >
+              >{{ $t('getScouted.form.' + input.name.toString()) }}</label>
 
             <p
               v-if="errors"
@@ -121,8 +120,7 @@
           <label
             :class="[formData[select.name] != '' ? 'not-empty' : '']"
             :for="'form' + select.name"
-            >{{ $t('getScouted.form.' + select.name.toString()) }}</label
-          >
+            >{{ $t('getScouted.form.' + select.name.toString()) }}</label>
 
           <p
             v-if="errors"
@@ -153,7 +151,7 @@
             />
 
             <div v-else class="placeholder">
-              <img src="/img/upload.png" alt="Upload" />
+              <img src="/img/upload.png" alt="Upload" >
             </div>
 
             <p
@@ -179,7 +177,9 @@
       </div>
 
       <div class="sbmt-btn">
-        <button type="submit">{{ $t('getScouted.form.send') }}</button>
+        <button type="submit">
+          {{ $t('getScouted.form.send') }}
+        </button>
       </div>
     </form>
   </div>

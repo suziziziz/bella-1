@@ -40,7 +40,25 @@ import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 export default {
-  // middleware: ['signin'],
+  async asyncData({store,$axios}) {
+    let talents
+    if(store.state.talents){
+      talents = store.state.talents
+    }else{
+      let { data } = await $axios.$get('https://integration.managerfashion.net/api/talents',
+      
+      // {
+      //   params: { language: 'pt' },
+      //   headers: { Authorization: 'bearer ' + store.state.authorizationToken }
+      // }
+      )
+      store.commit('setTalents', data)
+      talents = data
+
+    }
+    return { talentList:talents }
+        
+  },
 
   data() {
     return {
@@ -91,33 +109,33 @@ export default {
   },
 
   mounted() {
-    this.getTalents()
+    // this.getTalents()
   },
 
   methods: {
-    ...mapGetters({
-      authToken: 'authToken'
-    }),
+    // ...mapGetters({
+    //   authToken: 'authToken'
+    // }),
 
-    getTalents(_user) {
-      const token = this.authToken()
+    // getTalents(_user) {
+    //   const token = this.authToken()
 
-      axios
-        .get('https://integration.managerfashion.net/api/talents', {
-          params: { language: 'pt' },
-          headers: { Authorization: 'bearer ' + token }
-        })
-        .then(response => {
-          // eslint-disable-next-line no-console
-          console.log('response: ', response.data.data)
+    //   axios
+    //     .get('https://integration.managerfashion.net/api/talents', {
+    //       params: { language: 'pt' },
+    //       headers: { Authorization: 'bearer ' + token }
+    //     })
+    //     .then(response => {
+    //       // eslint-disable-next-line no-console
+    //       console.log('response: ', response.data.data)
 
-          this.talentList = response.data.data
-        })
-        .catch(error => {
-          // eslint-disable-next-line no-console
-          console.log('getTalents error: ', error)
-        })
-    },
+    //       this.talentList = response.data.data
+    //     })
+    //     .catch(error => {
+    //       // eslint-disable-next-line no-console
+    //       console.log('getTalents error: ', error)
+    //     })
+    // },
 
     selectCategory(_cat) {
       this.currCategory = _cat

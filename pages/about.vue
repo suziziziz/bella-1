@@ -2,7 +2,9 @@
   <section id="about">
     <div class="row about-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">{{ $t('about.title') }}</h1>
+        <h1 class="title-strong">
+          {{ $t('about.title') }}
+        </h1>
       </div>
     </div>
 
@@ -16,7 +18,9 @@
 
     <div class="row team-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h3 class="title-strong">{{ $t('about.team') }}</h3>
+        <h3 class="title-strong">
+          {{ $t('about.team') }}
+        </h3>
       </div>
     </div>
 
@@ -40,7 +44,7 @@
             "
             target="_blank"
           >
-            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-facebook-f" />
           </a>
           <a
             :href="
@@ -49,7 +53,7 @@
             "
             target="_blank"
           >
-            <i class="fab fa-instagram"></i>
+            <i class="fab fa-instagram" />
           </a>
         </div>
       </div>

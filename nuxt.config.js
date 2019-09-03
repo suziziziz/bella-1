@@ -126,16 +126,17 @@ export default {
   plugins: [
     { src: '~/plugins/vue-awesome-swiper', ssr: false },
     { src: '~/plugins/install-notify', ssr: false },
-    { src: '~/plugins/vuex-persist', ssr: false },
+    // { src: '~/plugins/vuex-persist', ssr: false },
     { src: '~/plugins/vue-i18n' },
     { src: '~/plugins/lodash' },
     { src: '~/plugins/vue-lazyload' },
     { src: '~/plugins/vuesax' },
-    { src: '~/plugins/vee-validate' }
+    { src: '~/plugins/vee-validate' },
+    { src: '~/plugins/axios' }
   ],
 
   router: {
-    middleware: 'signin'
+    // middleware: 'signin'
   },
 
   /*
@@ -145,12 +146,20 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    ['@nuxtjs/router', { keepDefaultRouter: true }]
+    ['@nuxtjs/router', { keepDefaultRouter: true }],
+    ['nuxt-env', {
+      keys: [
+        { key: 'api_token', secret: true }, // Only inject the var server side
+        { key: 'salt', secret: true } // Only inject the var server side
+      ]
+    }]
   ],
   /*
    ** Axios module configuration
    */
   axios: {
+    baseURL: 'https://bellamodels.managerfashion.net/api'
+    // debug: true
     // See https://github.com/nuxt-community/axios-module#options
   },
 
@@ -161,7 +170,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
+    extend (config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({

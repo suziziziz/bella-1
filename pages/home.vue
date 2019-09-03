@@ -8,8 +8,10 @@
 
     <div class="row instagram-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title">Instagram</h1>
-        <i class="fab fa-instagram"></i>
+        <h1 class="title">
+          Instagram
+        </h1>
+        <i class="fab fa-instagram" />
       </div>
     </div>
 
@@ -29,7 +31,7 @@
         >
           <a :href="item.url" target="_blank">
             <figure>
-              <img :src="item.src" :alt="item.desc" class="img-fluid" />
+              <img :src="item.src" :alt="item.desc" class="img-fluid" >
 
               <div class="item-hover">
                 {{ item.desc }}
@@ -42,7 +44,9 @@
 
     <div class="row blog-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title">Blog</h1>
+        <h1 class="title">
+          Blog
+        </h1>
       </div>
     </div>
 
@@ -55,9 +59,9 @@
         />
 
         <div
-          v-for="n in 8"
+          v-for="post in blogPosts"
           v-show="!$_.isEmpty(blogPosts)"
-          :key="n"
+          :key="post.id"
           class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 item"
         >
           <div class="date">
@@ -71,17 +75,17 @@
               <figure>
                 <img
                   v-if="!$_.isEmpty(blogPosts)"
-                  src="/img/blog-placeholder.jpg"
-                  :alt="blogPosts[n].title"
+                  :src="getImage(post.thumbnail)"
+                  :alt="post.title"
                   class="img-fluid w-100"
                 />
 
                 <div
                   v-if="!$_.isEmpty(blogPosts)"
-                  :id="'post-' + n"
+                  :id="'post-' + post.id"
                   class="item-hover"
-                  @mouseenter="animatePostRead('post-' + n, 'enter')"
-                  @mouseleave="animatePostRead('post-' + n, 'exit')"
+                  @mouseenter="animatePostRead('post-' + post.id, 'enter')"
+                  @mouseleave="animatePostRead('post-' + post.id, 'exit')"
                 >
                   <!-- {{ blogPosts[n].body }} -->
                 </div>
@@ -91,7 +95,7 @@
 
           <div class="desc">
             <a v-if="!$_.isEmpty(blogPosts)" href="#">
-              {{ blogPosts[n].title }}
+              {{ post.title }}
             </a>
           </div>
         </div>
@@ -105,30 +109,34 @@
  * Used to animate Airbnb Lottie animations
  */
 import lottie from 'lottie-web'
-
-import axios from 'axios'
 import { mapGetters } from 'vuex'
 import HomeSlider from '~/components/HomeSlider'
+import Loader from '~/assets/animations/loader'
+import seeMore from '~/assets/animations/seeMore'
 
 export default {
   components: {
     'home-slider': HomeSlider
   },
-
+  async asyncData ({ $axios, store }) {
+    let data
+    if (store.state.slides) {
+      data = store.state.slides
+    } else {
+      data = await $axios.$get(`/slides`)
+      store.commit('setSlides', data)
+    }
+    let {data:post} = await $axios.$get(`/posts/blog/${store.state.lang.locale}?paginate=8`)
+    return { 
+      slides: data,
+      blogPosts:post
+    }
+  },
   // middleware: ['signin'],
 
   data() {
     return {
-      slides: [
-        {
-          id: '1',
-          src: '/img/1.jpg'
-        },
-        {
-          id: '2',
-          src: '/img/2.jpg'
-        }
-      ],
+      slides: [],
       instagramData: [],
       blogPosts: [],
       currDate: new Date()
@@ -141,7 +149,7 @@ export default {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/animations/loader.json'
+      animationData: Loader
     })
 
     lottie.loadAnimation({
@@ -149,54 +157,36 @@ export default {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/animations/loader.json'
+      animationData: Loader
     })
 
     this.getInstagramInfo('bellamodelsagencia')
-    this.getPosts()
+    // this.getPosts()
 
     // eslint-disable-next-line no-console
     // console.log('lodash: ', this.$_)
   },
 
   methods: {
-    ...mapGetters({
-      authToken: 'authToken'
-    }),
-
-    getInstagramInfo(_user) {
-      const token = this.authToken()
-
-      axios
-        .get('https://integration.managerfashion.net/api/agency/instagram', {
-          params: { username: _user.toString() },
-          headers: { Authorization: 'bearer ' + token }
-        })
-        .then(response => {
-          // eslint-disable-next-line no-console
-          // console.log('response: ', response)
-
-          this.instagramData = response.data
-        })
-        .catch(error => {
-          // eslint-disable-next-line no-console
-          console.log('getInstagramInfo error: ', error)
-        })
+    ...mapGetters(['authToken']),
+    getImage(url){
+      return  url.match(/http/g) && url.match(/http/g).length > 0 
+      ? url
+      :`https://bellamodels.managerfashion.net${url}`
+      
     },
-
-    getPosts() {
-      axios
-        .get('https://jsonplaceholder.typicode.com/posts')
-        .then(response => {
-          // eslint-disable-next-line no-console
-          // console.log('response: ', response)
-
-          this.blogPosts = response.data
-        })
-        .catch(error => {
-          // eslint-disable-next-line no-console
-          console.log('getPosts error: ', error)
-        })
+    async getInstagramInfo(_user) {
+      try {
+        let data = await this.$axios
+          .$get('https://integration.managerfashion.net/api/agency/instagram', {
+            params: { username: _user.toString() },
+            headers: { Authorization: 'bearer ' + this.authToken }
+          })
+        this.instagramData = data.status ? []:data
+        
+      } catch (error) {
+        console.log(error);        
+      }        
     },
 
     animatePostRead(_container, _action) {
@@ -205,7 +195,7 @@ export default {
         renderer: 'svg',
         loop: true,
         autoplay: false,
-        path: '/animations/seeMore.json'
+        animationData: seeMore
       })
 
       switch (_action) {
@@ -232,6 +222,9 @@ export default {
 </script>
 
 <style lang="scss">
+.swiper-pagination-bullet-active{
+  background:white
+}
 #home {
   .instagram-intro {
     margin-top: 50px;

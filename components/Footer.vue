@@ -49,34 +49,34 @@
         </div>
 
         <div class="col-md-4 logo reset-col text-center">
-          <img src="/logo_footer.png" alt="Bella #Models" height="95px" />
+          <img src="/logo_footer.png" alt="Bella #Models" height="95px" >
           <p>BELLA #MODELS - COPYRIGHT © {{ year }}</p>
         </div>
 
         <div class="col-md-4 social reset-col">
-          <p class="follow">{{ $t('footer.followUs') }}</p>
+          <p class="follow">
+            {{ $t('footer.followUs') }}
+          </p>
           <span class="icons">
             <a
               href="https://www.facebook.com/agenciabellamodels"
               target="_blank"
             >
-              <i class="fab fa-facebook-f"></i>
+              <i class="fab fa-facebook-f" />
             </a>
             <a
               href="https://www.instagram.com/bellamodelsagencia/"
               target="_blank"
             >
-              <i class="fab fa-instagram"></i>
+              <i class="fab fa-instagram" />
             </a>
             <a href="https://twitter.com/bellamodelsrj" target="_blank">
-              <i class="fab fa-twitter"></i>
+              <i class="fab fa-twitter" />
             </a>
           </span>
           <p class="pwrd">
             Powered by
-            <a href="https://managerfashion.com" target="_blank"
-              >ManagerFashion</a
-            >
+            <a href="https://managerfashion.com" target="_blank">ManagerFashion</a>
           </p>
         </div>
       </div>

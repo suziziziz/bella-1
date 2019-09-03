@@ -5,7 +5,7 @@
         <!-- Logo -->
         <div class="row logo reset-row">
           <div class="col-12 reset-col text-center">
-            <img src="/logo.png" alt="Bella #Models" height="95px" />
+            <img src="/logo.png" alt="Bella #Models" height="95px" >
           </div>
         </div>
 
@@ -20,48 +20,39 @@
               </li> -->
 
               <li>
-                <router-link :to="{ path: '/' }" tag="a" exact>{{
-                  $t('navbar.home')
-                }}</router-link>
+                <router-link :to="{ path: '/' }" tag="a" exact>
+                  {{ $t('navbar.home') }}
+                </router-link>
               </li>
               <li>
-                <router-link :to="{ path: '/quem-somos' }" tag="a" exact>{{
-                  $t('navbar.whoWeAre')
-                }}</router-link>
+                <router-link :to="{ path: '/quem-somos' }" tag="a" exact>
+                  {{ $t('navbar.whoWeAre') }}
+                </router-link>
               </li>
               <li>
-                <router-link
-                  :to="{ path: '/modelos/feminino' }"
-                  tag="a"
-                  exact
-                  >{{ $t('navbar.women') }}</router-link
-                >
+                <router-link :to="{ path: '/modelos/feminino' }" tag="a" exact>
+                  {{ $t('navbar.women') }}
+                </router-link>
               </li>
               <li>
-                <router-link
-                  :to="{ path: '/modelos/masculino' }"
-                  tag="a"
-                  exact
-                  >{{ $t('navbar.men') }}</router-link
-                >
+                <router-link :to="{ path: '/modelos/masculino' }" tag="a" exact>
+                  {{ $t('navbar.men') }}
+                </router-link>
               </li>
               <li>
-                <router-link :to="{ path: '/contato' }" tag="a" exact>{{
-                  $t('navbar.contact')
-                }}</router-link>
+                <router-link :to="{ path: '/contato' }" tag="a" exact>
+                  {{ $t('navbar.contact') }}
+                </router-link>
               </li>
               <li>
-                <router-link
-                  :to="{ path: '/quero-ser-modelo' }"
-                  tag="a"
-                  exact
-                  >{{ $t('navbar.wantToBe') }}</router-link
-                >
+                <router-link :to="{ path: '/quero-ser-modelo' }" tag="a" exact>
+                  {{ $t('navbar.wantToBe') }}
+                </router-link>
               </li>
               <li>
-                <router-link :to="{ path: '/blog' }" tag="a" exact>{{
-                  $t('navbar.blog')
-                }}</router-link>
+                <router-link :to="{ path: '/blog' }" tag="a" exact>
+                  {{ $t('navbar.blog') }}
+                </router-link>
               </li>
             </ul>
           </div>
@@ -76,7 +67,7 @@
                   href="https://www.facebook.com/agenciabellamodels"
                   target="_blank"
                 >
-                  <i class="fab fa-facebook-f"></i>
+                  <i class="fab fa-facebook-f" />
                 </a>
               </li>
               <li>
@@ -84,12 +75,12 @@
                   href="https://www.instagram.com/bellamodelsagencia/"
                   target="_blank"
                 >
-                  <i class="fab fa-instagram"></i>
+                  <i class="fab fa-instagram" />
                 </a>
               </li>
               <li>
                 <a href="https://twitter.com/bellamodelsrj" target="_blank">
-                  <i class="fab fa-twitter"></i>
+                  <i class="fab fa-twitter" />
                 </a>
               </li>
             </ul>
@@ -100,14 +91,12 @@
           <span
             :class="currentLocale === 'en' ? 'active' : ''"
             @click="translate('en')"
-            >EN</span
-          >
+            >EN</span>
           |
           <span
             :class="currentLocale === 'pt' ? 'active' : ''"
             @click="translate('pt')"
-            >PT</span
-          >
+            >PT</span>
         </div>
       </nav>
     </div>
@@ -123,7 +112,7 @@
                 <button id="mobileMenuBtn" @click="showMenu = !showMenu">
                   <i
                     :class="'fas ' + [showMenu ? 'fa-arrow-left' : 'fa-bars']"
-                  ></i>
+                  />
                 </button>
               </div>
 
@@ -160,7 +149,7 @@
                         href="https://www.facebook.com/agenciabellamodels"
                         target="_blank"
                       >
-                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-facebook-f" />
                       </a>
                     </li>
                     <li>
@@ -168,7 +157,7 @@
                         href="https://www.instagram.com/bellamodelsagencia/"
                         target="_blank"
                       >
-                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-instagram" />
                       </a>
                     </li>
                     <li>
@@ -176,7 +165,7 @@
                         href="https://twitter.com/bellamodelsrj"
                         target="_blank"
                       >
-                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-twitter" />
                       </a>
                     </li>
                   </ul>

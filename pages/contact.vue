@@ -2,43 +2,55 @@
   <section id="contact">
     <div class="row contact-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">{{ $t('contact.title') }}</h1>
+        <h1 class="title-strong">
+          {{ $t('contact.title') }}
+        </h1>
       </div>
     </div>
 
     <div class="row contact">
       <div class="col-lg-4 infos justify-content-center">
         <div class="open-time text-center">
-          <p class="c-title">{{ $t('contact.opening') }}</p>
+          <p class="c-title">
+            {{ $t('contact.opening') }}
+          </p>
           <p class="c-desc">
-            {{ $t('contact.hours') }}<br />
+            {{ $t('contact.hours') }}<br >
             {{ $t('contact.weekendHours') }}
           </p>
         </div>
 
         <div class="address text-center">
-          <p class="c-title">{{ $t('contact.address') }}</p>
+          <p class="c-title">
+            {{ $t('contact.address') }}
+          </p>
           <p class="c-desc">
             {{ $t('contact.addressInfo') }}
           </p>
         </div>
 
         <div class="phone text-center">
-          <p class="c-title">{{ $t('contact.phone') }}</p>
+          <p class="c-title">
+            {{ $t('contact.phone') }}
+          </p>
           <p class="c-desc">
             +55 (21) 3860-6633
           </p>
         </div>
 
         <div class="whatsapp text-center">
-          <p class="c-title">Whatsapp</p>
+          <p class="c-title">
+            Whatsapp
+          </p>
           <p class="c-desc">
             +55 (21) 97031-7962
           </p>
         </div>
 
         <div class="email text-center">
-          <p class="c-title">Email</p>
+          <p class="c-title">
+            Email
+          </p>
           <p class="c-desc">
             contato@bellamodels.com.br
           </p>
@@ -46,7 +58,9 @@
       </div>
 
       <div class="col-lg-8 form">
-        <h3 class="title-strong">{{ $t('contact.message') }}</h3>
+        <h3 class="title-strong">
+          {{ $t('contact.message') }}
+        </h3>
         <contact-form :inputs="inputs" />
       </div>
     </div>

@@ -41,8 +41,7 @@
         <label
           :class="[formData[input.name] != '' ? 'not-empty' : '']"
           :for="'form' + input.name"
-          >{{ $t('contact.form.' + input.name.toString()) }}</label
-        >
+          >{{ $t('contact.form.' + input.name.toString()) }}</label>
 
         <p
           v-if="errors"
@@ -54,7 +53,9 @@
       </div>
 
       <div class="sbmt-btn">
-        <button type="submit">{{ $t('contact.form.send') }}</button>
+        <button type="submit">
+          {{ $t('contact.form.send') }}
+        </button>
       </div>
     </form>
   </div>

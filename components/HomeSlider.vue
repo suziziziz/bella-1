@@ -2,16 +2,25 @@
   <div v-swiper:mySwiper="swiperOption">
     <div class="swiper-wrapper">
       <div v-for="slide in slides" :key="slide.id" class="swiper-slide">
-        <img :src="slide.src" :alt="slide.id" class="img-slide" />
+        <picture v-if="slide.type=='image'">
+          <source media="(max-width:400px)" :srcset="`https://bellamodels.managerfashion.net${slide.url.mobile}`">
+          <img :src="`https://bellamodels.managerfashion.net${slide.url.desktop}`" :alt="slide.description ? slide.description:''" class="img-slide" />
+        </picture>
+        <transition name="fade" v-else>
+          <vue-plyr  :options="options" ref="plyr" v-show="loaded">
+            <div :data-plyr-provider="slide.video_provider"  :data-plyr-embed-id="slide.video_id"></div>
+          </vue-plyr>
+        </transition>
       </div>
     </div>
-    <div slot="pagination" class="swiper-pagination"></div>
+    <div slot="pagination" class="swiper-pagination" />
   </div>
 </template>
 
 <script>
 // Require styles
 import 'swiper/dist/css/swiper.css'
+import { mapGetters } from 'vuex';
 export default {
   props: {
     srcset: {
@@ -55,4 +64,5 @@ export default {
   object-fit: cover;
   object-position: center;
 }
+
 </style>

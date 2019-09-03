@@ -8,7 +8,7 @@
         id="loadingTalents"
         key="0"
         class="col-12 text-center"
-      ></div>
+      />
       <!-- /Loading while fetching talents data -->
       <!-- Transition between talents -->
       <transition-group
@@ -37,7 +37,7 @@
 
               <div class="item-hover">
                 {{ talent.name }}
-                <i class="fab fa-instagram"></i>
+                <i class="fab fa-instagram" />
               </div>
             </figure>
           </router-link>
@@ -54,6 +54,7 @@
  * Used to animate Airbnb Lottie animations
  */
 import lottie from 'lottie-web'
+import Loader from '~/assets/animations/loader'
 
 export default {
   props: {
@@ -65,7 +66,7 @@ export default {
 
   data() {
     return {
-      thereIsNoTalents: true
+      thereIsNoTalents: false
     }
   },
 
@@ -93,7 +94,7 @@ export default {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/animations/loader.json'
+      animationData: Loader
     })
   },
 

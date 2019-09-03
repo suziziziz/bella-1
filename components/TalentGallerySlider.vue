@@ -56,8 +56,8 @@
       </div>
     </div>
 
-    <div slot="button-prev" class="swiper-button-prev"></div>
-    <div slot="button-next" class="swiper-button-next"></div>
+    <div slot="button-prev" class="swiper-button-prev" />
+    <div slot="button-next" class="swiper-button-next" />
   </div>
 </template>
 

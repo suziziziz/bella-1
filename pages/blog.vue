@@ -2,9 +2,11 @@
   <section id="blog">
     <div class="row blog-intro reset-row">
       <div class="col-12 reset-col text-center">
-        <h1 class="title-strong">{{ $t('blog.title') }}</h1>
+        <h1 class="title-strong">
+          {{ $t('blog.title') }}
+        </h1>
         <div class="blog-sub">
-          {{ $t('blog.desc_1') }}<br />{{ $t('blog.desc_2') }}
+          {{ $t('blog.desc_1') }}<br >{{ $t('blog.desc_2') }}
         </div>
       </div>
     </div>
@@ -69,6 +71,7 @@
  */
 import lottie from 'lottie-web'
 import axios from 'axios'
+import Loader from '~/assets/animations/loader'
 
 export default {
   data() {
@@ -80,7 +83,7 @@ export default {
         keywords:
           'bella, mgmt, management, model, models, modelos, talents, talentos, casting, book, photos, fotos, moda, fashion, comercial',
         logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',
-        url: 'http://localhost:3000' + this.$route.fullPath
+        url: 'https://agenciabellamodels.com/' + this.$route.fullPath
       },
       blogPosts: [],
       currDate: new Date()
@@ -122,7 +125,7 @@ export default {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/animations/loader.json'
+      animationData: Loader
     })
 
     this.getPosts()
@@ -150,7 +153,7 @@ export default {
         renderer: 'svg',
         loop: true,
         autoplay: false,
-        path: '/animations/seeMore.json'
+        path: seeMore
       })
 
       switch (_action) {
