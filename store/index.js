@@ -1,16 +1,21 @@
+import Vue from 'vue'
 export const state = () => ({
   authorizationToken: null,
   token: {
     mf: '',
     panel: ''
   },
-  talents: ''
+  talents: '',
+  page: 1
 })
 
 export const getters = {
   authToken: state => {
     return state.authorizationToken
-  }
+  },
+  page: state => state.page,
+  posts: state => state.posts,
+  lang: state => state.lang.locale
 
 }
 
@@ -25,8 +30,21 @@ export const mutations = {
   setSlides (state, payload) {
     state.slides = payload
   },
+  setPost (state, payload) {
+    state.posts = payload
+  },
   setTalents (state, payload) {
     state.talents = payload
+  },
+  addPost (state, payload) {
+    payload.forEach(post => {
+      state.posts.push(post)
+    })
+    state.page = ++state.page
+  },
+  resetBlog (state, payload) {
+    state.page = 0
+    Vue.set(state, 'posts', [])
   }
 }
 

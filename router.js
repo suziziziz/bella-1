@@ -9,10 +9,11 @@ import TalentGallery from '~/pages/talentGallery.vue'
 import Contact from '~/pages/contact'
 import GetScouted from '~/pages/getScouted'
 import Blog from '~/pages/blog'
+import BlogPost from '~/pages/BlogPost'
 
 Vue.use(Router)
 
-export function createRouter() {
+export function createRouter () {
   return new Router({
     mode: 'history',
     linkActiveClass: 'active',
@@ -51,6 +52,10 @@ export function createRouter() {
       {
         path: '/blog',
         component: Blog
+      },
+      {
+        path: '/blog/:post_name/:post_id',
+        component: BlogPost
       }
     ]
   })

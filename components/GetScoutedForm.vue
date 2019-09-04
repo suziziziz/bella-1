@@ -5,6 +5,7 @@
       class="w-100"
       method="POST"
       enctype="multipart/form-data"
+      @submit.prevent="validateForm()"
     >
       <div class="row desc-inputs reset-row">
         <div class="col-lg-6 desc text-center">
@@ -134,20 +135,21 @@
 
       <div class="row photos reset-row">
         <div class="col-12">
-          <div
+          <label :for="'photo_' + image.id"
             v-for="image in formImages"
             :id="'imagePhoto_' + image.id"
             :key="'imagePhoto_' + image.id"
             class="image"
           >
-            <label :for="'photo_' + image.id">
+            <div>
               {{ $t('getScouted.form.' + image.name.toString()) }}
-            </label>
+            </div>
 
             <img
               v-if="imagesData['photo_' + image.id] != ''"
               :src="imagesData['photo_' + image.id]"
               :alt="image.name"
+              class="blob-img"
             />
 
             <div v-else class="placeholder">
@@ -161,7 +163,7 @@
             >
               {{ errors.first('photo_' + image.id.toString()) }}
             </p>
-          </div>
+          </label>
 
           <input
             v-for="image in formImages"
@@ -231,6 +233,9 @@ export default {
 
   data() {
     return {
+      data:{
+        images:{}
+      },
       formData: {},
       imagesData: {},
       errorEn: {
@@ -238,7 +243,7 @@ export default {
       },
       errorPt: {
         custom: {}
-      }
+      },
     }
   },
 
@@ -316,11 +321,42 @@ export default {
         ? Validator.localize('en', this.errorEn)
         : Validator.localize('pt', this.errorPt)
     }, 15)
+  },
+  methods:{
+    validateForm(){
+      this.$validator.validate().then(result=>{
+        if(result){
+          console.log('Send Form');
+          
+        }
+      })
+    },
+    processFile(event,data){        
+      if(
+        !(event.target.files[0].type==('image/jpeg' || 'image/png' || 'image/gif' || 'image/jpg')) &&
+        (event.target.files[0].size>5000000)
+      ){
+        document.querySelector("input[name='"+data+"']").value=''
+        return
+      }
+      console.log(event,data);
+      
+      let files = event.target.files || event.dataTransfer.files; 
+      this.imagesData[data] = new Image();
+      let reader = new FileReader();
+      reader.onload = (event) => {
+        this.imagesData[data] = event.target.result
+      }      
+      reader.readAsDataURL(files[0])
+    },
   }
 }
 </script>
 
 <style lang="scss">
+.blob-img{
+  max-width: 180px;
+}
 .form {
   form#getScoutedForm {
     .desc-inputs {

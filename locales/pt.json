@@ -1,4 +1,7 @@
 {
+  "error":{
+    "not_found":"Error, página não encontrada"
+  },
   "navbar":{
     "home": "Home",
     "whoWeAre": "Quem somos",
@@ -146,7 +149,8 @@
   "blog":{
     "title": "Blog",
     "desc_1": "Fique por dentro de tudo que acontece",
-    "desc_2": "No mundo da moda."
+    "desc_2": "No mundo da moda.",
+    "not_found_news":"Notícias não encontradas."
   },
 
   "talentGallery":{

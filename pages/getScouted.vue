@@ -330,7 +330,7 @@ export default {
     background: white;
 
     @media (max-width: 767px) {
-      margin: 0 75px 50px 75px;
+      margin: 0;
       padding: 40px 5px;
     }
 

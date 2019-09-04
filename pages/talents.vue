@@ -42,19 +42,12 @@ import { mapGetters } from 'vuex'
 export default {
   async asyncData({store,$axios}) {
     let talents
-    if(store.state.talents){
-      talents = store.state.talents
-    }else{
-      let { data } = await $axios.$get('https://integration.managerfashion.net/api/talents',
-      
-      // {
-      //   params: { language: 'pt' },
-      //   headers: { Authorization: 'bearer ' + store.state.authorizationToken }
-      // }
-      )
-      store.commit('setTalents', data)
+    if(!store.state.talents){
+      let { data }  = await $axios.$get('https://integration.managerfashion.net/api/talents')
       talents = data
-
+      store.commit('setTalents', talents)
+    }else{
+      talents = store.state.talents
     }
     return { talentList:talents }
         

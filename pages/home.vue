@@ -53,25 +53,23 @@
     <div class="row blog-items reset-row">
       <transition-group name="fade" mode="out-in" class="w-100">
         <div
-          v-show="$_.isEmpty(blogPosts)"
+          v-show="$_.isEmpty(posts)"
           id="blogLoading"
           key="blogLoading"
         />
 
         <div
-          v-for="post in blogPosts"
+          v-for="post in posts.filter((post,index)=>index<8)"
           v-show="!$_.isEmpty(blogPosts)"
           :key="post.id"
           class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 item"
         >
           <div class="date">
-            {{ currDate.getDate() }}/{{ currDate.getMonth() }}/{{
-              currDate.getFullYear()
-            }}
+            {{ post.created_at | formatDate }}
           </div>
 
           <div class="image">
-            <a href="#" target="_blank">
+            <nuxt-link :to="`/blog/${post.slug}/${post.id}`">
               <figure>
                 <img
                   v-if="!$_.isEmpty(blogPosts)"
@@ -90,13 +88,13 @@
                   <!-- {{ blogPosts[n].body }} -->
                 </div>
               </figure>
-            </a>
+            </nuxt-link>
           </div>
 
           <div class="desc">
-            <a v-if="!$_.isEmpty(blogPosts)" href="#">
+            <nuxt-link v-if="!$_.isEmpty(blogPosts)" :to="`/blog/${post.slug}/${post.id}`">
               {{ post.title }}
-            </a>
+            </nuxt-link>
           </div>
         </div>
       </transition-group>
@@ -113,27 +111,39 @@ import { mapGetters } from 'vuex'
 import HomeSlider from '~/components/HomeSlider'
 import Loader from '~/assets/animations/loader'
 import seeMore from '~/assets/animations/seeMore'
+import moment from 'moment'
 
 export default {
   components: {
     'home-slider': HomeSlider
   },
   async asyncData ({ $axios, store }) {
-    let data
-    if (store.state.slides) {
-      data = store.state.slides
-    } else {
-      data = await $axios.$get(`/slides`)
-      store.commit('setSlides', data)
+    let actions = []
+    if (!store.state.slides) {
+      const slides = $axios.$get(`/slides`)      
+      actions.push(slides)
+    }else{
+      actions.push(Promise.resolve(store.state.slides))
     }
-    let {data:post} = await $axios.$get(`/posts/blog/${store.state.lang.locale}?paginate=8`)
+    if(!store.state.posts){
+      const posts = $axios.$get(`/posts/blog/${store.state.lang.locale}?paginate=8`)      
+      actions.push(posts)
+    }else{
+      actions.push(Promise.resolve({
+        data:store.state.posts
+      }))
+    }
+
+    const [rSlides, {data:rPost}] = await Promise.all(actions)
+    
+    store.commit('setSlides', rSlides)
+    store.commit('setPost', rPost)
+    
     return { 
-      slides: data,
-      blogPosts:post
+      slides: rSlides,
+      blogPosts: rPost
     }
   },
-  // middleware: ['signin'],
-
   data() {
     return {
       slides: [],
@@ -142,7 +152,6 @@ export default {
       currDate: new Date()
     }
   },
-
   mounted() {
     lottie.loadAnimation({
       container: document.getElementById('instagramLoading'),
@@ -151,7 +160,6 @@ export default {
       autoplay: true,
       animationData: Loader
     })
-
     lottie.loadAnimation({
       container: document.getElementById('blogLoading'),
       renderer: 'svg',
@@ -159,34 +167,45 @@ export default {
       autoplay: true,
       animationData: Loader
     })
-
     this.getInstagramInfo('bellamodelsagencia')
-    // this.getPosts()
-
-    // eslint-disable-next-line no-console
-    // console.log('lodash: ', this.$_)
   },
-
+  filters:{
+    formatDate(val){
+      return moment(val).format('DD/MM/YYYY')
+    }
+  },
+  computed: {
+    ...mapGetters(['lang','posts'])
+  },
+  watch: {
+    lang(){
+      this.$store.commit('resetBlog')
+      this.$nextTick(()=>this.getPost())
+    }
+  },
   methods: {
     ...mapGetters(['authToken']),
+    async getPost(){
+      let { data:posts } = await this.$axios.$get(`/posts/blog/${this.lang}?paginate=8&page=1`)
+      this.$store.commit('setPost', posts)
+
+    },
+    
     getImage(url){
       return  url.match(/http/g) && url.match(/http/g).length > 0 
       ? url
-      :`https://bellamodels.managerfashion.net${url}`
-      
+      :`https://bellamodels.managerfashion.net${url}`      
     },
     async getInstagramInfo(_user) {
       try {
-        let data = await this.$axios
-          .$get('https://integration.managerfashion.net/api/agency/instagram', {
-            params: { username: _user.toString() },
-            headers: { Authorization: 'bearer ' + this.authToken }
+        let data = await this.$axios.$get('https://integration.managerfashion.net/api/agency/instagram', {
+            params: { username: _user.toString() }
           })
         this.instagramData = data.status ? []:data
         
       } catch (error) {
-        console.log(error);        
-      }        
+        console.log(error);
+      }
     },
 
     animatePostRead(_container, _action) {

@@ -225,7 +225,6 @@ export default {
     translate(_locale) {
       // eslint-disable-next-line no-console
       console.log('Translate to: ', _locale)
-
       this.$fullScreenLoading()
       this.$changeLang(_locale)
       this.setLocale(_locale)

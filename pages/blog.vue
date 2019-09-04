@@ -14,53 +14,56 @@
     <div class="row blog-items reset-row">
       <transition-group name="fade" mode="out-in" class="w-100">
         <div
-          v-show="$_.isEmpty(blogPosts)"
-          id="blogLoading"
-          key="blogLoading"
-        />
-
-        <div
-          v-for="n in 8"
+          v-for="post in posts"
           v-show="!$_.isEmpty(blogPosts)"
-          :key="n"
+          :key="post.id"
           class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 item"
         >
           <div class="date">
-            {{ currDate.getDate() }}/{{ currDate.getMonth() }}/{{
-              currDate.getFullYear()
+            {{ post.created_at | formatDate
             }}
           </div>
 
           <div class="image">
-            <a href="#" target="_blank">
+            <nuxt-link :to="`/blog/${post.slug}/${post.id}`">
               <figure>
                 <img
                   v-if="!$_.isEmpty(blogPosts)"
-                  src="/img/blog-placeholder.jpg"
-                  :alt="blogPosts[n].title"
-                  class="img-fluid w-100"
+                  v-lazy="getImage(post.thumbnail)"
+                  :alt="post.description"
+                  class="img-fluid w-100 lazy"
                 />
 
                 <div
                   v-if="!$_.isEmpty(blogPosts)"
-                  :id="'post-' + n"
+                  :id="'post-' + post.id"
                   class="item-hover"
-                  @mouseenter="animatePostRead('post-' + n, 'enter')"
-                  @mouseleave="animatePostRead('post-' + n, 'exit')"
+                  @mouseenter="animatePostRead('post-' + post.id, 'enter')"
+                  @mouseleave="animatePostRead('post-' + post.id, 'exit')"
                 >
                   <!-- {{ blogPosts[n].body }} -->
                 </div>
               </figure>
-            </a>
+            </nuxt-link>
           </div>
 
           <div class="desc">
             <a v-if="!$_.isEmpty(blogPosts)" href="#">
-              {{ blogPosts[n].title }}
+              {{ post.title }}
             </a>
           </div>
         </div>
       </transition-group>
+    </div>
+    <div class="row blog-items reset-row justify-content-center" v-if="!enabledScroll && posts.length==0">
+      <h4 class="text-center">{{$t('blog.not_found_news')}}</h4>
+    </div>
+    <div class="row blog-items reset-row">
+      <div
+          v-show="enabledScroll"
+          id="blogLoading"
+          key="blogLoading"
+        />
     </div>
   </section>
 </template>
@@ -72,8 +75,27 @@
 import lottie from 'lottie-web'
 import axios from 'axios'
 import Loader from '~/assets/animations/loader'
-
+import seeMore from '~/assets/animations/seeMore'
+import moment from 'moment'
+import { mapGetters } from 'vuex';
+var observer
 export default {
+  async asyncData({store,$axios,error}) {
+   try {
+     let posts
+      if(!store.state.posts){
+        let { data } = await $axios.$get(`/posts/blog/${store.state.lang.locale}?paginate=8&page=1`)
+        posts = data
+        store.commit('setPost', posts)
+      }
+      return {
+        blogPosts:posts ? posts:store.state.posts
+      }
+     
+   } catch (error) {
+    error({ statusCode: 404, message: 'Post not found' })
+   } 
+  },
   data() {
     return {
       meta: {
@@ -86,7 +108,12 @@ export default {
         url: 'https://agenciabellamodels.com/' + this.$route.fullPath
       },
       blogPosts: [],
-      currDate: new Date()
+      currDate: new Date(),
+      enabledScroll:false,
+      loadPost:false,
+      options: {},
+      target:'',
+      observer:''
     }
   },
 
@@ -127,24 +154,60 @@ export default {
       autoplay: true,
       animationData: Loader
     })
-
-    this.getPosts()
+    this.target = document.querySelector('#blogLoading')
+    
+    observer = new IntersectionObserver(this.infiniteScroll, {
+      rootMargin: '0px 0px 0px 0px',
+      threshold: .5,
+    });
+    observer.observe(this.target)
+    setTimeout(()=>this.enabledScroll = true,2000)
   },
-
+  filters:{
+    formatDate(val){
+      return moment(val).format('DD/MM/YYYY')
+    }
+  },
+  computed: {
+    ...mapGetters(['page','lang','posts'])
+  },
+  watch: {
+    lang(){
+      console.log('watch');
+      
+      this.enabledScroll = true,
+      this.loadPost = false,
+      this.$store.commit('resetBlog')
+      observer.observe(this.target)
+      this.$nextTick(()=>this.loadMore())
+    }
+  },
   methods: {
-    getPosts() {
-      axios
-        .get('https://jsonplaceholder.typicode.com/posts')
-        .then(response => {
-          // eslint-disable-next-line no-console
-          // console.log('response: ', response)
-
-          this.blogPosts = response.data
-        })
-        .catch(error => {
-          // eslint-disable-next-line no-console
-          console.log('getPosts error: ', error)
-        })
+    infiniteScroll(entries, observer) {         
+      if (entries[0].isIntersecting) {
+        this.loadMore()        
+      }
+    },
+    getImage(url){
+      return  url.match(/http/g) && url.match(/http/g).length > 0 
+      ? url
+      :`https://bellamodels.managerfashion.net${url}`
+      
+    },
+    async loadMore(){
+      
+      if(!this.loadPost){
+        this.loadPost = true
+        let page = this.page
+        let {data:posts} = await this.$axios.$get(`/posts/blog/${this.lang}?paginate=8&page=${++page}`)
+        if(posts.length>0){
+          this.$store.commit('addPost', posts)
+          this.loadPost = false
+        }else{
+          this.enabledScroll = false
+          observer.unobserve(this.target)
+        }
+      }
     },
 
     animatePostRead(_container, _action) {
@@ -153,7 +216,7 @@ export default {
         renderer: 'svg',
         loop: true,
         autoplay: false,
-        path: seeMore
+        animationData: seeMore
       })
 
       switch (_action) {

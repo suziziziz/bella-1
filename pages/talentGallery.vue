@@ -27,7 +27,7 @@
             >
               <span>
                 <i
-                  v-if="$_.isEmpty(instagramData)"
+                  v-if="!instagramLoaded"
                   class="fas fa-spinner fa-spin"
                 />
                 <h3 v-else class="title-strong">
@@ -147,8 +147,6 @@
  * Used to animate Airbnb Lottie animations
  */
 import lottie from 'lottie-web'
-
-import axios from 'axios'
 import { mapGetters } from 'vuex'
 import TalentGallerySlider from '~/components/TalentGallerySlider'
 
@@ -158,7 +156,20 @@ export default {
   components: {
     'gallery-slider': TalentGallerySlider
   },
-
+  async asyncData({store, $axios,route,error}) {
+    try {
+      let talent = await $axios.$get('https://integration.managerfashion.net/api/talent/profile', {
+        params: { id: route.params.id, language: 'en' },
+      })
+      if(!talent) throw e             
+      return {
+        talentData:talent
+      }
+      
+    } catch (e) {
+      error({ statusCode: 404, message: 'Page not found' })
+   } 
+  },
   data() {
     return {
       meta: {
@@ -170,10 +181,10 @@ export default {
       talentData: [],
       instagramData: [],
       activeGallery: 'book',
-      isLoading: true
+      isLoading: true,
+      instagramLoaded:false
     }
   },
-
   computed: {
     galleryItems() {
       let items
@@ -194,7 +205,6 @@ export default {
 
       return items
     },
-
     ...mapGetters({
       currentLocale: 'lang/currentLocale'
     })
@@ -208,51 +218,22 @@ export default {
       autoplay: true,
       path: '/animations/loader.json'
     })
-
-    this.getTalentInfo()
+    setTimeout(() => this.isLoading = false, 200)
+    if(this.talentData.instagram){
+      this.getInstagramInfo(this.talentData.instagram)
+    }
   },
 
-  methods: {
-    ...mapGetters({
-      authToken: 'authToken'
-    }),
-
-    getTalentInfo() {
-      const token = this.authToken()
-
-      axios
-        .get('https://integration.managerfashion.net/api/talent/profile', {
-          params: { id: this.$route.params.id, language: 'en' },
-          headers: { Authorization: 'bearer ' + token }
-        })
-        .then(response => {
-          this.talentData = response.data
-          this.getInstagramInfo(this.talentData.instagram)
-
-          setTimeout(() => {
-            this.isLoading = false
-          }, 200)
-        })
-        .catch(error => {
-          // eslint-disable-next-line no-console
-          console.log('getTalentInfo error: ', error)
-        })
-    },
+  methods: {    
 
     getInstagramInfo(_user) {
-      const token = this.authToken()
-
-      axios
-        .get('https://integration.managerfashion.net/api/agency/instagram', {
-          params: { username: _user.toString() },
-          headers: { Authorization: 'bearer ' + token }
-        })
+      this.$axios.$get('https://integration.managerfashion.net/api/agency/instagram')
         .then(response => {
           this.instagramData = response.data
+          this.instagramLoaded = true
         })
         .catch(error => {
-          // eslint-disable-next-line no-console
-          console.log('getInstagramInfo error: ', error)
+          this.instagramLoaded = true
         })
     }
   },

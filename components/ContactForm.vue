@@ -6,6 +6,7 @@
       class="w-100"
       method="POST"
       enctype="multipart/form-data"
+      @submit.prevent="validateForm()"
     >
       <div
         v-for="input in formInputs"
@@ -157,6 +158,16 @@ export default {
       : Validator.localize('pt', this.errorPt)
     //   })
     // }
+  },
+  methods:{
+    validateForm(){
+      this.$validator.validate().then(result=>{
+        if(result){
+          console.log('Send Form');
+          
+        }
+      })
+    }
   }
 }
 </script>

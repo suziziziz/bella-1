@@ -32,7 +32,7 @@
                 :key="talent.id"
                 v-lazy="talent.cover"
                 :alt="talent.name"
-                class="img-fluid w-100"
+                class="img-fluid w-100 lazy"
               />
 
               <div class="item-hover">
