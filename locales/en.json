@@ -1,6 +1,10 @@
 {
   "error":{
-    "not_found":"Error, page not found"
+    "not_found":"Error, page not found",
+    "please_fill_fields":"Fill in all required fields"
+  },
+  "success":{
+    "contact":"Message send successful "
   },
   "navbar":{
     "home": "Home",

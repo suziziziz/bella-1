@@ -22,6 +22,7 @@
           "
           :type="input.type"
           :name="'form' + input.name"
+          :disabled="sending"
         />
         <input
           v-else-if="input.type === 'email'"
@@ -30,6 +31,7 @@
           v-validate="'required|email'"
           :type="input.type"
           :name="'form' + input.name"
+          :disabled="sending"
         />
         <textarea
           v-else-if="input.type === 'textarea'"
@@ -38,6 +40,7 @@
           v-validate="'required'"
           :name="'form' + input.name"
           :rows="input.rows"
+          :disabled="sending"
         />
         <label
           :class="[formData[input.name] != '' ? 'not-empty' : '']"
@@ -54,8 +57,14 @@
       </div>
 
       <div class="sbmt-btn">
-        <button type="submit">
+        <button type="submit" :disabled="sending">
+          <span v-if="!messageSended">
+            <i class="fa fa-spinner fa-spin" v-if="sending"></i>
           {{ $t('contact.form.send') }}
+          </span>
+          <span v-else>
+            {{ $t('success.contact') }}
+          </span>
         </button>
       </div>
     </form>
@@ -100,6 +109,8 @@ export default {
 
   data() {
     return {
+      messageSended:false,
+      sending:false,
       formData: {},
       errorEn: {
         custom: {}
@@ -163,7 +174,20 @@ export default {
     validateForm(){
       this.$validator.validate().then(result=>{
         if(result){
+          this.sending = true
           console.log('Send Form');
+          let data = new FormData();
+          data.append('name',this.formData.Name)
+          data.append('subject',this.formData.Subject)
+          data.append('email',this.formData.Email)
+          data.append('message',this.formData.Message)
+          this.$axios.$post(`/contact/${this.currentLocale}`,data)
+          .then(response=>{
+            this.messageSended = true
+          })
+          .catch(error=>{
+            this.sending = false
+          })
           
         }
       })

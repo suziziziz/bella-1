@@ -1,6 +1,10 @@
 {
   "error":{
-    "not_found":"Error, página não encontrada"
+    "not_found":"Error, página não encontrada",
+    "please_fill_fields":"Preencha todos os campos obrigatórios"
+  },
+  "success":{
+    "contact":"Mensagem enviada com sucesso"
   },
   "navbar":{
     "home": "Home",

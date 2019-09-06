@@ -167,7 +167,7 @@ export default {
       autoplay: true,
       animationData: Loader
     })
-    this.getInstagramInfo('bellamodelsagencia')
+    this.getInstagramInfo('bellamodelsbr')
   },
   filters:{
     formatDate(val){

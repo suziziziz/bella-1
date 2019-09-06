@@ -36,6 +36,7 @@
               "
               :type="input.type"
               :name="'form' + input.name"
+              :disabled="sending"
             />
 
             <input
@@ -45,6 +46,7 @@
               v-validate="'required|email'"
               :type="input.type"
               :name="'form' + input.name"
+              :disabled="sending"
             />
 
             <textarea
@@ -54,6 +56,7 @@
               v-validate="'required'"
               :name="'form' + input.name"
               :rows="input.rows"
+              :disabled="sending"
             />
 
             <select
@@ -62,6 +65,7 @@
               v-model="formData[input.name]"
               v-validate="'required'"
               :name="'form' + input.name"
+              :disabled="sending"
             >
               <option
                 v-for="option in input.options"
@@ -108,6 +112,7 @@
             v-model="formData[select.name]"
             v-validate="'required'"
             :name="'form' + select.name"
+            :disabled="sending"
           >
             <option
               v-for="option in select.options"
@@ -174,13 +179,23 @@
             type="file"
             :name="'photo_' + image.id"
             @change="processFile($event, 'photo_' + image.id)"
+            :disabled="sending"
+            accept="image/x-png,image/gif,image/jpeg"
           />
         </div>
       </div>
+      <p v-if="errors.items.length>0" class="error-msg">{{$t('error.please_fill_fields')}}</p>
 
       <div class="sbmt-btn">
         <button type="submit">
-          {{ $t('getScouted.form.send') }}
+          <span v-if="!messageSended">
+            <i class="fa fa-spinner fa-spin" v-if="sending"></i>
+            {{ $t('getScouted.form.send') }}
+          </span>
+          <span v-else>
+            {{ $t('getScouted.form.send') }}
+          </span>
+          
         </button>
       </div>
     </form>
@@ -244,6 +259,8 @@ export default {
       errorPt: {
         custom: {}
       },
+      sending:false,
+      messageSended:false
     }
   },
 
@@ -326,7 +343,53 @@ export default {
     validateForm(){
       this.$validator.validate().then(result=>{
         if(result){
-          console.log('Send Form');
+          this.sending = true
+          // console.log('Send Form');
+          let data = new FormData();
+          data.append('name',this.formData.Name)
+          let gender
+          let women= {
+            en:'Female',
+            pt:'Feminino'            
+          }
+          let men={
+            en:'Male',
+            pt:'Masculino'
+          }
+          if(this.formData.Gender=='Feminino'){
+            gender = {
+              label:woman[this.currentLocale],
+              value:this.formData.Gender,
+            }
+          }else{
+            gender = {
+              label:men[this.currentLocale],
+              value:this.formData.Gender,
+            }
+          }
+          data.append('gender',JSON.stringify(gender))
+          data.append('birthday',this.formData.Birthday)
+          data.append('email',this.formData.Email)
+          data.append('phone',this.formData.Phone)
+          data.append('address',this.formData.Address)
+          data.append('height',this.formData.Height)
+          data.append('weight',this.formData.Weight)
+          data.append('bust',this.formData.Bust)
+          data.append('waist',this.formData.Waist)
+          data.append('hips',this.formData.Hips)
+          data.append('shoes',this.formData.Shoes)
+          data.append('eyes',this.formData.Eyes)
+          data.append('hair',this.formData.Hair)
+          data.append('image1',document.getElementById('photo_0').files[0])
+          data.append('image2',document.getElementById('photo_1').files[0])
+          data.append('image3',document.getElementById('photo_2').files[0])
+          this.$axios.$post(`/get-scouted/${this.currentLocale}`,data)
+          .then(response=>{
+            this.messageSended = true
+          })
+          .catch(error=>{
+            this.sending = false
+          })
           
         }
       })
@@ -339,7 +402,7 @@ export default {
         document.querySelector("input[name='"+data+"']").value=''
         return
       }
-      console.log(event,data);
+      // console.log(event,data);
       
       let files = event.target.files || event.dataTransfer.files; 
       this.imagesData[data] = new Image();
