@@ -514,7 +514,7 @@ export default {
             position: absolute;
             left: 5px;
             top: 2px;
-            font-family: var(--formFontFamily);
+            font-family: var(--formActiveFontFamily);
             font-size: var(--formFontSize);
             font-weight: 300;
             transition: var(--defaultTransition);
