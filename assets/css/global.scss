@@ -375,6 +375,8 @@ header{
 
                 &:hover{
                   font-family: var(--navActiveFontFamily);
+                  letter-spacing: 1px;
+                  font-weight: bold;
                 }
               }
 

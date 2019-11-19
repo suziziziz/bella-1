@@ -227,8 +227,9 @@ export default {
 
           ~ label {
             font-weight: bold;
-            left: 0;
-            top: -20px;
+            left: -15px;
+            top: -35Px;
+            transition: .3s !important;
           }
         }
       }
@@ -248,25 +249,26 @@ export default {
           outline: none;
 
           ~ label {
-            font-weight: bold;
-            left: 0;
-            top: -20px;
+            font-weight: bold;            
+            left: -15px;
+            top: -35px;
           }
         }
       }
       label {
         position: absolute;
-        left: 5px;
-        top: 2px;
+        left: 0px;
+        top: -10px;
         font-family: var(--formFontFamily);
         font-size: var(--formFontSize);
         font-weight: 300;
-        transition: var(--defaultTransition);
+        transition: .3s !important;
+        padding: 15px;
       }
       label.not-empty {
-        font-weight: bold;
-        left: 0px;
-        top: -20px;
+        font-weight: bold;        
+          left: -15px;
+          top: -35px;
       }
     }
     .wrap-input.textarea {
