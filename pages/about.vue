@@ -9,7 +9,7 @@
     </div>
 
     <div class="row about reset-row justify-content-center">
-      <div class="col-12 col-lg-8 reset-col">
+      <div class="col-12 col-lg-6 reset-col">
         <p v-for="n in 13" :key="n" class="desc">
           {{ $t('about.desc_' + n.toString()) }}
         </p>
@@ -110,7 +110,8 @@ export default {
 <style lang="scss">
 #about {
   p.desc{
-    font-weight: bold;
+    font-family:var(--navActiveFontFamily);
+    font-weight: 600;
   }
   .about-intro {
     margin-top: 30px;
