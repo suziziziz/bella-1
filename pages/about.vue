@@ -170,14 +170,14 @@ export default {
     .person {
       padding: 25px 15px;
       p.position {
-        font-family: 'Helvetica';
+        // font-family: 'Helvetica';
         font-weight: bold;
         font-size: 16px;
         color: #3c3c3c;
         margin-bottom: 0;
       }
       p.name {
-        font-family: 'Helvetica';
+        // font-family: 'Helvetica';
         font-weight: 300;
         font-size: 16px;
         color: #3c3c3c;
