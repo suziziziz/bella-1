@@ -453,6 +453,8 @@ export default {
             font-size: var(--formFontSize);
             font-weight: 300;
             height: 30px;
+            z-index: 1;
+            background-color: transparent;
 
             &:focus,
             &:active {
@@ -461,8 +463,9 @@ export default {
 
               ~ label {
                 font-weight: bold;
-                left: 0;
-                top: -20px;
+                left: -15px;
+                top: -35px;
+                transition: none
               }
             }
           }
@@ -504,26 +507,28 @@ export default {
 
               ~ label {
                 font-weight: bold;
-                left: 0;
-                top: -20px;
+                left: -15px;
+                top: -35px;
               }
             }
           }
 
           label {
             position: absolute;
-            left: 5px;
-            top: 2px;
+            left: 0px;
+            top: -10px;
             font-family: var(--formActiveFontFamily);
             font-size: var(--formFontSize);
             font-weight: 300;
-            transition: var(--defaultTransition);
+            transition: .3s !important;
+            padding: 15px;
+            z-index: 0;
           }
 
           label.not-empty {
             font-weight: bold;
-            left: 0px;
-            top: -20px;
+            left: -15px;
+            top: -35px;
           }
         }
 
@@ -554,6 +559,8 @@ export default {
           font-size: var(--formFontSize);
           font-weight: 300;
           height: 30px;
+          z-index: 1;
+          background-color: transparent;
 
           &:focus,
           &:active {
@@ -576,6 +583,7 @@ export default {
           font-size: var(--formFontSize);
           font-weight: 300;
           transition: var(--defaultTransition);
+          z-index: 0;
         }
 
         label.not-empty {

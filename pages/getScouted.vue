@@ -312,8 +312,8 @@ export default {
 <style lang="scss">
 #getScouted {
   p.c-desc{
-   font-family: var(--navActiveFontFamily);
-    font-weight: 600;
+  //  font-family: var(--navActiveFontFamily);
+    // font-weight: 600;
     
   }
   .get-scouted-intro {
