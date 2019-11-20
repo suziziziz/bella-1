@@ -393,9 +393,9 @@ export default {
       padding: 10px;
 
       .date {
-        font-family: 'Helvetica';
-        font-weight: 300;
-        font-size: 14px;
+        // font-family: 'Helvetica';
+        font-weight: 400;
+        font-size: 16px;
         color: var(--dark);
         display: flex;
         flex-direction: row;
@@ -407,9 +407,9 @@ export default {
 
       .desc {
         a {
-          font-family: 'Helvetica';
-          font-weight: 300;
-          font-size: 14px;
+          // font-family: 'Helvetica';
+          font-weight: 400;
+          font-size: 16px;
           color: var(--dark);
 
           &:hover {
