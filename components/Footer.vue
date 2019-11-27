@@ -50,7 +50,7 @@
 
         <div class="col-md-4 logo reset-col text-center">
           <img src="/logo_footer.png" alt="Bella #Models" height="95px" >
-          <p>BELLA #MODELS - COPYRIGHT © {{ year }}</p>
+          <p>#abellaeparatodxs - COPYRIGHT © {{ year }}</p>
         </div>
 
         <div class="col-md-4 social reset-col">
