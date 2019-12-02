@@ -26,7 +26,7 @@
 
     <div class="row team reset-row text-center">
       <div
-        v-for="n in 8"
+        v-for="n in 16"
         :key="n"
         class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 person"
       >
@@ -39,7 +39,7 @@
         <div class="social">
           <a
             :href="
-              'https://www.facebook.com/' +
+              'https://www.facebook.com/bellamodelsbr/' +
                 $t('about.teamInfo.' + n.toString() + '.facebook')
             "
             target="_blank"
@@ -48,7 +48,7 @@
           </a>
           <a
             :href="
-              'https://www.instagram.com/' +
+              'https://www.instagram.com/bellamodelsbr/' +
                 $t('about.teamInfo.' + n.toString() + '.instagram')
             "
             target="_blank"
@@ -144,6 +144,30 @@ export default {
         border-bottom: 2px solid #3c3c3c;
       }
       .person:nth-child(4) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(5) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(6) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(7) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(8) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(9) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(10) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(11) {
+        border-bottom: 2px solid #3c3c3c;
+      }
+      .person:nth-child(12) {
         border-bottom: 2px solid #3c3c3c;
       }
     }

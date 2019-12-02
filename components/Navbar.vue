@@ -64,7 +64,7 @@
             <ul>
               <li>
                 <a
-                  href="https://www.facebook.com/agenciabellamodels"
+                  href="https://www.facebook.com/bellamodelsbr/"
                   target="_blank"
                 >
                   <i class="fab fa-facebook-f" />
@@ -72,7 +72,7 @@
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com/bellamodelsagencia/"
+                  href="https://www.instagram.com/bellamodelsbr/"
                   target="_blank"
                 >
                   <i class="fab fa-instagram" />
@@ -146,7 +146,7 @@
                   <ul>
                     <li>
                       <a
-                        href="https://www.facebook.com/agenciabellamodels"
+                        href="https://www.facebook.com/bellamodelsbr"
                         target="_blank"
                       >
                         <i class="fab fa-facebook-f" />
@@ -154,7 +154,7 @@
                     </li>
                     <li>
                       <a
-                        href="https://www.instagram.com/bellamodelsagencia/"
+                        href="https://www.instagram.com/bellamodelsbr/"
                         target="_blank"
                       >
                         <i class="fab fa-instagram" />
