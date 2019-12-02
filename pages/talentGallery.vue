@@ -240,43 +240,43 @@ export default {
 
   head() {
     return {
-      title: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella #Models',
+      title: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella models + projects',
       meta: [
         { name: 'keywords', content: this.meta.keywords },
         {
           name: 'twitter:description',
-          content: 'Bella #Models - Galeria - ' + this.talentData.name
+          content: 'Bella models + projects - Galeria - ' + this.talentData.name
         },
         {
           name: 'twitter:app:name:iphone',
-          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella #Models'
+          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella models + projects'
         },
         { name: 'twitter:app:url:iphone', content: this.meta.url },
 
         {
           property: 'twitter:title',
-          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella #Models'
+          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella models + projects'
         },
         {
           property: 'og:title',
-          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella #Models'
+          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella models + projects'
         },
         { property: 'og:url', content: this.meta.url },
         {
           property: 'og:description',
-          content: 'Bella #Models - Galeria - ' + this.talentData.name
+          content: 'Bella models + projects - Galeria - ' + this.talentData.name
         },
         {
           property: 'og:site_name',
-          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella #Models'
+          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella models + projects'
         },
         {
           property: 'al:ios:app_name',
-          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella #Models'
+          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella models + projects'
         },
         {
           property: 'al:android:app_name',
-          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella #Models'
+          content: 'Modelo | ' + this.talentData.name + ' | ' + 'Bella models + projects'
         },
         { property: 'al:ios:url', content: this.meta.url },
         { property: 'al:android:url', content: this.meta.url },
@@ -285,7 +285,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Bella #Models - Galeria - ' + this.talentData.name
+          content: 'Bella models + projects - Galeria - ' + this.talentData.name
         }
       ]
     }

@@ -1,5 +1,5 @@
 export default {
-  title: 'Bella #Models',
+  title: 'Bella models + projects',
   description:
     'Criada em 2006 e com duas sedes no Rio de Janeiro, a Bella Models é uma das mais fortes agências do Rio de Janeiro, prestando um serviço diferenciado no mercado fashion, comercial e plus size.',
   keywords:

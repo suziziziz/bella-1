@@ -66,8 +66,8 @@ export default {
   data() {
     return {
       meta: {
-        title: 'Sobre | Bella #Models',
-        description: 'Bella #Models - Saiba mais sobre quem somos!',
+        title: 'Sobre | Bella models + projects',
+        description: 'Bella models + projects - Saiba mais sobre quem somos!',
         keywords:
           'bella, mgmt, management, model, models, modelos, talents, talentos, casting, book, photos, fotos, moda, fashion, comercial',
         logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',

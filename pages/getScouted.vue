@@ -37,9 +37,9 @@ export default {
   data() {
     return {
       meta: {
-        title: 'Quero ser modelo | Bella #Models',
+        title: 'Quero ser modelo | Bella models + projects',
         description:
-          'Bella #Models - Que bom que você veio até aqui. Que tal fazer parte do nosso time de agenciados? Basta preencher esse formulário e adicionar suas melhores fotos. Uma dica bacana: Evite maquiagem e faça seus cliques em fundo neutro. Ah! Capricha na pose, hein!?',
+          'Bella models + projects - Que bom que você veio até aqui. Que tal fazer parte do nosso time de agenciados? Basta preencher esse formulário e adicionar suas melhores fotos. Uma dica bacana: Evite maquiagem e faça seus cliques em fundo neutro. Ah! Capricha na pose, hein!?',
         keywords:
           'bella, mgmt, management, model, models, modelos, talents, talentos, casting, book, photos, fotos, moda, fashion, comercial',
         logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',

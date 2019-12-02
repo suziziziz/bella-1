@@ -67,7 +67,7 @@
 
     <div class="row map">
       <div class="col-12 p-0">
-        <g-map name="Bella #Models" />
+        <g-map name="Bella models + projects" />
       </div>
     </div>
   </section>
@@ -86,8 +86,8 @@ export default {
   data() {
     return {
       meta: {
-        title: 'Contato | Bella #Models',
-        description: 'Bella #Models - Entre em contato!',
+        title: 'Contato | Bella models + projects',
+        description: 'Bella models + projects - Entre em contato!',
         keywords:
           'bella, mgmt, management, model, models, modelos, talents, talentos, casting, book, photos, fotos, moda, fashion, comercial',
         logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',

@@ -61,8 +61,8 @@ export default {
         title:
           'Modelos | ' +
           this.$_.capitalize(this.$route.params.gender) +
-          ' | Bella #Models',
-        description: 'Bella #Models - Conheça nossos modelos',
+          ' | Bella models + projects',
+        description: 'Bella models + projects - Conheça nossos modelos',
         keywords:
           'bella, mgmt, management, model, models, modelos, talents, talentos, casting, book, photos, fotos, moda, fashion, comercial',
         logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',

@@ -51,6 +51,7 @@ export default {
         ads: { enabled: false, publisherId: '' }
       },
       swiperOption: {
+        autoplay:true,
         pagination: {
           el: '.swiper-pagination',
           dynamicBullets: true

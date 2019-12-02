@@ -99,9 +99,9 @@ export default {
   data() {
     return {
       meta: {
-        title: 'Blog | Bella #Models',
+        title: 'Blog | Bella models + projects',
         description:
-          'Bella #Models - Fique por dentro de tudo que acontece no mundo da moda!',
+          'Bella models + projects - Fique por dentro de tudo que acontece no mundo da moda!',
         keywords:
           'bella, mgmt, management, model, models, modelos, talents, talentos, casting, book, photos, fotos, moda, fashion, comercial',
         logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',
