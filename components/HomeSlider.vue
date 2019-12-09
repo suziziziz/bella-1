@@ -51,7 +51,10 @@ export default {
         ads: { enabled: false, publisherId: '' }
       },
       swiperOption: {
-        autoplay:true,
+        autoplay:{
+          delay:6000
+        },
+        speed:1000,
         pagination: {
           el: '.swiper-pagination',
           dynamicBullets: true
