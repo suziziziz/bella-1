@@ -26,7 +26,7 @@
 
     <div class="row team reset-row text-center">
       <div
-        v-for="n in 16"
+        v-for="n in 15"
         :key="n"
         class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 person"
       >

@@ -57,7 +57,7 @@
         "instagram": ""
       },
       "3":{
-        "name": "Giovani Rafael",
+        "name": "Telma Lima",
         "position": "Booker",
         "facebook": "",
         "instagram": ""
@@ -73,68 +73,62 @@
         "position": "Catwalk coach",
         "facebook": "",
         "instagram": ""
-      },
+      },      
       "6":{
-        "name": "Rodrigo Pagani",
-        "position": "New Face",
-        "facebook": "",
-        "instagram": ""
-      },
-      "7":{
         "name": "Dami Ferreira Leão (Playmobrain)",
         "position": "Publicity",
         "facebook": "",
         "instagram": ""
       },
-      "8":{
+      "7":{
         "name": "Fellippe Couceiro",
         "position": "New Face",
         "facebook": "",
         "instagram": ""
       },
-      "9":{
+      "8":{
         "name": "Ricardo Saboya",
         "position": "Financeiro",
         "facebook": "",
         "instagram": ""
       },
-      "10":{
+      "9":{
         "name": "Jessika Aragão",
         "position": "Material",
         "facebook": "",
         "instagram": ""
       },
-      "11":{
+      "10":{
         "name": "Leandro Santana",
         "position": "Assistente Booker",
         "facebook": "",
         "instagram": ""
       },
-      "12":{
+      "11":{
         "name": "Nilton Vianna",
         "position": "Estagiário",
         "facebook": "",
         "instagram": ""
       },
-      "13":{
+      "12":{
         "name": "Vitor Guimarães",
         "position": "Estagiário",
         "facebook": "",
         "instagram": ""
       },
-      "14":{
+      "13":{
         "name": "Anne Fonseca",
         "position": "Relacionamento Cliente",
         "facebook": "",
         "instagram": ""
       },
-      "15":{
+      "14":{
         "name": "Vânia Soares",
         "position": "Booker",
         "facebook": "",
         "instagram": ""
       },
-      "16":{
+      "15":{
         "name": "Camilla Cavour",
         "position": "Internacional",
         "facebook": "",
@@ -145,7 +139,7 @@
 
   "talents":{
     "women": "Women",
-    "men": "Men",
+    "me": "Men",
     "fashion": "Fashion",
     "commercial": "Commercial"
   },
@@ -201,7 +195,7 @@
   "blog":{
     "title": "Blog",
     "desc_1": "Stay tunned within everything that happens",
-    "desc_2": "In the fashion world.",
+    "desc_2": "In the world BELLA MODELS.",
     "not_found_news":"Not Found News"
   },
 
