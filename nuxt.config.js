@@ -4,7 +4,7 @@
 import meta from './meta'
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
 
   /*
   .** Headers of the page
@@ -161,6 +161,15 @@ export default {
     baseURL: 'https://bellamodels.managerfashion.net/api'
     // debug: true
     // See https://github.com/nuxt-community/axios-module#options
+  },
+  generate:{
+    subFolders:false
+  },
+  vue: {
+    config: {
+      productionTip: true,
+      devtools: true
+    }
   },
 
   /*

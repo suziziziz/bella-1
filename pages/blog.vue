@@ -14,7 +14,7 @@
     <div class="row blog-items reset-row">
       <transition-group name="fade" mode="out-in" class="w-100">
         <div
-          v-for="post in posts"
+          v-for="post in blogPosts"
           v-show="!$_.isEmpty(blogPosts)"
           :key="post.id"
           class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 item"
@@ -55,7 +55,7 @@
         </div>
       </transition-group>
     </div>
-    <div class="row blog-items reset-row justify-content-center" v-if="!enabledScroll && posts.length==0">
+    <div class="row blog-items reset-row justify-content-center" v-if="!enabledScroll && blogPosts.length==0">
       <h4 class="text-center">{{$t('blog.not_found_news')}}</h4>
     </div>
     <div class="row blog-items reset-row">
@@ -80,17 +80,17 @@ import moment from 'moment'
 import { mapGetters } from 'vuex';
 var observer
 export default {
-  async asyncData({store,$axios,error}) {
+  async created() {
    try {
      let posts
-      if(!store.state.posts){
-        let { data } = await $axios.$get(`/posts/blog/${store.state.lang.locale}?paginate=8&page=1`)
+      if(!this.$store.state.posts){
+        let { data } = await this.$axios.$get(`/posts/blog/${this.$store.state.lang.locale}?paginate=8&page=1`)
         posts = data
-        store.commit('setPost', posts)
+        this.$store.commit('setPost', posts)
       }
-      return {
-        blogPosts:posts ? posts:store.state.posts
-      }
+      
+        this.blogPosts = posts ? posts:store.state.posts
+      
      
    } catch (error) {
     error({ statusCode: 404, message: 'Post not found' })
@@ -207,6 +207,9 @@ export default {
           this.enabledScroll = false
           observer.unobserve(this.target)
         }
+        this.$nextTick(()=>{
+          this.blogPosts=post
+        })
       }
     },
 

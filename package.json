@@ -8,7 +8,7 @@
     "dev": "cross-env HOST=0.0.0.0 PORT=7000 api_token=20L2K0LordqnheilJQMiB62hmHw6o9Dv63oZRHS4 salt=oUFV6cksP6pjRV3BdYAOcYnzm5eLUTY61pdMbxuK8tfYmcMRHjQDPpRsJwvHzjHur2axBqGTADW1vsc6FM22iApxBYcDw5RZ8oac nuxt",
     "build": "nuxt build",
     "start": "cross-env HOST=0.0.0.0 PORT=7000 api_token=20L2K0LordqnheilJQMiB62hmHw6o9Dv63oZRHS4 salt=oUFV6cksP6pjRV3BdYAOcYnzm5eLUTY61pdMbxuK8tfYmcMRHjQDPpRsJwvHzjHur2axBqGTADW1vsc6FM22iApxBYcDw5RZ8oac nuxt start",
-    "generate": "nuxt generate",
+    "generate": "cross-env HOST=0.0.0.0 PORT=7000 api_token=20L2K0LordqnheilJQMiB62hmHw6o9Dv63oZRHS4 salt=oUFV6cksP6pjRV3BdYAOcYnzm5eLUTY61pdMbxuK8tfYmcMRHjQDPpRsJwvHzjHur2axBqGTADW1vsc6FM22iApxBYcDw5RZ8oac nuxt generate",
     "production": " HOST=0.0.0.0 PORT=7003 nuxt start",
     "backup": "HOST=0.0.0.0 PORT=7004 nuxt start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",

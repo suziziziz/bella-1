@@ -49,10 +49,10 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit }) {
+  async setToken ({ commit }) {
     const panel = this.$axios.$post(`/login`, {
-      salt: this.$env.salt,
-      api_token: this.$env.api_token
+      salt: 'oUFV6cksP6pjRV3BdYAOcYnzm5eLUTY61pdMbxuK8tfYmcMRHjQDPpRsJwvHzjHur2axBqGTADW1vsc6FM22iApxBYcDw5RZ8oac',
+      api_token: '20L2K0LordqnheilJQMiB62hmHw6o9Dv63oZRHS4'
     })
 
     const mf = this.$axios.$post('https://integration.managerfashion.net/api/signin', {
@@ -68,6 +68,10 @@ export const actions = {
       panel: `Bearer ${token_panel.access_token}`,
       mf: `Bearer ${token_mf.access_token}`
     })
+    return {
+      panel: `Bearer ${token_panel.access_token}`,
+      mf: `Bearer ${token_mf.access_token}`
+    }
   },
   updateAuthToken: (context, payload) => {
     context.commit('UPDATE_AUTH_TOKEN', payload)

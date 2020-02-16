@@ -3,9 +3,9 @@
     <!-- Header -->
     <main-nav :items="sections" />
 
-    <div class="content">
+    <div class="content" v-if="load">
       <!-- Router-view -->
-      <transition name="fade" mode="out-in">
+      <transition name="fade" mode="out-in" >
         <nuxt :key="$route.fullPath" />
       </transition>
 
@@ -94,7 +94,8 @@ export default {
           name: this.$t('navbar.blog'),
           path: '/blog'
         }
-      ]
+      ],
+      load:false
     }
   },
 
@@ -103,8 +104,12 @@ export default {
       currentLocale: 'lang/currentLocale'
     })
   },
-
   created() {
+    this.$store.dispatch('setToken').then((payload)=>{
+      console.log(payload)
+      this.load = true
+    })
+    
     // This is due to the server-side rendering.
     // If you need to specify that you want to import a resource
     // only on the client-side, you need to use the process.client variable

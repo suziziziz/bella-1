@@ -40,16 +40,16 @@ import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 export default {
-  async asyncData({store,$axios}) {
+  async created() {
     let talents
-    if(!store.state.talents){
-      let { data }  = await $axios.$get('https://integration.managerfashion.net/api/talents?paginate=1000')
+    if(!this.$store.state.talents){
+      let { data }  = await this.$axios.$get('https://integration.managerfashion.net/api/talents?paginate=1000')
       talents = data
-      store.commit('setTalents', talents)
+      this.$store.commit('setTalents', talents)
     }else{
-      talents = store.state.talents
+      talents = this.$store.state.talents
     }
-    return { talentList:talents }
+    this.talentList = talents
         
   },
 
