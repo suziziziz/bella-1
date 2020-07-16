@@ -16,7 +16,8 @@
     </div>
 
     <div class="row instagram-items reset-row">
-      <transition-group name="fade" mode="out-in" class="w-100">
+      <div class="elfsight-app-8e1b662d-5d08-46b3-9a35-8050aa27f71b"></div>
+      <!-- <transition-group name="fade" mode="out-in" class="w-100">
         <div
           v-show="$_.isEmpty(instagramData)"
           id="instagramLoading"
@@ -39,7 +40,7 @@
             </figure>
           </a>
         </div>
-      </transition-group>
+      </transition-group> -->
     </div>
 
     <div class="row blog-intro reset-row">
@@ -157,13 +158,13 @@ export default {
     }
   },
   mounted() {
-    lottie.loadAnimation({
-      container: document.getElementById('instagramLoading'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData: Loader
-    })
+    // lottie.loadAnimation({
+    //   container: document.getElementById('instagramLoading'),
+    //   renderer: 'svg',
+    //   loop: true,
+    //   autoplay: true,
+    //   animationData: Loader
+    // })
     lottie.loadAnimation({
       container: document.getElementById('blogLoading'),
       renderer: 'svg',
@@ -171,7 +172,7 @@ export default {
       autoplay: true,
       animationData: Loader
     })
-    this.getInstagramInfo('bellamodelsbr')
+    // this.getInstagramInfo('bellamodelsbr')
   },
   filters:{
     formatDate(val){

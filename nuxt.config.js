@@ -106,6 +106,9 @@ export default {
       {
         src:
           'https://maps.googleapis.com/maps/api/js?key=AIzaSyDfgkdEf62kbP8m-aUXqx1fujhyRi_GpnY'
+      },{
+        src:'https://apps.elfsight.com/p/platform.js',
+        defer:true
       }
     ]
   },

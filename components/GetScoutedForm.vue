@@ -193,7 +193,8 @@
             {{ $t('getScouted.form.send') }}
           </span>
           <span v-else>
-            {{ $t('getScouted.form.send') }}
+            <div>{{ $t('success.message_sent') }}</div>
+            <div>{{ $t('success.contact_you') }}</div>
           </span>
           
         </button>
@@ -341,6 +342,9 @@ export default {
   },
   methods:{
     validateForm(){
+      if(this.messageSended){
+        return
+      }
       this.$validator.validate().then(result=>{
         if(result){
           this.sending = true
@@ -358,7 +362,7 @@ export default {
           }
           if(this.formData.Gender=='Feminino'){
             gender = {
-              label:woman[this.currentLocale],
+              label:women[this.currentLocale],
               value:this.formData.Gender,
             }
           }else{

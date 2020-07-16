@@ -106,7 +106,7 @@ export default {
   },
   created() {
     this.$store.dispatch('setToken').then((payload)=>{
-      console.log(payload)
+      // console.log(payload)
       this.load = true
     })
     

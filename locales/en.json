@@ -4,7 +4,8 @@
     "please_fill_fields":"Fill in all required fields"
   },
   "success":{
-    "contact":"Message send successful "
+    "message_sent":"Message sent successfully.",
+    "contact_you":"Soon we will contact you"
   },
   "navbar":{
     "home": "Home",
