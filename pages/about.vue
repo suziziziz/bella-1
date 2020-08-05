@@ -16,48 +16,6 @@
       </div>
     </div>
 
-    <div class="row team-intro reset-row">
-      <div class="col-12 reset-col text-center">
-        <h3 class="title-strong">
-          {{ $t('about.team') }}
-        </h3>
-      </div>
-    </div>
-
-    <div class="row team reset-row text-center">
-      <div
-        v-for="n in 15"
-        :key="n"
-        class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 person"
-      >
-        <p class="position">
-          {{ $t('about.teamInfo.' + n.toString() + '.position') }}
-        </p>
-        <p class="name">
-          {{ $t('about.teamInfo.' + n.toString() + '.name') }}
-        </p>
-        <div class="social">
-          <a
-            :href="
-              'https://www.facebook.com/bellamodelsbr/' +
-                $t('about.teamInfo.' + n.toString() + '.facebook')
-            "
-            target="_blank"
-          >
-            <i class="fab fa-facebook-f" />
-          </a>
-          <a
-            :href="
-              'https://www.instagram.com/bellamodelsbr/' +
-                $t('about.teamInfo.' + n.toString() + '.instagram')
-            "
-            target="_blank"
-          >
-            <i class="fab fa-instagram" />
-          </a>
-        </div>
-      </div>
-    </div>
   </section>
 </template>
 
