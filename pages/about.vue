@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="row team-intro reset-row">
+    <!-- <div class="row team-intro reset-row">
       <div class="col-12 reset-col text-center">
         <h3 class="title-strong">
           {{ $t('about.team') }}
@@ -57,7 +57,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 
