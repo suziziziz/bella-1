@@ -142,11 +142,29 @@ export default {
     // middleware: 'signin'
   },
 
+  buildModules: [
+    '@nuxtjs/google-analytics'
+  ],
+
+  googleAnalytics: {
+    id:'2278154516',
+    autoTracking: {
+      screenview: true
+    }
+  },
+
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }
+  },
+
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    'nuxt-facebook-pixel-module',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     ['@nuxtjs/router', { keepDefaultRouter: true }],
@@ -157,6 +175,13 @@ export default {
       ]
     }]
   ],
+
+  facebook: {
+    track: 'PageView',
+    pixelId: '420958735839702',
+    autoPageView: true,
+    disabled: false
+  },
   /*
    ** Axios module configuration
    */
