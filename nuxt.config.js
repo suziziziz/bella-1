@@ -147,7 +147,7 @@ export default {
   ],
 
   googleAnalytics: {
-    id:'2278154516',
+    id:'G-2278154516',
     autoTracking: {
       screenview: true
     }
@@ -155,7 +155,7 @@ export default {
 
   publicRuntimeConfig: {
     googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID
+      id: 'G-2278154516'
     }
   },
 
