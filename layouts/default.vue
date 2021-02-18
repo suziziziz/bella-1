@@ -41,7 +41,7 @@ import { mapActions, mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
 import DownloadAnimation from '~/assets/animations/download'
-
+function gtag(){dataLayer.push(arguments);}
 export default {
   // middleware: ['signin'],
 
@@ -127,6 +127,10 @@ export default {
 
   mounted() {
     this.animateDownload('downloadAnim')
+    window.dataLayer = window.dataLayer || [];
+    
+    gtag('js', new Date());
+    gtag('config', 'G-2WEYJL5ZWC');
   },
 
   methods: {

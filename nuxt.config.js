@@ -109,6 +109,10 @@ export default {
       },{
         src:'https://apps.elfsight.com/p/platform.js',
         defer:true
+      },
+      {
+        src:'https://www.googletagmanager.com/gtag/js?id=G-2WEYJL5ZWC',
+        defer:true
       }
     ]
   },
@@ -147,7 +151,12 @@ export default {
   ],
 
   googleAnalytics: {
-    id:'G-2278154516',
+    id:'G-2WEYJL5ZWC',
+    asyncID: async (context) => { 
+      /* do something */
+
+      return 'UA-2WEYJL5ZW-C' 
+    },
     autoTracking: {
       screenview: true
     }
@@ -155,7 +164,7 @@ export default {
 
   publicRuntimeConfig: {
     googleAnalytics: {
-      id: 'G-2278154516'
+      id: 'G-2WEYJL5ZWC'
     }
   },
 

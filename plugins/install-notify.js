@@ -15,7 +15,8 @@ if (
   isAlreadyInstalled = false
 }
 
-if (process.browser && !isAlreadyInstalled) {
+console.log(addContext)
+if (process.browser && !isAlreadyInstalled && addContext!=null) {
   window.addEventListener('beforeinstallprompt', e => {
     // Prevent Chrome 67 and earlier from automatically showing the prompt
     e.preventDefault()
