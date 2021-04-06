@@ -25,6 +25,7 @@ export default {
       { name: 'twitter:card', content: meta.logo },
       { name: 'twitter:app:name:iphone', content: meta.title },
       { name: 'twitter:app:url:iphone', content: meta.url },
+      { name: 'facebook-domain-verification', content: 'dd2xodvltyr5ejt76lbwp8k5m7twth' },
 
       { property: 'twitter:title', content: meta.title },
       { property: 'og:image', content: meta.logo },
