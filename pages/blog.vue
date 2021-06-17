@@ -83,18 +83,17 @@ export default {
   async asyncData({store,$axios,error}) {
    try {
      let posts
-      if(!store.state.posts){
+
         let { data } = await $axios.$get(`/posts/blog/${store.state.lang.locale}?paginate=8&page=1`)
         posts = data
-        store.commit('setPost', posts)
-      }
+
       return {
-        blogPosts:posts ? posts:store.state.posts
+        blogPosts:posts
       }
-     
+
    } catch (error) {
     error({ statusCode: 404, message: 'Post not found' })
-   } 
+   }
   },
   data() {
     return {
@@ -155,7 +154,7 @@ export default {
       animationData: Loader
     })
     this.target = document.querySelector('#blogLoading')
-    
+
     observer = new IntersectionObserver(this.infiniteScroll, {
       rootMargin: '0px 0px 0px 0px',
       threshold: .5,
@@ -174,7 +173,7 @@ export default {
   watch: {
     lang(){
       console.log('watch');
-      
+
       this.enabledScroll = true,
       this.loadPost = false,
       this.$store.commit('resetBlog')
@@ -183,19 +182,19 @@ export default {
     }
   },
   methods: {
-    infiniteScroll(entries, observer) {         
+    infiniteScroll(entries, observer) {
       if (entries[0].isIntersecting) {
-        this.loadMore()        
+        this.loadMore()
       }
     },
     getImage(url){
-      return  url.match(/http/g) && url.match(/http/g).length > 0 
+      return  url.match(/http/g) && url.match(/http/g).length > 0
       ? url
       :`https://bellamodels.managerfashion.net${url}`
-      
+
     },
     async loadMore(){
-      
+
       if(!this.loadPost){
         this.loadPost = true
         let page = this.page

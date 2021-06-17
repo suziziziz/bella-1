@@ -6,7 +6,8 @@ export const state = () => ({
     panel: ''
   },
   talents: '',
-  page: 1
+  page: 1,
+  posts: ''
 })
 
 export const getters = {
