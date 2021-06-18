@@ -14,7 +14,7 @@
     <div class="row blog-items reset-row">
       <transition-group name="fade" mode="out-in" class="w-100">
         <div
-          v-for="post in posts"
+          v-for="post in blogPosts"
           v-show="!$_.isEmpty(blogPosts)"
           :key="post.id"
           class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 item"
@@ -55,7 +55,7 @@
         </div>
       </transition-group>
     </div>
-    <div class="row blog-items reset-row justify-content-center" v-if="!enabledScroll && posts.length==0">
+    <div class="row blog-items reset-row justify-content-center" v-if="!enabledScroll && blogPosts.length==0">
       <h4 class="text-center">{{$t('blog.not_found_news')}}</h4>
     </div>
     <div class="row blog-items reset-row">
@@ -80,7 +80,7 @@ import moment from 'moment'
 import { mapGetters } from 'vuex';
 var observer
 export default {
-  async asyncData({store,$axios,error}) {
+  async created() {
    try {
      let posts
 
@@ -206,6 +206,9 @@ export default {
           this.enabledScroll = false
           observer.unobserve(this.target)
         }
+        this.$nextTick(()=>{
+          this.blogPosts=post
+        })
       }
     },
 

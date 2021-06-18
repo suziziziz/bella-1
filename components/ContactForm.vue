@@ -63,7 +63,8 @@
           {{ $t('contact.form.send') }}
           </span>
           <span v-else>
-            {{ $t('success.contact') }}
+            <div>{{ $t('success.message_sent') }}</div>
+            <div>{{ $t('success.contact_you') }}</div>
           </span>
         </button>
       </div>
@@ -172,6 +173,9 @@ export default {
   },
   methods:{
     validateForm(){
+      if(this.messageSended){
+        return
+      }
       this.$validator.validate().then(result=>{
         if(result){
           this.sending = true

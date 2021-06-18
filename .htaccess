@@ -1,0 +1,12 @@
+##### LOCAWEB - NAO REMOVER #####
+AddHandler php73-script .php
+suPHP_ConfigPath /home/bellamodels1/
+##### LOCAWEB - NAO REMOVER #####
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^home\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /home.html [L]
+  Options Indexes FollowSymLinks
+  DirectoryIndex home.html

@@ -4,7 +4,7 @@
 import meta from './meta'
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
 
   /*
   .** Headers of the page
@@ -25,6 +25,7 @@ export default {
       { name: 'twitter:card', content: meta.logo },
       { name: 'twitter:app:name:iphone', content: meta.title },
       { name: 'twitter:app:url:iphone', content: meta.url },
+      { name: 'facebook-domain-verification', content: 'dd2xodvltyr5ejt76lbwp8k5m7twth' },
 
       { property: 'twitter:title', content: meta.title },
       { property: 'og:image', content: meta.logo },
@@ -106,6 +107,13 @@ export default {
       {
         src:
           'https://maps.googleapis.com/maps/api/js?key=AIzaSyDfgkdEf62kbP8m-aUXqx1fujhyRi_GpnY'
+      },{
+        src:'https://apps.elfsight.com/p/platform.js',
+        defer:true
+      },
+      {
+        src:'https://www.googletagmanager.com/gtag/js?id=G-2WEYJL5ZWC',
+        defer:true
       }
     ]
   },
@@ -139,11 +147,34 @@ export default {
     // middleware: 'signin'
   },
 
+  buildModules: [
+    '@nuxtjs/google-analytics'
+  ],
+
+  googleAnalytics: {
+    id:'G-2WEYJL5ZWC',
+    asyncID: async (context) => { 
+      /* do something */
+
+      return 'UA-2WEYJL5ZW-C' 
+    },
+    autoTracking: {
+      screenview: true
+    }
+  },
+
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: 'G-2WEYJL5ZWC'
+    }
+  },
+
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    'nuxt-facebook-pixel-module',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     ['@nuxtjs/router', { keepDefaultRouter: true }],
@@ -154,6 +185,13 @@ export default {
       ]
     }]
   ],
+
+  facebook: {
+    track: 'PageView',
+    pixelId: '420958735839702',
+    autoPageView: true,
+    disabled: false
+  },
   /*
    ** Axios module configuration
    */
@@ -161,6 +199,15 @@ export default {
     baseURL: 'https://bellamodels.managerfashion.net/api'
     // debug: true
     // See https://github.com/nuxt-community/axios-module#options
+  },
+  generate:{
+    subFolders:false
+  },
+  vue: {
+    config: {
+      productionTip: true,
+      devtools: true
+    }
   },
 
   /*

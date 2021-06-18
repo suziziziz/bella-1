@@ -19,10 +19,10 @@
 <script>
 import moment from 'moment'
 export default {
-  async asyncData({$axios,store,route,error}){
+  async created(){
     try {
-      const { data:post } = await $axios.get(`/posts/blog/${store.state.lang.locale}/${route.params.post_id}`)
-      return { post }
+      const { data:post } = await this.$axios.get(`/posts/blog/${this.$store.state.lang.locale}/${this.$route.params.post_id}`)
+      this.post= post
       
     } catch (e) {
       error({ statusCode: 404, message: 'Post not found' })

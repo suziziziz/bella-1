@@ -1,6 +1,6 @@
 <template>
   <section id="home">
-    <div class="row slider reset-row">
+    <div class="row slider reset-row" v-if="slides">
       <div class="col-12 reset-col">
         <home-slider :srcset="slides" />
       </div>
@@ -16,7 +16,8 @@
     </div>
 
     <div class="row instagram-items reset-row">
-      <transition-group name="fade" mode="out-in" class="w-100">
+      <div class="elfsight-app-8e1b662d-5d08-46b3-9a35-8050aa27f71b"></div>
+      <!-- <transition-group name="fade" mode="out-in" class="w-100">
         <div
           v-show="$_.isEmpty(instagramData)"
           id="instagramLoading"
@@ -39,7 +40,7 @@
             </figure>
           </a>
         </div>
-      </transition-group>
+      </transition-group> -->
     </div>
 
     <div class="row blog-intro reset-row">
@@ -51,15 +52,15 @@
     </div>
 
     <div class="row blog-items reset-row">
-      <transition-group name="fade" mode="out-in" class="w-100">
+      <transition-group name="fade" mode="out-in" class="w-100" >
         <div
-          v-show="$_.isEmpty(posts)"
+          v-show="$_.isEmpty(blogPosts)"
           id="blogLoading"
           key="blogLoading"
         />
 
         <div
-          v-for="post in posts.filter((post,index)=>index<8)"
+          v-for="post in blogPosts.filter((post,index)=>index<8)"
           v-show="!$_.isEmpty(blogPosts)"
           :key="post.id"
           class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 item"
@@ -117,31 +118,35 @@ export default {
   components: {
     'home-slider': HomeSlider
   },
-  async asyncData ({ $axios, store }) {
-    let actions = []
-    if (!store.state.slides) {
-      const slides = $axios.$get(`/slides`)      
-      actions.push(slides)
-    }else{
-      actions.push(Promise.resolve(store.state.slides))
-    }
-    if(!store.state.posts){
-      const posts = $axios.$get(`/posts/blog/${store.state.lang.locale}?paginate=8`)      
-      actions.push(posts)
-    }else{
-      actions.push(Promise.resolve({
-        data:store.state.posts
-      }))
-    }
+  async created () {
+    try {
+      let actions = []
+      if (!this.$store.state.slides) {
+        const slides = this.$axios.$get(`/slides`)      
+        actions.push(slides)
+      }else{
+        actions.push(Promise.resolve(this.$store.state.slides))
+      }
+      if(!this.$store.state.posts){
+        const posts = this.$axios.$get(`/posts/blog/${this.$store.state.lang.locale}?paginate=8`)      
+        actions.push(posts)
+      }else{
+        actions.push(Promise.resolve({
+          data:this.$store.state.posts
+        }))
+      }
 
-    const [rSlides, {data:rPost}] = await Promise.all(actions)
-    
-    store.commit('setSlides', rSlides)
-    store.commit('setPost', rPost)
-    
-    return { 
-      slides: rSlides,
-      blogPosts: rPost
+      const [rSlides, {data:rPost}] = await Promise.all(actions)
+      
+      this.$store.commit('setSlides', rSlides)
+      this.$store.commit('setPost', rPost)
+      
+      
+        this.slides= rSlides
+        this.blogPosts = rPost
+      
+    } catch (error) {
+      error({ statusCode: 404, message: 'API not found' })
     }
   },
   data() {
@@ -153,13 +158,13 @@ export default {
     }
   },
   mounted() {
-    lottie.loadAnimation({
-      container: document.getElementById('instagramLoading'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData: Loader
-    })
+    // lottie.loadAnimation({
+    //   container: document.getElementById('instagramLoading'),
+    //   renderer: 'svg',
+    //   loop: true,
+    //   autoplay: true,
+    //   animationData: Loader
+    // })
     lottie.loadAnimation({
       container: document.getElementById('blogLoading'),
       renderer: 'svg',
@@ -167,7 +172,7 @@ export default {
       autoplay: true,
       animationData: Loader
     })
-    this.getInstagramInfo('bellamodelsbr')
+    // this.getInstagramInfo('bellamodelsbr')
   },
   filters:{
     formatDate(val){
@@ -175,7 +180,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['lang','posts'])
+    ...mapGetters(['lang'])
   },
   watch: {
     lang(){

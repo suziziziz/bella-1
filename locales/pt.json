@@ -4,7 +4,8 @@
     "please_fill_fields":"Preencha todos os campos obrigatórios"
   },
   "success":{
-    "contact":"Mensagem enviada com sucesso"
+    "message_sent":"Mensagem enviada com sucesso.",
+    "contact_you":"Em breve entraremos em contato"
   },
   "navbar":{
     "home": "Home",

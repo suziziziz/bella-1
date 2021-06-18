@@ -1,7 +1,7 @@
 <template>
   <section id="talentGallery">
     <transition name="fade" mode="out-in" class="w-100">
-      <div v-show="isLoading" id="loadGallery">
+      <div v-if="isLoading" id="loadGallery">
         <!-- Loading animation -->
       </div>
     </transition>
@@ -156,15 +156,21 @@ export default {
   components: {
     'gallery-slider': TalentGallerySlider
   },
-  async asyncData({store, $axios,route,error}) {
+  async created() {
     try {
-      let talent = await $axios.$get('https://integration.managerfashion.net/api/talent/profile', {
-        params: { id: route.params.id, language: 'en' },
+      let talent = await this.$axios.$get('https://integration.managerfashion.net/api/talent/profile', {
+        params: { id: this.$route.params.id, language: 'en' },
       })
       if(!talent) throw e             
-      return {
-        talentData:talent
-      }
+      
+        this.talentData=talent
+        this.isLoading = false
+        this.$nextTick(()=>{
+          if(this.talentData.instagram){
+            this.getInstagramInfo(this.talentData.instagram)
+          }
+        })
+      
       
     } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
@@ -218,22 +224,25 @@ export default {
       autoplay: true,
       path: '/animations/loader.json'
     })
-    setTimeout(() => this.isLoading = false, 200)
-    if(this.talentData.instagram){
-      this.getInstagramInfo(this.talentData.instagram)
-    }
+    // setTimeout(() => this.isLoading = false, 200)
+    
   },
 
   methods: {    
 
     getInstagramInfo(_user) {
-      this.$axios.$get('https://integration.managerfashion.net/api/agency/instagram')
+      this.$axios.$get('https://integration.managerfashion.net/api/talent/instagram?username='+_user)
         .then(response => {
-          this.instagramData = response.data
-          this.instagramLoaded = true
+          console.log(response)
+          this.instagramData = response
+          this.$nextTick(()=>{
+            this.instagramLoaded = true
+          })
         })
         .catch(error => {
-          this.instagramLoaded = true
+          this.$nextTick(()=>{
+            this.instagramLoaded = true
+          })
         })
     }
   },
