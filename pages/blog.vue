@@ -80,21 +80,6 @@ import moment from 'moment'
 import { mapGetters } from 'vuex';
 var observer
 export default {
-  async created() {
-   try {
-     let posts
-
-        let { data } = await $axios.$get(`/posts/blog/${store.state.lang.locale}?paginate=8&page=1`)
-        posts = data
-
-      return {
-        blogPosts:posts
-      }
-
-   } catch (error) {
-    error({ statusCode: 404, message: 'Post not found' })
-   }
-  },
   data() {
     return {
       meta: {
@@ -106,7 +91,6 @@ export default {
         logo: 'http://managerfashion.com/assets/clients_logos/bella_models.png',
         url: 'https://agenciabellamodels.com/' + this.$route.fullPath
       },
-      blogPosts: [],
       currDate: new Date(),
       enabledScroll:false,
       loadPost:false,
@@ -145,7 +129,11 @@ export default {
     }
   },
 
+  created() {
+      this.getPosts()
+  },
   mounted() {
+          this.getPosts()
     lottie.loadAnimation({
       container: document.getElementById('blogLoading'),
       renderer: 'svg',
@@ -168,7 +156,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['page','lang','posts'])
+    ...mapGetters(['page','lang','posts']),
+    blogPosts() {
+      return this.posts
+    }
   },
   watch: {
     lang(){
@@ -182,6 +173,11 @@ export default {
     }
   },
   methods: {
+    async getPosts(){
+      let { data:posts } = await this.$axios.$get(`/posts/blog/${this.lang}?paginate=8&page=1`)
+      this.$store.commit('setPost', posts)
+
+    },
     infiniteScroll(entries, observer) {
       if (entries[0].isIntersecting) {
         this.loadMore()
@@ -207,7 +203,7 @@ export default {
           observer.unobserve(this.target)
         }
         this.$nextTick(()=>{
-          this.blogPosts=post
+          this.blogPosts = posts
         })
       }
     },

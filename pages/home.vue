@@ -122,13 +122,13 @@ export default {
     try {
       let actions = []
       if (!this.$store.state.slides) {
-        const slides = this.$axios.$get(`/slides`)      
+        const slides = this.$axios.$get(`/slides`)
         actions.push(slides)
       }else{
         actions.push(Promise.resolve(this.$store.state.slides))
       }
       if(!this.$store.state.posts){
-        const posts = this.$axios.$get(`/posts/blog/${this.$store.state.lang.locale}?paginate=8`)      
+        const posts = this.$axios.$get(`/posts/blog/${this.$store.state.lang.locale}?paginate=8`)
         actions.push(posts)
       }else{
         actions.push(Promise.resolve({
@@ -137,14 +137,14 @@ export default {
       }
 
       const [rSlides, {data:rPost}] = await Promise.all(actions)
-      
+
       this.$store.commit('setSlides', rSlides)
       this.$store.commit('setPost', rPost)
-      
-      
+
+
         this.slides= rSlides
         this.blogPosts = rPost
-      
+
     } catch (error) {
       error({ statusCode: 404, message: 'API not found' })
     }
@@ -195,11 +195,11 @@ export default {
       this.$store.commit('setPost', posts)
 
     },
-    
+
     getImage(url){
-      return  url.match(/http/g) && url.match(/http/g).length > 0 
+      return  url.match(/http/g) && url.match(/http/g).length > 0
       ? url
-      :`https://bellamodels.managerfashion.net${url}`      
+      :`https://bellamodels.managerfashion.net${url}`
     },
     async getInstagramInfo(_user) {
       try {
@@ -207,7 +207,7 @@ export default {
             params: { username: _user.toString() }
           })
         this.instagramData = data.status ? []:data
-        
+
       } catch (error) {
         console.log(error);
       }
