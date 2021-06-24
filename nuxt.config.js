@@ -4,7 +4,7 @@
 import meta from './meta'
 
 export default {
-  mode: 'spa',
+  // mode: 'spa',
 
   /*
   .** Headers of the page
