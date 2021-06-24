@@ -1,5 +1,6 @@
 <template>
   <div class="main-component">
+    <gui />
     <!-- Header -->
     <main-nav :items="sections" />
 
@@ -40,6 +41,7 @@ import lottie from 'lottie-web'
 import { mapActions, mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
+import Gui from '~/components/Gui.vue'
 import DownloadAnimation from '~/assets/animations/download'
 function gtag(){dataLayer.push(arguments);}
 export default {
@@ -47,7 +49,8 @@ export default {
 
   components: {
     'main-nav': Navbar,
-    'main-footer': Footer
+    'main-footer': Footer,
+    'gui': Gui
   },
 
   data() {
