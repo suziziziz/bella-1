@@ -2,9 +2,13 @@
 
 > Criada em 2006 e com duas sedes no Rio de Janeiro, a Bella Models é uma das mais fortes agências do Rio de Janeiro, prestando um serviço diferenciado no mercado fashion, comercial e plus size.
 
+## Aviso
+
+> Usar Node ^14, versões anteriores e posteriores são incompativeis com os pacotes instalados
+
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ yarn
 

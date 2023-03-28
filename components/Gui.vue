@@ -1,7 +1,7 @@
 <template>
   <div class="gui-component">
     <div class="wpp">
-      <a href="https://api.whatsapp.com/send?phone=5521976971936" target="_blank"><img src="/wpp-button.svg" /></a>
+      <a href="https://api.whatsapp.com/send?phone=5521970317962" target="_blank"><img src="/wpp-button.svg" /></a>
     </div>
   </div>
 </template>

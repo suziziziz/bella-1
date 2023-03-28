@@ -6,6 +6,7 @@ import meta from './meta'
 export default {
   // ssr: false,
   // target: 'static',
+  mode: 'spa',
 
   /*
   .** Headers of the page
@@ -154,10 +155,10 @@ export default {
 
   googleAnalytics: {
     id:'G-2WEYJL5ZWC',
-    asyncID: async (context) => { 
+    asyncID: async (context) => {
       /* do something */
 
-      return 'UA-2WEYJL5ZW-C' 
+      return 'UA-2WEYJL5ZW-C'
     },
     autoTracking: {
       screenview: true
